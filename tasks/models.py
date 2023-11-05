@@ -17,7 +17,7 @@ class Goal(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     expected_deadline = models.DateField()
-    status = models.CharField(default='0', max_length=1, choices=STATUS) # Make sure 'blank' is set to True
+    status = models.CharField(default='0', blank=True, max_length=1, choices=STATUS)
 
     def save(self, *args, **kwargs):
         if not self.slug:
