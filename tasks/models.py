@@ -16,7 +16,7 @@ class Goal(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     expected_deadline = models.DateField()
-    status = models.CharField(max_length=1, choices=STATUS)
+    status = models.CharField(default='0', max_length=1, choices=STATUS)
 
     def __str__(self):
         return self.title
