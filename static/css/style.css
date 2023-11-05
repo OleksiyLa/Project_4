@@ -19,6 +19,12 @@ to {
 }
 }
 
+/* Edit goal */
+#edit-goal-form {
+  width: 60%;
+}
+
+/* Delete goal */
 .delete-icon {
   width: 1.2rem;
   cursor: pointer;

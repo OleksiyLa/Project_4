@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, CreateView, DeleteView
+from django.views.generic import ListView, CreateView
+from django.views.generic.edit import UpdateView
 from django.urls import reverse
 from .forms import GoalForm
 from .models import Goal
@@ -19,6 +20,13 @@ class CreateGoalView(CreateView):
     model = Goal
     form_class = GoalForm
     template_name = 'create_goal.html'
+    success_url = '/'
+
+
+class EditGoalView(UpdateView):
+    model = Goal
+    form_class = GoalForm
+    template_name = 'edit_goal.html'
     success_url = '/'
 
 

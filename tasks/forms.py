@@ -4,4 +4,5 @@ from .models import Goal
 class GoalForm(forms.ModelForm):
   class Meta:
     model = Goal
-    exclude = ['status']
+    fields = '__all__'
+    

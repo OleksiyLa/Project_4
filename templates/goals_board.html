@@ -55,7 +55,7 @@
               <h3 class="h4 text-center my-2">{{ goal.title }}</h3>
               <p class="text-center">{{ goal.description }}</p>
               <sub>Deadline: {{ goal.expected_deadline }}</sub>
-              <a class="btn btn-outline-primary d-block mt-5 mb-2" href="#">Edit</a>
+              <a class="btn btn-outline-primary d-block mt-5 mb-2" href="{% url 'edit_goal' slug=goal.slug %}">Edit</a>
               <a class="btn btn-success d-block" href="#">Add Task</a>
             </div>
           </div>
@@ -84,7 +84,7 @@
                 <h3 class="h4 text-center my-2">{{ goal.title }}</h3>
                 <p class="text-center">{{ goal.description }}</p>
                 <sub>Deadline: {{ goal.expected_deadline }}</sub>
-                <a class="btn btn-outline-primary d-block mt-5 mb-2" href="#">Edit</a>
+                <a class="btn btn-outline-primary d-block mt-5 mb-2" href="{% url 'edit_goal' slug=goal.slug %}">Edit</a>
                 <a class="btn btn-success d-block" href="#">Add Task</a>
               </div>
             </div>
@@ -112,7 +112,7 @@
               <h3 class="h4 text-center my-2">{{ goal.title }}</h3>
               <p class="text-center">{{ goal.description }}</p>
               <sub>Deadline: {{ goal.expected_deadline }}</sub>
-              <a class="btn btn-outline-primary d-block mt-5 mb-2" href="#">Edit</a>
+              <a class="btn btn-outline-primary d-block mt-5 mb-2" href="{% url 'edit_goal' slug=goal.slug %}">Edit</a>
               <a class="btn btn-success d-block" href="#">Add Task</a>
             </div>
           </div>
@@ -138,7 +138,7 @@
               <h3 class="h4 text-center my-2">{{ goal.title }}</h3>
               <p class="text-center">{{ goal.description }}</p>
               <sub>Deadline: {{ goal.expected_deadline }}</sub>
-              <a class="btn btn-outline-primary d-block mt-5 mb-2" href="#">Edit</a>
+              <a class="btn btn-outline-primary d-block mt-5 mb-2" href="{% url 'edit_goal' slug=goal.slug %}">Edit</a>
               <a class="btn btn-success d-block" href="#">Add Task</a>
             </div>
           </div>
