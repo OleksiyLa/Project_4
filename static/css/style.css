@@ -19,6 +19,15 @@ to {
 }
 }
 
+.delete-icon {
+  width: 1.2rem;
+  cursor: pointer;
+}
+
+.delete-icon:hover {
+  transform: scale(1.2);
+}
+
 /* Footer */
 footer a {
   display: inline-block;

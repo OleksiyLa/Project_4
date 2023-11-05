@@ -27,6 +27,16 @@
             </label>
             <input type="date" id="{{ form.expected_deadline.id_for_label }}" name="{{ form.expected_deadline.name }}" class="form-control">
         </div>
+        {% if form.errors %}
+          <div class="alert alert-danger">
+              <strong>Oops! There was an error:</strong>
+              <ul>
+                  {% for error in form.errors %}
+                      <li>{{ error }}</li>
+                  {% endfor %}
+              </ul>
+          </div>
+        {% endif %}
         <button type="submit" class="btn btn-lg btn-primary w-100">Create Goal</button>
     </form>
 </div>

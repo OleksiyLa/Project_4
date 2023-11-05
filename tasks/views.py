@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, FormView
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, CreateView, DeleteView
 from django.urls import reverse
 from .forms import GoalForm
 from .models import Goal
@@ -20,3 +20,9 @@ class CreateGoalView(CreateView):
     form_class = GoalForm
     template_name = 'create_goal.html'
     success_url = '/'
+
+
+def delete_goal(request, slug):
+    goal = Goal.objects.get(slug=slug)
+    goal.delete()
+    return redirect(reverse('goals_board'))
