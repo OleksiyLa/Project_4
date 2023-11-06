@@ -20,7 +20,7 @@ to {
 }
 
 /* Edit goal */
-#edit-goal-form {
+.edit-create-form {
   width: 60%;
 }
 

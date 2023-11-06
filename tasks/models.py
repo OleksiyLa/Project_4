@@ -30,17 +30,17 @@ class Goal(models.Model):
 
 class Task(models.Model):
     title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, blank=True) 
     description = models.TextField()
     goal = models.ForeignKey(Goal, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     due_date = models.DateField()
-    completed = models.BooleanField(default=False)
+    completed = models.BooleanField(default=False, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-        super(Goal, self).save(*args, **kwargs)
+        super(Task, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title

@@ -1,0 +1,64 @@
+{% extends "./base.html" %}
+
+{% block title %}Edit Task{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center flex-column">
+    <form method="post" class="p-5 m-5 border border-dark bg-light rounded shadow-sm edit-create-form">
+        {% csrf_token %}
+        <h1 class="mb-5 display-5 text-center">Edit your Task</h1>
+        <div class="mb-3">
+            <label for="{{ form.title.id_for_label }}" class="form-label d-block text-center lead">
+              Title
+            </label>
+            <input type="text" id="{{ form.title.id_for_label }}"
+            name="{{ form.title.name }}" class="form-control"
+            value="{{ form.title.value }}">
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.description.id_for_label }}" class="form-label d-block text-center lead">
+              Description
+            </label>
+            <textarea rows="12" id="{{ form.description.id_for_label }}" name="{{ form.description.name }}" class="form-control" >
+                {{ form.description.value }}
+            </textarea>
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.due_date.id_for_label }}" class="form-label d-block text-center lead">
+              Expected Deadline
+            </label>
+            <input type="date" id="{{ form.due_date.id_for_label }}" name="{{ form.due_date.name }}" value="{{ form.due_date.value|date:'Y-m-d' }}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.goal.id_for_label }}" class="form-label d-block text-center lead">
+                Your Goal
+            </label>
+            <select id="{{ form.goal.id_for_label }}" name="{{ form.goal.name }}" class="form-control custom-select">
+                <option value="" {% if not form.goal.value %}selected{% endif %}>---------</option>
+                {% for choice in form.goal.field.choices %}
+                    <option value="{{ choice.0 }}" {% if choice.0 == form.goal.value %}selected{% endif %}>{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.completed.id_for_label }}" class="form-check-label d-block text-center lead">
+                Done
+            </label>
+            <div class="form-check">
+                <input type="checkbox" id="{{ form.completed.id_for_label }}" name="{{ form.completed.name }}" class="form-check-input" {% if form.completed.value %}checked{% endif %}>
+            </div>
+        </div>
+        {% if form.errors %}
+          <div class="alert alert-danger">
+              <strong>Oops! There was an error:</strong>
+              <ul>
+                  {% for error in form.errors %}
+                      <li>{{ error }}</li>
+                  {% endfor %}
+              </ul>
+          </div>
+        {% endif %}
+        <button type="submit" class="btn btn-lg btn-primary w-100">Edit Task</button>
+    </form>
+</div>
+{% endblock %}
