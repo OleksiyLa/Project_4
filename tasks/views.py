@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, TemplateView
 from django.views.generic.edit import UpdateView
 from django.urls import reverse
-from .forms import GoalForm, TaskForm
-from .models import Goal, Task
+from .forms import GoalForm, TaskForm, ScheduleForm, ScheduledDateForm
+from .models import Goal, Task, Schedule, ScheduledDate
 
 # Create your views here.
 class GoalsBoardView(ListView):
@@ -88,3 +88,25 @@ def delete_task(request, slug):
     task = Task.objects.get(slug=slug)
     task.delete()
     return redirect(reverse('tasks'))
+
+
+def schedule_task(request, slug):
+    task = Task.objects.get(slug=slug)
+    if task is None:
+        return redirect('goals_board')
+
+    if request.method == 'POST':
+        form = ScheduleForm(request.POST)
+        if form.is_valid():
+            schedule = form.save(commit=False)
+            schedule.task = task
+            schedule.save()
+            return redirect('tasks')
+    else:
+        form = ScheduleForm()
+        date_form = ScheduledDateForm()
+
+    return render(request, 'schedule.html', {'form': form, 'date_form': date_form })
+
+class CalendarView(TemplateView):
+    template_name = 'calendar.html'

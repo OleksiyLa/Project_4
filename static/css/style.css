@@ -34,6 +34,39 @@ to {
   transform: scale(1.2);
 }
 
+/* Calendar */
+.calendar {
+  width: 60%;
+}
+
+.calendar-controls button {
+  width: 6rem;
+}
+
+.calendar td {
+  cursor: pointer;
+}
+
+.calendar td:hover {
+  background: #eee;
+}
+
+.calendar td.selected {
+  background: #ddd;
+}
+
+.calendar td.today {
+  background: #eee;
+}
+
+.prev-month-day {
+  color: #ccc;
+}
+
+.next-month-day {
+  color: #ccc;
+}
+
 /* Footer */
 footer a {
   display: inline-block;

@@ -59,10 +59,12 @@ class Schedule(models.Model):
 
 class ScheduledDate(models.Model):
     date = models.DateField()
-    scheduled_time = models.TimeField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    completed = models.BooleanField(default=False, blank=True)
 
     class Meta:
-        unique_together = ['date', 'scheduled_time']
+        unique_together = ['date', 'start_time', 'end_time']
 
     def __str__(self):
-        return f"{self.date} {self.scheduled_time}"
+        return f"{self.date} {self.start_time} - {self.end_time}"
