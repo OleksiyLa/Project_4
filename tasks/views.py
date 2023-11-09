@@ -2,8 +2,12 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, TemplateView
 from django.views.generic.edit import UpdateView
 from django.urls import reverse
+from django.http import JsonResponse
+import json
+from datetime import date
 from .forms import GoalForm, TaskForm, ScheduleForm, ScheduledDateForm
 from .models import Goal, Task, Schedule, ScheduledDate
+
 
 # Create your views here.
 class GoalsBoardView(ListView):
@@ -87,6 +91,7 @@ class EditTaskView(UpdateView):
 def delete_task(request, slug):
     task = Task.objects.get(slug=slug)
     task.delete()
+    print(reverse('delete_task', args=[slug]))
     return redirect(reverse('tasks'))
 
 
@@ -96,17 +101,44 @@ def schedule_task(request, slug):
         return redirect('goals_board')
 
     if request.method == 'POST':
-        form = ScheduleForm(request.POST)
-        if form.is_valid():
-            schedule = form.save(commit=False)
+        date_form = ScheduledDateForm(request.POST)
+        if date_form.is_valid():
+            schedule_form = ScheduleForm(request.POST)
+            scheduled_date = date_form.save(commit=False)
+            scheduled_date.save()
+
+            schedule = schedule_form.save(commit=False)
             schedule.task = task
             schedule.save()
-            return redirect('tasks')
+            schedule.scheduled_dates.add(scheduled_date)
+            end_date = request.POST.get('end_date')
+            end_date = date.fromisoformat(end_date)
+            return redirect(reverse('tasks'))
     else:
-        form = ScheduleForm()
         date_form = ScheduledDateForm()
 
-    return render(request, 'schedule.html', {'form': form, 'date_form': date_form })
+    return render(request, 'schedule.html', {'date_form': date_form })
 
 class CalendarView(TemplateView):
     template_name = 'calendar.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_link"] = 'calendar'
+        return context
+
+
+def calendar_data(request):
+    data = Schedule.objects.all()
+    schedule_data = []
+
+    for task in Task.objects.all():
+        task_schedules = data.filter(task=task)
+
+        if task_schedules.exists():
+            schedule_list = [{"scheduled_dates": list(item.scheduled_dates.values())} for item in task_schedules]
+            schedule_data.append({"task_title": task.title, "task_slug": task.slug, "url": reverse('delete_task', args=[task.slug]), "task_description": task.description, "schedule_list": schedule_list})
+
+    response_data = schedule_data
+
+    print(response_data)
+    return JsonResponse(response_data, safe=False)

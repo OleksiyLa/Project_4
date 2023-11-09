@@ -12,4 +12,5 @@ urlpatterns = [
     path('delete_task/<slug:slug>/', views.delete_task, name='delete_task'),
     path('schedule_task/<slug:slug>/', views.schedule_task, name='schedule_task'),
     path('calendar/', views.CalendarView.as_view(), name='calendar'),
+    path('api/calendar_data/', views.calendar_data, name='calendar_data'),
 ]

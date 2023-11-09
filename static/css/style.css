@@ -1,7 +1,13 @@
+html {
+  height: 100%;
+}
+
 body{
   background: #fafafa;
+  height: 100%;
   min-height: 100vh;
 }
+
 
 #logo-svg {
   width: 2rem;
@@ -34,9 +40,40 @@ to {
   transform: scale(1.2);
 }
 
+/* Schedule */
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.checkbox-container input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"]:checked ~ label {
+  color: green;
+}
+
+.checkbox-container label {
+  cursor: pointer;
+  user-select: none;
+}
+
 /* Calendar */
 .calendar {
-  width: 60%;
+  flex-grow: 1;
+}
+
+.calendar > .row {
+  height: 100%;
+}
+
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  user-select: none;
 }
 
 .calendar-controls button {
@@ -59,12 +96,32 @@ to {
   background: #eee;
 }
 
+.calendar td.scheduled-date {
+  background: red;
+}
+
 .prev-month-day {
   color: #ccc;
 }
 
 .next-month-day {
   color: #ccc;
+}
+
+#scheduled-tasks .card {
+  height: 100%;
+}
+#scheduled-tasks .row {
+  height: 50vh;
+}
+
+#scheduled-tasks .card .card-body {
+  height: fit-content;
+}
+
+.scroll-auto {
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Footer */

@@ -7,25 +7,76 @@
     <form method="post" class="p-5 m-5 border border-dark bg-light rounded shadow-sm edit-create-form">
         {% csrf_token %}
         <h1 class="mb-5 display-5 text-center">Schedule</h1>
-        {{ form.as_p }}
-        {{ date_form.as_p }}
-        <div class="mb-3">
-            <label for="{{ date_form.date.id_for_label }}" class="form-label d-block text-center lead">
-              Expected Deadline
+        <div class="mb-3 d-flex justify-content-around">
+          <div>
+            <label for="{{ date_form.start_time.id_for_label }}" class="date_form-label text-center lead mr-2">
+              From
             </label>
-            <input type="date" id="{{ form.date.id_for_label }}" name="{{ form.date.name }}" class="form-control">
+            <input type="time" id="{{ date_form.start_time.id_for_label }}" name="{{ date_form.start_time.name }}" class="date_form-control p-2">
+          </div>
+          <div>
+            <label for="{{ date_form.end_time.id_for_label }}" class="date_form-label text-center lead mr-2">
+                To
+              </label>
+              <input type="time" id="{{ date_form.end_time.id_for_label }}" name="{{ date_form.end_time.name }}" class="date_form-control p-2">
+          </div>
         </div>
-        {% if form.errors %}
+        <div class="mb-3">
+            <label for="{{ date_form.date.id_for_label }}" class="date_form-label d-block text-center lead">
+              Exact date or start date
+            </label>
+            <input type="date" id="{{ date_form.date.id_for_label }}" name="{{ date_form.date.name }}" class="date_form-control w-100 p-2">
+        </div>
+        <div class="mb-3">
+            <label for="end_date" class="date_form-label d-block text-center lead">
+                End date (Optional)
+            </label>
+            <input type="date" id="end_date" name="end_date" class="date_form-control w-100 p-2">
+        </div>
+        <div class="mb-3">
+            <h2 class="text-center h3">Applies when the end date is selected</h2>
+            <div class="checkbox-container p-2">
+                <div class="form-group">
+                    <input type="checkbox" id="monday" name="selectedDays[]" value="0">
+                    <label for="monday">Monday</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="tuesday" name="selectedDays[]" value="1">
+                    <label for="tuesday">Tuesday</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="wednesday" name="selectedDays[]" value="2">
+                    <label for="wednesday">Wednesday</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="thursday" name="selectedDays[]" value="3">
+                    <label for="thursday">Thursday</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="friday" name="selectedDays[]" value="4">
+                    <label for="friday">Friday</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="saturday" name="selectedDays[]" value="5">
+                    <label for="saturday">Saturday</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="sunday" name="selectedDays[]" value="6">
+                    <label for="sunday">Sunday</label><br>
+                </div>
+            </div>
+        </div>
+        {% if date_form.errors %}
           <div class="alert alert-danger">
               <strong>Oops! There was an error:</strong>
               <ul>
-                  {% for error in form.errors %}
+                  {% for error in date_form.errors %}
                       <li>{{ error }}</li>
                   {% endfor %}
               </ul>
           </div>
         {% endif %}
-        <button type="submit" class="btn btn-lg btn-primary w-100">Create Goal</button>
+        <button type="submit" class="btn btn-lg btn-primary w-100">Schedule</button>
     </form>
 </div>
 {% endblock %}
