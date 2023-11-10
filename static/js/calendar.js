@@ -16,20 +16,26 @@ const months = [
 
 const date = new Date();
 let calendarData;
+let selectedDate;
 
 elementsDOM.prevMonthBtn.addEventListener("click", () => {
   date.setMonth(date.getMonth() - 1);
   renderCalendar(date, calendarData);
+  selectDate(selectedDate)
 });
 elementsDOM.nextMonthBtn.addEventListener("click", () => {
   date.setMonth(date.getMonth() + 1);
   renderCalendar(date, calendarData);
+  selectDate(selectedDate)
 });
 elementsDOM.todayBtn.addEventListener("click", () => {
   renderCalendar(new Date(), calendarData);
+  selectDate(new Date().toLocaleDateString())
+  getTasksHTML(new Date().toLocaleDateString())
 });
 elementsDOM.calendar.addEventListener("click", (e) => {
   if(e.target.getAttribute('data-date')) {
+    selectDate(e.target.getAttribute('data-date'))
     elementsDOM.tasks.innerHTML = getTasksHTML(e.target.getAttribute('data-date'))
   }
 })
@@ -88,7 +94,7 @@ function getPreviousMonthHTML(today, startingDay) {
 }
 
 function fetchData() {
-  fetch('http://127.0.0.1:8000/api/calendar_data/')
+  fetch('https://task-manager-planner-app-ca416dc67970.herokuapp.com/api/calendar_data/')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -100,12 +106,27 @@ function fetchData() {
     })
     .then(data => {
       calendarData = processData(data)
+      console.log('Fetch success:', calendarData);
       renderCalendar(date, calendarData);
+      selectDate(new Date().toLocaleDateString())
       getTasksHTML(new Date().toLocaleDateString())
     })
     .catch(error => {
       console.error('Fetch error:', error);
     });
+}
+
+function selectDate(date) {
+  const removeSelector = `td[data-date="${selectedDate}"]`;
+  const elementToRemoveClass = document.querySelector(removeSelector);
+  if (elementToRemoveClass && elementToRemoveClass.classList.contains('selected-date')) {
+    elementToRemoveClass.classList.remove('selected-date');
+  }
+  
+  const addSelector = `td[data-date="${date}"]`;
+  const element = document.querySelector(addSelector);
+  element.classList.add('selected-date');
+  selectedDate = date;
 }
 
 function processData(data) {
@@ -121,12 +142,12 @@ function getTasksHTML(date){
   tasks.map(item => {
     const schedule = item.schedule.filter(schedule => new Date(schedule.date).toLocaleDateString() === date.toLocaleDateString())
     for(let i = 0; i < schedule.length; i++) {
-      tasksArrHTML.push(`
+      tasksArrHTML.push([schedule[i].start_time, `
       <div class="card mb-3 bg-light">
         <div class="card-body p-3">
           <img src="/static/svg/delete_icon.svg" alt="delete-icon" class="float-end delete-icon" data-txt="task" data-title="${item.title}" data-url="${item.url}">
           <h3 class="h4 text-center my-2">${item.title}</h3>
-          <h3 class="h4 text-center my-2">From <span>${schedule[i].start_time}</span> To <span>${schedule[i].end_time}</span></h3>
+          <h3 class="h4 text-center my-2">From <span>${schedule[i].start_time.slice(0, -3)}</span> To <span>${schedule[i].end_time.slice(0, -3)}</span></h3>
           <p class="text-center">${item.description}</p>
           <p class="text-center">Done</p>
           <div class="mt-3">
@@ -134,9 +155,10 @@ function getTasksHTML(date){
             <a class="btn btn-outline-primary w-100" href="">Reschedule</a>
           </div>
         </div>
-      </div>`)
+      </div>`])
     }
     return 
   })
-  return tasksArrHTML.join("")
+  tasksArrHTML.sort((a, b) => a[0] > b[0] ? 1 : -1)
+  return tasksArrHTML.map(item => item.pop()).join("")
 }

@@ -97,7 +97,21 @@ to {
 }
 
 .calendar td.scheduled-date {
-  background: red;
+  background: #8B0000;
+  color: #eeeeee;
+}
+
+.calendar td.scheduled-date:hover {
+  opacity: 0.9;
+}
+
+.calendar td.scheduled-date:active {
+  opacity: 1;
+}
+
+.calendar td.selected-date {
+  background: #DAA520;
+  /* color: #eeeeee; */
 }
 
 .prev-month-day {

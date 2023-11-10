@@ -139,6 +139,4 @@ def calendar_data(request):
             schedule_data.append({"task_title": task.title, "task_slug": task.slug, "url": reverse('delete_task', args=[task.slug]), "task_description": task.description, "schedule_list": schedule_list})
 
     response_data = schedule_data
-
-    print(response_data)
     return JsonResponse(response_data, safe=False)
