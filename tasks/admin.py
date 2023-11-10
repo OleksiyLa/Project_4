@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Goal, Task, Schedule, ScheduledDate
+from .models import Goal, Task, ScheduledTask
 
 
 @admin.register(Goal)
@@ -19,5 +19,4 @@ class TaskAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 
-admin.site.register(Schedule)
-admin.site.register(ScheduledDate)
+admin.site.register(ScheduledTask)

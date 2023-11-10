@@ -40,6 +40,11 @@ to {
   transform: scale(1.2);
 }
 
+/* Tasks */
+.card.card-task {
+  width: 40%;
+}
+
 /* Schedule */
 .checkbox-container {
   display: flex;
@@ -111,7 +116,6 @@ to {
 
 .calendar td.selected-date {
   background: #DAA520;
-  /* color: #eeeeee; */
 }
 
 .prev-month-day {

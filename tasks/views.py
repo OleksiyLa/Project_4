@@ -4,9 +4,9 @@ from django.views.generic.edit import UpdateView
 from django.urls import reverse
 from django.http import JsonResponse
 import json
-from datetime import date
-from .forms import GoalForm, TaskForm, ScheduleForm, ScheduledDateForm
-from .models import Goal, Task, Schedule, ScheduledDate
+from datetime import date, timedelta, datetime
+from .forms import GoalForm, TaskForm, ScheduledTaskForm
+from .models import Goal, Task, ScheduledTask
 
 
 # Create your views here.
@@ -97,30 +97,41 @@ def delete_task(request, slug):
 
 def schedule_task(request, slug):
     task = Task.objects.get(slug=slug)
-    if task is None:
-        return redirect('goals_board')
-
+    if not task:
+        return redirect('tasks')
     if request.method == 'POST':
-        date_form = ScheduledDateForm(request.POST)
-        if date_form.is_valid():
-            schedule_form = ScheduleForm(request.POST)
-            scheduled_date = date_form.save(commit=False)
-            scheduled_date.save()
-
-            schedule = schedule_form.save(commit=False)
-            schedule.task = task
-            schedule.save()
-            schedule.scheduled_dates.add(scheduled_date)
+        form = ScheduledTaskForm(request.POST)
+        if form.is_valid():
+            start_time = request.POST.get('start_time')
+            end_time = request.POST.get('end_time')
+            date = request.POST.get('date')
             end_date = request.POST.get('end_date')
-            end_date = date.fromisoformat(end_date)
+            selected_days = request.POST.getlist('selectedDays[]')
+            start_date = datetime.strptime(date, "%Y-%m-%d").date()
+            if end_date:
+                end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
+                delta = timedelta(days=1)
+                while start_date <= end_date:
+                    if str(start_date.weekday()) in selected_days:
+                        ScheduledTask.objects.get_or_create(
+                            task=task, date=start_date, start_time=start_time, end_time=end_time
+                        )
+                    start_date += delta
+            else:
+                ScheduledTask.objects.get_or_create(
+                    task=task, date=start_date, start_time=start_time, end_time=end_time
+                )
             return redirect(reverse('tasks'))
+        else:
+            return render(request, 'schedule.html', {'form': form, 'task': task.id})
     else:
-        date_form = ScheduledDateForm()
+        form = ScheduledTaskForm()
+        return render(request, 'schedule.html', {'form': form, 'task': task.id})
 
-    return render(request, 'schedule.html', {'date_form': date_form })
 
 class CalendarView(TemplateView):
     template_name = 'calendar.html'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["active_link"] = 'calendar'
@@ -128,15 +139,25 @@ class CalendarView(TemplateView):
 
 
 def calendar_data(request):
-    data = Schedule.objects.all()
+    all_tasks = Task.objects.all()
     schedule_data = []
 
-    for task in Task.objects.all():
-        task_schedules = data.filter(task=task)
-
+    for task in all_tasks:
+        task_schedules = ScheduledTask.objects.filter(task=task)
         if task_schedules.exists():
-            schedule_list = [{"scheduled_dates": list(item.scheduled_dates.values())} for item in task_schedules]
-            schedule_data.append({"task_title": task.title, "task_slug": task.slug, "url": reverse('delete_task', args=[task.slug]), "task_description": task.description, "schedule_list": schedule_list})
-
-    response_data = schedule_data
-    return JsonResponse(response_data, safe=False)
+            schedule_list = []
+            for item in task_schedules:
+                schedule_list.append({
+                    "date": item.date,
+                    "start_time": item.start_time,
+                    "end_time": item.end_time,
+                    "completed": item.completed
+                })
+            schedule_data.append({
+                "title": task.title,
+                "slug": task.slug,
+                "url": reverse('delete_task', args=[task.slug]),
+                "description": task.description,
+                "schedule": schedule_list
+            })
+    return JsonResponse(schedule_data, safe=False)

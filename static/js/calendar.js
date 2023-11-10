@@ -94,7 +94,8 @@ function getPreviousMonthHTML(today, startingDay) {
 }
 
 function fetchData() {
-  fetch('https://task-manager-planner-app-ca416dc67970.herokuapp.com/api/calendar_data/')
+  // fetch('https://task-manager-planner-app-ca416dc67970.herokuapp.com/api/calendar_data/')
+  fetch('http://127.0.0.1:8000/api/calendar_data/')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -105,9 +106,8 @@ function fetchData() {
       return data
     })
     .then(data => {
-      calendarData = processData(data)
-      console.log('Fetch success:', calendarData);
-      renderCalendar(date, calendarData);
+      calendarData = data
+      renderCalendar(date, data);
       selectDate(new Date().toLocaleDateString())
       getTasksHTML(new Date().toLocaleDateString())
     })
@@ -125,13 +125,10 @@ function selectDate(date) {
   
   const addSelector = `td[data-date="${date}"]`;
   const element = document.querySelector(addSelector);
-  element.classList.add('selected-date');
+  if (element){
+    element.classList.add('selected-date');
+  }
   selectedDate = date;
-}
-
-function processData(data) {
-  const processedData = data.map(item => ({title: item.task_title, description: item.task_description, slug: item.task_slug, schedule: item.schedule_list.map(schedule => schedule.scheduled_dates).flat()}))
-  return processedData
 }
 
 function getTasksHTML(date){
