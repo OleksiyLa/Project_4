@@ -91,7 +91,6 @@ class EditTaskView(UpdateView):
 def delete_task(request, slug):
     task = Task.objects.get(slug=slug)
     task.delete()
-    print(reverse('delete_task', args=[slug]))
     return redirect(reverse('tasks'))
 
 
@@ -151,13 +150,21 @@ def calendar_data(request):
                     "date": item.date,
                     "start_time": item.start_time,
                     "end_time": item.end_time,
-                    "completed": item.completed
+                    "completed": item.completed,
+                    "slug": item.slug,
+                    "url": reverse('delete_scheduled_task', args=[item.slug]),
                 })
             schedule_data.append({
                 "title": task.title,
                 "slug": task.slug,
-                "url": reverse('delete_task', args=[task.slug]),
                 "description": task.description,
                 "schedule": schedule_list
             })
     return JsonResponse(schedule_data, safe=False)
+
+
+def delete_scheduled_task(request, slug):
+    scheduled_task = ScheduledTask.objects.get(slug=slug)
+    scheduled_task.delete()
+    return redirect(reverse('calendar'))
+

@@ -94,8 +94,7 @@ function getPreviousMonthHTML(today, startingDay) {
 }
 
 function fetchData() {
-  // fetch('https://task-manager-planner-app-ca416dc67970.herokuapp.com/api/calendar_data/')
-  fetch('http://127.0.0.1:8000/api/calendar_data/')
+  fetch('https://task-manager-planner-app-ca416dc67970.herokuapp.com/api/calendar_data/')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -107,6 +106,7 @@ function fetchData() {
     })
     .then(data => {
       calendarData = data
+      console.log(calendarData)
       renderCalendar(date, data);
       selectDate(new Date().toLocaleDateString())
       getTasksHTML(new Date().toLocaleDateString())
@@ -138,11 +138,12 @@ function getTasksHTML(date){
   elementsDOM.selected_date.innerHTML = `<h2>${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}</h2>`
   tasks.map(item => {
     const schedule = item.schedule.filter(schedule => new Date(schedule.date).toLocaleDateString() === date.toLocaleDateString())
+    console.log(schedule)
     for(let i = 0; i < schedule.length; i++) {
       tasksArrHTML.push([schedule[i].start_time, `
       <div class="card mb-3 bg-light">
         <div class="card-body p-3">
-          <img src="/static/svg/delete_icon.svg" alt="delete-icon" class="float-end delete-icon" data-txt="task" data-title="${item.title}" data-url="${item.url}">
+        <img src="/static/svg/delete_icon.svg" alt="delete-icon" class="float-end delete-icon" data-txt="scheduled task" data-title="${item.title}" data-url="${schedule[i].url}">
           <h3 class="h4 text-center my-2">${item.title}</h3>
           <h3 class="h4 text-center my-2">From <span>${schedule[i].start_time.slice(0, -3)}</span> To <span>${schedule[i].end_time.slice(0, -3)}</span></h3>
           <p class="text-center">${item.description}</p>
@@ -154,7 +155,7 @@ function getTasksHTML(date){
         </div>
       </div>`])
     }
-    return 
+    return
   })
   tasksArrHTML.sort((a, b) => a[0] > b[0] ? 1 : -1)
   return tasksArrHTML.map(item => item.pop()).join("")
