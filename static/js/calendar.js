@@ -30,8 +30,8 @@ elementsDOM.nextMonthBtn.addEventListener("click", () => {
 });
 elementsDOM.todayBtn.addEventListener("click", () => {
   renderCalendar(new Date(), calendarData);
-  selectDate(new Date().toLocaleDateString())
-  getTasksHTML(new Date().toLocaleDateString())
+  selectDate(new Date().toDateString())
+  getTasksHTML(new Date().toDateString())
 });
 elementsDOM.calendar.addEventListener("click", (e) => {
   if(e.target.getAttribute('data-date')) {
@@ -47,7 +47,7 @@ function renderCalendar(date, data) {
   let scheduledDates;
   if(data) {
     let scheduled_tasks = data.map(item => item.schedule).flat().map(item => new Date(item.date))
-    scheduledDates = scheduled_tasks.map(item => item.toLocaleDateString())
+    scheduledDates = scheduled_tasks.map(item => item.toDateString())
   }
   const diplayedDate = date;
   const firstDay = new Date(diplayedDate.getFullYear(), diplayedDate.getMonth(), 1);
@@ -60,7 +60,7 @@ function renderCalendar(date, data) {
   row.innerHTML += getPreviousMonthHTML(diplayedDate, startingDay);
 
   for (let day = 1; day <= daysInMonth; day++) {
-    row.innerHTML += `<td class='text-center' data-date='${new Date(diplayedDate.getFullYear(), diplayedDate.getMonth(), day).toLocaleDateString()}'>${day}</td>`;
+    row.innerHTML += `<td class='text-center' data-date='${new Date(diplayedDate.getFullYear(), diplayedDate.getMonth(), day).toDateString()}'>${day}</td>`;
     if(day === daysInMonth && (startingDay + day) % 7 !== 0) {
       let nextMonthDay = 1;
       for(let i = (startingDay + day) % 7; i < 7; i++) {
@@ -108,8 +108,8 @@ function fetchData() {
       calendarData = data
       console.log(calendarData)
       renderCalendar(date, data);
-      selectDate(new Date().toLocaleDateString())
-      getTasksHTML(new Date().toLocaleDateString())
+      selectDate(new Date().toDateString())
+      getTasksHTML(new Date().toDateString())
     })
     .catch(error => {
       console.error('Fetch error:', error);
@@ -132,12 +132,21 @@ function selectDate(date) {
 }
 
 function getTasksHTML(date){
-  const tasks = calendarData.filter(item => item.schedule.map(schedule => new Date(schedule.date).toLocaleDateString()).includes(date))
+  console.log(date)
+  const tasks = calendarData.filter(item => {
+    return item.schedule.some(schedule => {
+      const scheduleDate = new Date(schedule.date);
+      return scheduleDate.toDateString() === new Date(selectedDate).toDateString();
+    });
+  });
+  console.log(tasks)
+  // const tasks = calendarData.filter(item => item.schedule.map(schedule => new Date(schedule.date).toDateString()).includes(date))
   date = new Date(date)
+  console.log(date)
   const tasksArrHTML = [];
   elementsDOM.selected_date.innerHTML = `<h2>${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}</h2>`
   tasks.map(item => {
-    const schedule = item.schedule.filter(schedule => new Date(schedule.date).toLocaleDateString() === date.toLocaleDateString())
+    const schedule = item.schedule.filter(schedule => new Date(schedule.date).toDateString() === date.toDateString())
     console.log(schedule)
     for(let i = 0; i < schedule.length; i++) {
       tasksArrHTML.push([schedule[i].start_time, `
