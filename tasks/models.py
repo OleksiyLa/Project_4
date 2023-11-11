@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.text import slugify
 
 # Create your models here.
@@ -12,7 +13,8 @@ class Goal(models.Model):
         ('3', "Done"),
     ]
     title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True, blank=True) 
+    slug = models.SlugField(max_length=200, unique=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -30,7 +32,8 @@ class Goal(models.Model):
 
 class Task(models.Model):
     title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True, blank=True) 
+    slug = models.SlugField(max_length=200, unique=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
     goal = models.ForeignKey(Goal, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -49,6 +52,7 @@ class Task(models.Model):
 class ScheduledTask(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='scheduled_dates')
     slug = models.SlugField(max_length=200, unique=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()

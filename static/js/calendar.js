@@ -94,7 +94,8 @@ function getPreviousMonthHTML(today, startingDay) {
 }
 
 function fetchData() {
-  fetch('https://task-manager-planner-app-ca416dc67970.herokuapp.com/api/calendar_data/')
+  // fetch('https://task-manager-planner-app-ca416dc67970.herokuapp.com/api/calendar_data/')
+  fetch('http://127.0.0.1:8000/api/calendar_data/')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');

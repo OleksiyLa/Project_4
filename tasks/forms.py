@@ -2,9 +2,14 @@ from django import forms
 from .models import Goal, Task, ScheduledTask
 
 class GoalForm(forms.ModelForm):
-  class Meta:
-    model = Goal
-    fields = '__all__'
+    class Meta:
+        model = Goal
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super(GoalForm, self).__init__(*args, **kwargs)
+        self.fields['user'].required = False
+    
 
 class TaskForm(forms.ModelForm):
   class Meta:

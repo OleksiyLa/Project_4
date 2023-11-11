@@ -7,31 +7,43 @@ import json
 from datetime import date, timedelta, datetime
 from .forms import GoalForm, TaskForm, ScheduledTaskForm
 from .models import Goal, Task, ScheduledTask
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
-class GoalsBoardView(ListView):
+class GoalsBoardView(LoginRequiredMixin, ListView):
     model = Goal
     template_name = 'goals_board.html'
     context_object_name = 'goals'
+    def get_queryset(self):
+        return Goal.objects.filter(user=self.request.user)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["active_link"] = 'goals'
         return context
 
 
-class CreateGoalView(CreateView):
+class CreateGoalView(LoginRequiredMixin, CreateView):
     model = Goal
     form_class = GoalForm
     template_name = 'create_goal.html'
     success_url = '/'
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
-class EditGoalView(UpdateView):
+
+class EditGoalView(LoginRequiredMixin, UpdateView):
     model = Goal
     form_class = GoalForm
     template_name = 'edit_goal.html'
     success_url = '/'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 def delete_goal(request, slug):
