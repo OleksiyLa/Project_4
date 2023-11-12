@@ -61,17 +61,17 @@ function renderCalendar(date, data) {
 
   for (let day = 1; day <= daysInMonth; day++) {
     row.innerHTML += `<td class='text-center' data-date='${new Date(diplayedDate.getFullYear(), diplayedDate.getMonth(), day).toDateString()}'>${day}</td>`;
-    if(day === daysInMonth && (startingDay + day) % 7 !== 0) {
-      let nextMonthDay = 1;
-      for(let i = (startingDay + day) % 7; i < 7; i++) {
-        row.innerHTML += `<td class='text-center next-month-day'>${nextMonthDay++}</td>`;
-      }
-    }
     if (day === diplayedDate.getDate() && diplayedDate.getMonth() === new Date().getMonth() && diplayedDate.getFullYear() === new Date().getFullYear()) {
       row.lastChild.classList.add("today");
     }
     if(data && scheduledDates.includes(row.lastChild.getAttribute('data-date'))) {
       row.lastChild.classList.add("scheduled-date");
+    }
+    if(day === daysInMonth && (startingDay + day) % 7 !== 0) {
+      let nextMonthDay = 1;
+      for(let i = (startingDay + day) % 7; i < 7; i++) {
+        row.innerHTML += `<td class='text-center next-month-day'>${nextMonthDay++}</td>`;
+      }
     }
     if ((day + startingDay) % 7 === 0 || day === daysInMonth) {
       tbody.appendChild(row);
@@ -94,8 +94,7 @@ function getPreviousMonthHTML(today, startingDay) {
 }
 
 function fetchData() {
-  // fetch('https://task-manager-planner-app-ca416dc67970.herokuapp.com/api/calendar_data/')
-  fetch('http://127.0.0.1:8000/api/calendar_data/')
+  fetch('https://task-manager-planner-app-ca416dc67970.herokuapp.com/api/calendar_data/')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
