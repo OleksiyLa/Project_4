@@ -29,6 +29,7 @@
         </div>
         <div class="mb-3">
             <input type="hidden" name="{{ form.goal.name }}" value="{{ goal }}">
+            <input type="hidden" name="{{ form.user.name }}" value="{{ user.id }}">
         </div>
         {% if form.errors %}
           <div class="alert alert-danger">

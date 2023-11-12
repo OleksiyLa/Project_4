@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, TemplateView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse
 from django.http import JsonResponse
-import json
+from django.contrib.auth.decorators import login_required
 from datetime import date, timedelta, datetime
 from .forms import GoalForm, TaskForm, ScheduledTaskForm
 from .models import Goal, Task, ScheduledTask
@@ -46,14 +46,16 @@ class EditGoalView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
+@login_required
 def delete_goal(request, slug):
-    goal = Goal.objects.get(slug=slug)
+    goal = Goal.objects.get(slug=slug, user=request.user)
     goal.delete()
     return redirect(reverse('goals_board'))
 
 
+@login_required
 def add_task(request, slug):
-    goal = Goal.objects.get(slug=slug)
+    goal = Goal.objects.get(slug=slug, user=request.user)
     if goal is None:
         return redirect('goals_board')
 
@@ -62,6 +64,7 @@ def add_task(request, slug):
         if form.is_valid():
             task = form.save(commit=False)
             task.goal = goal
+            task.user = request.user
             task.save()
             return redirect('tasks')
     else:
@@ -70,28 +73,31 @@ def add_task(request, slug):
     return render(request, 'add_task.html', {'form': form, 'goal': goal.id })
 
 
-class TasksView(ListView):
+class TasksView(LoginRequiredMixin, ListView):
     model = Task
     template_name = 'tasks.html'
     context_object_name = 'tasks'
 
     def get_queryset(self):
-        return Task.objects.all().order_by('goal__title')
+        return Task.objects.filter(user=self.request.user).order_by('goal__title')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["active_link"] = 'tasks'
-        goals = Task.objects.values_list('goal__title', 'goal__slug').distinct()
+        goals = Task.objects.filter(user=self.request.user).values_list('goal__title', 'goal__slug').distinct()
         context["goals"] = goals
         return context
 
 
-class EditTaskView(UpdateView):
+class EditTaskView(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskForm
     template_name = 'edit_task.html'
     success_url = '/tasks'
 
+    def get_queryset(self):
+        return Task.objects.filter(user=self.request.user).order_by('goal__title')
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["active_link"] = 'tasks'
@@ -100,14 +106,16 @@ class EditTaskView(UpdateView):
         return context
 
 
+@login_required
 def delete_task(request, slug):
-    task = Task.objects.get(slug=slug)
+    task = Task.objects.get(slug=slug, user=request.user)
     task.delete()
     return redirect(reverse('tasks'))
 
 
+@login_required
 def schedule_task(request, slug):
-    task = Task.objects.get(slug=slug)
+    task = Task.objects.get(slug=slug, user=request.user)
     if not task:
         return redirect('tasks')
     if request.method == 'POST':
@@ -125,12 +133,12 @@ def schedule_task(request, slug):
                 while start_date <= end_date:
                     if str(start_date.weekday()) in selected_days:
                         ScheduledTask.objects.get_or_create(
-                            task=task, date=start_date, start_time=start_time, end_time=end_time
+                            task=task, date=start_date, start_time=start_time, end_time=end_time, user=request.user
                         )
                     start_date += delta
             else:
                 ScheduledTask.objects.get_or_create(
-                    task=task, date=start_date, start_time=start_time, end_time=end_time
+                    task=task, date=start_date, start_time=start_time, end_time=end_time, user=request.user
                 )
             return redirect(reverse('tasks'))
         else:
@@ -140,8 +148,9 @@ def schedule_task(request, slug):
         return render(request, 'schedule.html', {'form': form, 'task': task.id})
 
 
-class CalendarView(TemplateView):
+class CalendarView(LoginRequiredMixin, TemplateView):
     template_name = 'calendar.html'
+    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -149,8 +158,9 @@ class CalendarView(TemplateView):
         return context
 
 
+@login_required
 def calendar_data(request):
-    all_tasks = Task.objects.all()
+    all_tasks = Task.objects.filter(user=request.user)
     schedule_data = []
 
     for task in all_tasks:
@@ -175,8 +185,9 @@ def calendar_data(request):
     return JsonResponse(schedule_data, safe=False)
 
 
+@login_required
 def delete_scheduled_task(request, slug):
-    scheduled_task = ScheduledTask.objects.get(slug=slug)
+    scheduled_task = ScheduledTask.objects.get(slug=slug, user=request.user)
     scheduled_task.delete()
     return redirect(reverse('calendar'))
 

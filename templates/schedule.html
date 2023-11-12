@@ -68,6 +68,7 @@
         </div>
         <div class="mb-3">
             <input type="hidden" name="{{ form.task.name }}" value="{{ task.id }}">
+            <input type="hidden" name="{{ form.user.name }}" value="{{ user.id }}">
         </div>
         {% if form.errors %}
           <div class="alert alert-danger">
