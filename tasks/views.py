@@ -191,3 +191,17 @@ def delete_scheduled_task(request, slug):
     scheduled_task.delete()
     return redirect(reverse('calendar'))
 
+
+@login_required
+def edit_scheduled_task(request, slug):
+    scheduled_task = ScheduledTask.objects.get(slug=slug, user=request.user)
+    
+    if request.method == 'POST':
+        form = ScheduledTaskForm(request.POST, instance=scheduled_task)
+        if form.is_valid():
+            form.save()
+            return redirect('calendar')
+    else:
+        form = ScheduledTaskForm(instance=scheduled_task)
+        
+    return render(request, 'edit_scheduled_task.html', {'form': form, 'task': scheduled_task.task })

@@ -158,8 +158,7 @@ function getTasksHTML(date){
           <p class="text-center">${item.description}</p>
           <p class="text-center">Done</p>
           <div class="mt-3">
-            <a class="btn btn-outline-primary w-100" href="">Edit</a>
-            <a class="btn btn-outline-primary w-100" href="">Reschedule</a>
+            <a class="btn btn-outline-primary w-100" href="/edit_scheduled_task/${schedule[i].slug}">Edit</a>
           </div>
         </div>
       </div>`])
