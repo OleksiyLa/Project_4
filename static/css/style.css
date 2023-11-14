@@ -101,6 +101,11 @@ to {
   color: #eeeeee;
 }
 
+.calendar td.completed {
+  background: #025702;
+  color: #eeeeee;
+}
+
 .calendar td.scheduled-date:hover {
   opacity: 0.9;
 }

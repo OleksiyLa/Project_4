@@ -45,9 +45,12 @@ renderCalendar(date, calendarData);
 
 function renderCalendar(date, data) {
   let scheduledDates;
+  let scheduled_tasks;
+  console.log(data)
   if(data) {
-    let scheduled_tasks = data.map(item => item.schedule).flat().map(item => new Date(item.date))
-    scheduledDates = scheduled_tasks.map(item => item.toDateString())
+    scheduled_tasks = data.map(item => item.schedule).flat().map(item => [new Date(item.date), item.completed])
+    scheduledDates = scheduled_tasks.map(item => item[0].toDateString())
+    console.log(scheduled_tasks)
   }
   const diplayedDate = date;
   const firstDay = new Date(diplayedDate.getFullYear(), diplayedDate.getMonth(), 1);
@@ -65,6 +68,18 @@ function renderCalendar(date, data) {
       row.lastChild.classList.add("today");
     }
     if(data && scheduledDates.includes(row.lastChild.getAttribute('data-date'))) {
+      for(let i = 0; i < scheduled_tasks.length; i++) {
+        if (scheduled_tasks[i][0].toDateString() === row.lastChild.getAttribute('data-date') ) {
+          if(scheduled_tasks[i][1] === false) {
+            if(row.lastChild.classList.contains("completed")) {
+              row.lastChild.classList.remove("completed");
+            }
+            break
+          } else {
+            row.lastChild.classList.add("completed");
+          }
+        }
+      }
       row.lastChild.classList.add("scheduled-date");
     }
     if(day === daysInMonth && (startingDay + day) % 7 !== 0) {
