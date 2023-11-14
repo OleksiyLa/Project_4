@@ -137,6 +137,16 @@ to {
   overflow-x: hidden;
 }
 
+.not-completed {
+  box-shadow: 0 0 1px #000000;
+  /* color: #0d6efd; */
+}
+
+.completed {
+  box-shadow: 0 0 1px #025702;
+  color: #025702;
+}
+
 /* Footer */
 footer a {
   display: inline-block;

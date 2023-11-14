@@ -106,7 +106,6 @@ function fetchData() {
     })
     .then(data => {
       calendarData = data
-      console.log(calendarData)
       renderCalendar(date, data);
       selectDate(new Date().toDateString())
       getTasksHTML(new Date().toDateString())
@@ -132,33 +131,37 @@ function selectDate(date) {
 }
 
 function getTasksHTML(date){
-  console.log(date)
   const tasks = calendarData.filter(item => {
     return item.schedule.some(schedule => {
       const scheduleDate = new Date(schedule.date);
       return scheduleDate.toDateString() === new Date(selectedDate).toDateString();
     });
   });
-  console.log(tasks)
-  // const tasks = calendarData.filter(item => item.schedule.map(schedule => new Date(schedule.date).toDateString()).includes(date))
   date = new Date(date)
-  console.log(date)
   const tasksArrHTML = [];
   elementsDOM.selected_date.innerHTML = `<h2>${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}</h2>`
   tasks.map(item => {
     const schedule = item.schedule.filter(schedule => new Date(schedule.date).toDateString() === date.toDateString())
-    console.log(schedule)
     for(let i = 0; i < schedule.length; i++) {
+      const completed = schedule[i].completed;
+      const classCompleted = completed ? "completed" : "not-completed";
+      const isDone = completed ? "Done" : "Not done";
+      const deleteIcon = completed ? "" : `<img src="/static/svg/delete_icon.svg" alt="delete-icon" class="float-end delete-icon" data-txt="scheduled task" data-title="${item.title}" data-url="${schedule[i].url}">`;
+      const editBtn = completed ? `
+      <a class="btn btn-sm btn-outline-success w-100" href="/edit_scheduled_task/${schedule[i].slug}">Edit</a>` : `
+      <a class="btn btn-dark w-100" href="/edit_scheduled_task/${schedule[i].slug}">Edit</a>`;
+      const timeDone = completed ? "" : `<h3 class="h4 text-center my-2">From <span>${schedule[i].start_time.slice(0, -3)}</span> To <span>${schedule[i].end_time.slice(0, -3)}</span></h3>`;
+
       tasksArrHTML.push([schedule[i].start_time, `
-      <div class="card mb-3 bg-light">
-        <div class="card-body p-3">
-        <img src="/static/svg/delete_icon.svg" alt="delete-icon" class="float-end delete-icon" data-txt="scheduled task" data-title="${item.title}" data-url="${schedule[i].url}">
+      <div class="card mb-3 bg-light ${classCompleted}">
+        <h2 class="text-center">${isDone}</h2>
+        <div class="card-body p-3 ${classCompleted}">
+          ${deleteIcon}
+          ${timeDone}
           <h3 class="h4 text-center my-2">${item.title}</h3>
-          <h3 class="h4 text-center my-2">From <span>${schedule[i].start_time.slice(0, -3)}</span> To <span>${schedule[i].end_time.slice(0, -3)}</span></h3>
           <p class="text-center">${item.description}</p>
-          <p class="text-center">Done</p>
           <div class="mt-3">
-            <a class="btn btn-outline-primary w-100" href="/edit_scheduled_task/${schedule[i].slug}">Edit</a>
+            ${editBtn}
           </div>
         </div>
       </div>`])
