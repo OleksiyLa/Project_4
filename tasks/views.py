@@ -188,7 +188,9 @@ def calendar_data(request):
 def delete_scheduled_task(request, slug):
     scheduled_task = ScheduledTask.objects.get(slug=slug, user=request.user)
     scheduled_task.delete()
-    return redirect(reverse('calendar'))
+    response = HttpResponseRedirect('/calendar/')
+    response.set_cookie('selectedDate', slug, max_age=300)
+    return response
 
 
 @login_required
@@ -207,12 +209,6 @@ def edit_scheduled_task(request, slug):
         
     return render(request, 'edit_scheduled_task.html', {'form': form, 'task': scheduled_task.task })
 
-# @login_required
-# def complete_scheduled_task(request, slug):
-#     scheduled_task = ScheduledTask.objects.get(slug=slug, user=request.user)
-#     scheduled_task.completed = True
-#     scheduled_task.save()
-#     return redirect('calendar')
 
 @login_required
 def complete_scheduled_task(request, slug):

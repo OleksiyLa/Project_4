@@ -177,8 +177,12 @@ function getTasksHTML(date){
     }
     return
   })
-  tasksArrHTML.sort((a, b) => a[0] > b[0] ? 1 : -1)
-  return tasksArrHTML.map(item => item.pop()).join("")
+  if(tasksArrHTML.length === 0) {
+    return `<h2 class="text-center">No scheduled tasks for this day</h2>`
+  } else {
+    tasksArrHTML.sort((a, b) => a[0] > b[0] ? 1 : -1)
+    return tasksArrHTML.map(item => item.pop()).join("")
+  }
 }
 
 function processDateCookie() {
