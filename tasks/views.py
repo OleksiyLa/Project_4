@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, TemplateView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from datetime import date, timedelta, datetime
 from .forms import GoalForm, TaskForm, ScheduledTaskForm
@@ -199,15 +199,27 @@ def edit_scheduled_task(request, slug):
         form = ScheduledTaskForm(request.POST, instance=scheduled_task)
         if form.is_valid():
             form.save()
-            return redirect('calendar')
+            response = HttpResponseRedirect('/calendar/')
+            response.set_cookie('selectedDate', slug, max_age=300)
+            return response
     else:
         form = ScheduledTaskForm(instance=scheduled_task)
         
     return render(request, 'edit_scheduled_task.html', {'form': form, 'task': scheduled_task.task })
+
+# @login_required
+# def complete_scheduled_task(request, slug):
+#     scheduled_task = ScheduledTask.objects.get(slug=slug, user=request.user)
+#     scheduled_task.completed = True
+#     scheduled_task.save()
+#     return redirect('calendar')
 
 @login_required
 def complete_scheduled_task(request, slug):
     scheduled_task = ScheduledTask.objects.get(slug=slug, user=request.user)
     scheduled_task.completed = True
     scheduled_task.save()
-    return redirect('calendar')
+    response = HttpResponseRedirect('/calendar/')
+    response.set_cookie('selectedDate', slug, max_age=300)
+    return response
+

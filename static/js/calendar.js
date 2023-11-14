@@ -7,7 +7,6 @@ const elementsDOM = {
   selected_date: document.getElementById("selected-date"),
 };
 
-const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 const months = [
   'January', 'February', 'March', 'April',
   'May', 'June', 'July', 'August',
@@ -17,6 +16,7 @@ const months = [
 const date = new Date();
 let calendarData;
 let selectedDate;
+let selectedDateCookie;
 
 elementsDOM.prevMonthBtn.addEventListener("click", () => {
   date.setMonth(date.getMonth() - 1);
@@ -107,8 +107,14 @@ function fetchData() {
     .then(data => {
       calendarData = data
       renderCalendar(date, data);
-      selectDate(new Date().toDateString())
-      elementsDOM.tasks.innerHTML = getTasksHTML(new Date().toDateString())
+      if(processDateCookie()) {
+        selectDate(selectedDateCookie)
+        elementsDOM.tasks.innerHTML = getTasksHTML(selectedDateCookie)
+        deleteCookie('selectedDate')
+      } else {
+        selectDate(new Date().toDateString())
+        elementsDOM.tasks.innerHTML = getTasksHTML(new Date().toDateString())
+      }
     })
     .catch(error => {
       console.error('Fetch error:', error);
@@ -173,4 +179,37 @@ function getTasksHTML(date){
   })
   tasksArrHTML.sort((a, b) => a[0] > b[0] ? 1 : -1)
   return tasksArrHTML.map(item => item.pop()).join("")
+}
+
+function processDateCookie() {
+  const cookie = getCookie('selectedDate')
+  if(cookie) {
+    const dateArr = cookie.split("-")
+    const date = new Date(dateArr[0], Number(dateArr[1]) - 1, dateArr[2]);
+    selectedDateCookie = date.toDateString()
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function getCookie(cookieName) {
+  const name = cookieName + "=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookieArray = decodedCookie.split(';');
+
+  for (let i = 0; i < cookieArray.length; i++) {
+    let cookie = cookieArray[i];
+    while (cookie.charAt(0) === ' ') {
+      cookie = cookie.substring(1);
+    }
+    if (cookie.indexOf(name) === 0) {
+      return cookie.substring(name.length, cookie.length);
+    }
+  }
+  return "";
+}
+
+function deleteCookie(name) {
+  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 }
