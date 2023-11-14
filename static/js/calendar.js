@@ -106,12 +106,13 @@ function fetchData() {
     })
     .then(data => {
       calendarData = data
-      renderCalendar(date, data);
       if(processDateCookie()) {
-        selectDate(selectedDateCookie)
-        elementsDOM.tasks.innerHTML = getTasksHTML(selectedDateCookie)
+        renderCalendar(selectedDateCookie, data);
+        selectDate(selectedDateCookie.toDateString())
+        elementsDOM.tasks.innerHTML = getTasksHTML(selectedDateCookie.toDateString())
         deleteCookie('selectedDate')
       } else {
+        renderCalendar(date, data);
         selectDate(new Date().toDateString())
         elementsDOM.tasks.innerHTML = getTasksHTML(new Date().toDateString())
       }
@@ -190,7 +191,7 @@ function processDateCookie() {
   if(cookie) {
     const dateArr = cookie.split("-")
     const date = new Date(dateArr[0], Number(dateArr[1]) - 1, dateArr[2]);
-    selectedDateCookie = date.toDateString()
+    selectedDateCookie = date
     return true;
   } else {
     return false;
