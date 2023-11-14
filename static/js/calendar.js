@@ -31,7 +31,7 @@ elementsDOM.nextMonthBtn.addEventListener("click", () => {
 elementsDOM.todayBtn.addEventListener("click", () => {
   renderCalendar(new Date(), calendarData);
   selectDate(new Date().toDateString())
-  getTasksHTML(new Date().toDateString())
+  elementsDOM.tasks.innerHTML = getTasksHTML(new Date().toDateString())
 });
 elementsDOM.calendar.addEventListener("click", (e) => {
   if(e.target.getAttribute('data-date')) {
@@ -108,7 +108,7 @@ function fetchData() {
       calendarData = data
       renderCalendar(date, data);
       selectDate(new Date().toDateString())
-      getTasksHTML(new Date().toDateString())
+      elementsDOM.tasks.innerHTML = getTasksHTML(new Date().toDateString())
     })
     .catch(error => {
       console.error('Fetch error:', error);
