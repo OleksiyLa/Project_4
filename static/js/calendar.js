@@ -150,6 +150,8 @@ function getTasksHTML(date){
       const editBtn = completed ? `
       <a class="btn btn-sm btn-outline-success w-100" href="/edit_scheduled_task/${schedule[i].slug}">Edit</a>` : `
       <a class="btn btn-dark w-100" href="/edit_scheduled_task/${schedule[i].slug}">Edit</a>`;
+      const finishTaskBtn = completed ? "" : `<a class="btn btn-outline-dark w-100 my-2" href="/complete_scheduled_task/${schedule[i].slug}">
+      <strong>Complete</strong></a>`;
       const timeDone = completed ? "" : `<h3 class="h4 text-center my-2">From <span>${schedule[i].start_time.slice(0, -3)}</span> To <span>${schedule[i].end_time.slice(0, -3)}</span></h3>`;
 
       tasksArrHTML.push([schedule[i].start_time, `
@@ -161,6 +163,7 @@ function getTasksHTML(date){
           <h3 class="h4 text-center my-2">${item.title}</h3>
           <p class="text-center">${item.description}</p>
           <div class="mt-3">
+            ${finishTaskBtn}
             ${editBtn}
           </div>
         </div>
