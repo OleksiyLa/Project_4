@@ -174,7 +174,6 @@ def calendar_data(request):
                     "end_time": item.end_time,
                     "completed": item.completed,
                     "slug": item.slug,
-                    "url": reverse('delete_scheduled_task', args=[item.slug]),
                 })
             schedule_data.append({
                 "title": task.title,
