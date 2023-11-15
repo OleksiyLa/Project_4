@@ -88,9 +88,9 @@ to {
   background: #eee;
 }
 
-.calendar td.selected {
+/* .calendar td.selected {
   background: #ddd;
-}
+} */
 
 .calendar td.today {
   background: #eee;

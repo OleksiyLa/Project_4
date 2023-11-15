@@ -46,11 +46,9 @@ renderCalendar(date, calendarData);
 function renderCalendar(date, data) {
   let scheduledDates;
   let scheduled_tasks;
-  console.log(data)
   if(data) {
     scheduled_tasks = data.map(item => item.schedule).flat().map(item => [new Date(item.date), item.completed])
     scheduledDates = scheduled_tasks.map(item => item[0].toDateString())
-    console.log(scheduled_tasks)
   }
   const diplayedDate = date;
   const firstDay = new Date(diplayedDate.getFullYear(), diplayedDate.getMonth(), 1);
@@ -64,7 +62,7 @@ function renderCalendar(date, data) {
 
   for (let day = 1; day <= daysInMonth; day++) {
     row.innerHTML += `<td class='text-center' data-date='${new Date(diplayedDate.getFullYear(), diplayedDate.getMonth(), day).toDateString()}'>${day}</td>`;
-    if (day === diplayedDate.getDate() && diplayedDate.getMonth() === new Date().getMonth() && diplayedDate.getFullYear() === new Date().getFullYear()) {
+    if (day === new Date().getDate() && diplayedDate.getMonth() === new Date().getMonth() && diplayedDate.getFullYear() === new Date().getFullYear()) {
       row.lastChild.classList.add("today");
     }
     if(data && scheduledDates.includes(row.lastChild.getAttribute('data-date'))) {
