@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, TemplateView
-from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic.edit import UpdateView
 from django.urls import reverse
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from datetime import date, timedelta, datetime
+from django.contrib.auth.mixins import LoginRequiredMixin
+from datetime import timedelta, datetime
 from .forms import GoalForm, TaskForm, ScheduledTaskForm
 from .models import Goal, Task, ScheduledTask
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -129,6 +129,10 @@ def schedule_task(request, slug):
             start_date = datetime.strptime(date, "%Y-%m-%d").date()
             if end_date:
                 end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
+                if end_date <= start_date:
+                    error_message = "End date should be later than start date."
+                    form.errors['end_date'] = form.error_class([error_message])
+                    return render(request, 'schedule.html', {'form': form, 'task': task.id})
                 delta = timedelta(days=1)
                 while start_date <= end_date:
                     if str(start_date.weekday()) in selected_days:
@@ -218,4 +222,3 @@ def complete_scheduled_task(request, slug):
     response = HttpResponseRedirect('/calendar/')
     response.set_cookie('selectedDate', slug, max_age=300)
     return response
-

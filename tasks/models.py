@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
-
+from django.core.exceptions import ValidationError
 # Create your models here.
 
 
@@ -68,3 +68,24 @@ class ScheduledTask(models.Model):
 
     def __str__(self):
         return f"{self.task.title} - {self.date} {self.start_time} - {self.end_time}"
+
+    def clean(self):
+        if self.start_time and self.end_time and self.start_time >= self.end_time:
+            raise ValidationError('End time must be later than start time.')
+
+        if self.date:
+            tasks_on_date = ScheduledTask.objects.filter(date=self.date)
+            if self.pk:
+                tasks_on_date = tasks_on_date.exclude(pk=self.pk)
+            for task in tasks_on_date:
+                if self.check_task_overlap(task):
+                    raise ValidationError('Task overlaps with another scheduled task.')
+
+    def check_task_overlap(self, other_task):
+        return (
+            (self.start_time <= other_task.start_time < self.end_time) or
+            (self.start_time < other_task.end_time <= self.end_time) or
+            (other_task.start_time <= self.start_time < self.end_time <= other_task.end_time) or
+            (self.start_time >= other_task.start_time and self.end_time <= other_task.end_time)
+        )
+    
