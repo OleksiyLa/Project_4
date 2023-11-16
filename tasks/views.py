@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ValidationError
 from datetime import timedelta, datetime
 from .forms import GoalForm, TaskForm, ScheduledTaskForm
 from .models import Goal, Task, ScheduledTask
@@ -118,6 +119,7 @@ def schedule_task(request, slug):
     task = Task.objects.get(slug=slug, user=request.user)
     if not task:
         return redirect('tasks')
+    
     if request.method == 'POST':
         form = ScheduledTaskForm(request.POST)
         if form.is_valid():
@@ -127,6 +129,7 @@ def schedule_task(request, slug):
             end_date = request.POST.get('end_date')
             selected_days = request.POST.getlist('selectedDays[]')
             start_date = datetime.strptime(date, "%Y-%m-%d").date()
+            validation_failed = False
             if end_date:
                 end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
                 if end_date <= start_date:
@@ -134,6 +137,20 @@ def schedule_task(request, slug):
                     form.errors['end_date'] = form.error_class([error_message])
                     return render(request, 'schedule.html', {'form': form, 'task': task.id})
                 delta = timedelta(days=1)
+                while start_date <= end_date and not validation_failed:
+                    if str(start_date.weekday()) in selected_days:
+                        scheduled_task = ScheduledTask(
+                            task=task, date=start_date, start_time=start_time, end_time=end_time, user=request.user
+                        )
+                        try:
+                            scheduled_task.full_clean()
+                        except ValidationError as e:
+                            form.add_error(None, e)
+                            validation_failed = True
+                    start_date += delta
+                if validation_failed:
+                    return render(request, 'schedule.html', {'form': form, 'task': task.id})
+                start_date = datetime.strptime(date, "%Y-%m-%d").date()
                 while start_date <= end_date:
                     if str(start_date.weekday()) in selected_days:
                         ScheduledTask.objects.get_or_create(
@@ -141,6 +158,14 @@ def schedule_task(request, slug):
                         )
                     start_date += delta
             else:
+                scheduled_task = ScheduledTask(
+                    task=task, date=start_date, start_time=start_time, end_time=end_time, user=request.user
+                )
+                try:
+                    scheduled_task.full_clean()
+                except ValidationError as e:
+                    form.add_error(None, e)
+                    return render(request, 'schedule.html', {'form': form, 'task': task.id})
                 ScheduledTask.objects.get_or_create(
                     task=task, date=start_date, start_time=start_time, end_time=end_time, user=request.user
                 )
@@ -150,6 +175,7 @@ def schedule_task(request, slug):
     else:
         form = ScheduledTaskForm()
         return render(request, 'schedule.html', {'form': form, 'task': task.id})
+
 
 
 class CalendarView(LoginRequiredMixin, TemplateView):

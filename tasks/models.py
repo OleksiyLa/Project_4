@@ -83,9 +83,6 @@ class ScheduledTask(models.Model):
 
     def check_task_overlap(self, other_task):
         return (
-            (self.start_time <= other_task.start_time < self.end_time) or
-            (self.start_time < other_task.end_time <= self.end_time) or
-            (other_task.start_time <= self.start_time < self.end_time <= other_task.end_time) or
-            (self.start_time >= other_task.start_time and self.end_time <= other_task.end_time)
+            (self.start_time < other_task.end_time) and
+            (self.end_time > other_task.start_time)
         )
-    
