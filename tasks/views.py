@@ -137,45 +137,64 @@ def schedule_task(request, slug):
                     form.errors['end_date'] = form.error_class([error_message])
                     return render(request, 'schedule.html', {'form': form, 'task': task.id})
                 delta = timedelta(days=1)
+                validatied_tasks = []
                 while start_date <= end_date and not validation_failed:
                     if str(start_date.weekday()) in selected_days:
+                        conflicting_tasks = ScheduledTask.objects.filter(
+                            date=start_date,
+                            start_time__lt=end_time,
+                            end_time__gt=start_time,
+                            user=request.user
+                        )
+                        if conflicting_tasks.exists():
+                            error_message = 'Task overlaps with another scheduled task.'
+                            form.add_error(None, error_message)
+                            return render(request, 'schedule.html', {'form': form, 'task': task})
                         scheduled_task = ScheduledTask(
                             task=task, date=start_date, start_time=start_time, end_time=end_time, user=request.user
                         )
                         try:
                             scheduled_task.full_clean()
+                            validatied_tasks.append(scheduled_task)
                         except ValidationError as e:
                             form.add_error(None, e)
                             validation_failed = True
                     start_date += delta
                 if validation_failed:
                     return render(request, 'schedule.html', {'form': form, 'task': task.id})
-                start_date = datetime.strptime(date, "%Y-%m-%d").date()
-                while start_date <= end_date:
-                    if str(start_date.weekday()) in selected_days:
-                        ScheduledTask.objects.get_or_create(
-                            task=task, date=start_date, start_time=start_time, end_time=end_time, user=request.user
-                        )
-                    start_date += delta
+                try:
+                    for task in validatied_tasks:
+                        task.save()
+                except ValidationError as e:
+                    form.add_error(None, e)
+                    return render(request, 'schedule.html', {'form': form, 'task': task.id})
             else:
                 scheduled_task = ScheduledTask(
                     task=task, date=start_date, start_time=start_time, end_time=end_time, user=request.user
                 )
+                conflicting_tasks = ScheduledTask.objects.filter(
+                    date=start_date,
+                    start_time__lt=end_time,
+                    end_time__gt=start_time,
+                    user=request.user
+                )
+                if conflicting_tasks.exists():
+                    print(conflicting_tasks)
+                    error_message = 'Task overlaps with another scheduled task.'
+                    form.add_error(None, error_message)
+                    return render(request, 'schedule.html', {'form': form, 'task': task})
                 try:
                     scheduled_task.full_clean()
+                    scheduled_task.save()
                 except ValidationError as e:
                     form.add_error(None, e)
                     return render(request, 'schedule.html', {'form': form, 'task': task.id})
-                ScheduledTask.objects.get_or_create(
-                    task=task, date=start_date, start_time=start_time, end_time=end_time, user=request.user
-                )
             return redirect(reverse('tasks'))
         else:
             return render(request, 'schedule.html', {'form': form, 'task': task.id})
     else:
         form = ScheduledTaskForm()
         return render(request, 'schedule.html', {'form': form, 'task': task.id})
-
 
 
 class CalendarView(LoginRequiredMixin, TemplateView):
