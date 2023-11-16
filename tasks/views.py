@@ -179,7 +179,6 @@ def schedule_task(request, slug):
                     user=request.user
                 )
                 if conflicting_tasks.exists():
-                    print(conflicting_tasks)
                     error_message = 'Task overlaps with another scheduled task.'
                     form.add_error(None, error_message)
                     return render(request, 'schedule.html', {'form': form, 'task': task})
@@ -249,6 +248,19 @@ def edit_scheduled_task(request, slug):
     if request.method == 'POST':
         form = ScheduledTaskForm(request.POST, instance=scheduled_task)
         if form.is_valid():
+            start_time = request.POST.get('start_time')
+            end_time = request.POST.get('end_time')
+            date = request.POST.get('date')
+            conflicting_tasks = ScheduledTask.objects.filter(
+                date=date,
+                start_time__lt=end_time,
+                end_time__gt=start_time,
+                user=request.user
+            )
+            if conflicting_tasks.exists():
+                error_message = 'Task overlaps with another scheduled task.'
+                form.add_error(None, error_message)
+                return render(request, 'edit_scheduled_task.html', {'form': form, 'task': scheduled_task.task})
             form.save()
             response = HttpResponseRedirect('/calendar/')
             response.set_cookie('selectedDate', slug, max_age=300)
