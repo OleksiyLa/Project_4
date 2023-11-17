@@ -244,7 +244,6 @@ def delete_scheduled_task(request, slug):
 @login_required
 def edit_scheduled_task(request, slug):
     scheduled_task = ScheduledTask.objects.get(slug=slug, user=request.user)
-    
     if request.method == 'POST':
         form = ScheduledTaskForm(request.POST, instance=scheduled_task)
         if form.is_valid():
@@ -260,14 +259,13 @@ def edit_scheduled_task(request, slug):
             if conflicting_tasks.exists():
                 error_message = 'Task overlaps with another scheduled task.'
                 form.add_error(None, error_message)
-                return render(request, 'edit_scheduled_task.html', {'form': form, 'task': scheduled_task.task})
-            form.save()
-            response = HttpResponseRedirect('/calendar/')
-            response.set_cookie('selectedDate', slug, max_age=300)
-            return response
+            else:
+                form.save()
+                response = HttpResponseRedirect('/calendar/')
+                response.set_cookie('selectedDate', slug, max_age=300)
+                return response
     else:
         form = ScheduledTaskForm(instance=scheduled_task)
-        
     return render(request, 'edit_scheduled_task.html', {'form': form, 'task': scheduled_task.task })
 
 

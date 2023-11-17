@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tasks',
     'bootstrap5',
+    'crispy_forms',
+    "crispy_bootstrap5",
 ]
 
 SITE_ID = 1
@@ -68,6 +70,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+# CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 TEMPLATES = [
     {
