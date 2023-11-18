@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.db.models import Q
 from datetime import timedelta, datetime
@@ -34,6 +35,7 @@ class CreateGoalView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        messages.success(self.request, 'Goal created successfully!')
         return super().form_valid(form)
 
 
@@ -45,6 +47,7 @@ class EditGoalView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        messages.success(self.request, 'Goal updated successfully!')
         return super().form_valid(form)
 
 
@@ -52,6 +55,7 @@ class EditGoalView(LoginRequiredMixin, UpdateView):
 def delete_goal(request, slug):
     goal = Goal.objects.get(slug=slug, user=request.user)
     goal.delete()
+    messages.success(request, 'Goal deleted successfully!')
     return redirect(reverse('goals_board'))
 
 
@@ -68,6 +72,7 @@ def add_task(request, slug):
             task.goal = goal
             task.user = request.user
             task.save()
+            messages.success(request, 'Task added successfully')
             return redirect('tasks')
     else:
         form = TaskForm()
@@ -104,12 +109,20 @@ class EditTaskView(LoginRequiredMixin, UpdateView):
         context["goal_id"] = task.goal.pk
         context["goal_title"] = task.goal.title
         return context
+    
+    def form_valid(self, form):
+        task = form.save(commit=False)
+        task.user = self.request.user
+        task.save()   
+        messages.success(self.request, 'Task updated successfully!')
+        return super().form_valid(form)
 
 
 @login_required
 def delete_task(request, slug):
     task = Task.objects.get(slug=slug, user=request.user)
     task.delete()
+    messages.success(request, 'Task deleted successfully')
     return redirect(reverse('tasks'))
 
 
@@ -161,6 +174,7 @@ def schedule_task(request, slug):
                 try:
                     for task in validatied_tasks:
                         task.save()
+                    messages.success(request, 'Tasks scheduled successfully!')
                 except ValidationError as e:
                     form.add_error(None, e)
                     return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
@@ -180,6 +194,7 @@ def schedule_task(request, slug):
                     return render(request, 'schedule.html', {'form': form, 'task': task, 'task_title': task_title})
                 try:
                     scheduled_task.save()
+                    messages.success(request, 'Task scheduled successfully!')
                 except ValidationError as e:
                     form.add_error(None, e)
                     return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
@@ -233,6 +248,7 @@ def delete_scheduled_task(request, slug):
     scheduled_task.delete()
     response = HttpResponseRedirect('/calendar/')
     response.set_cookie('selectedDate', slug, max_age=300)
+    messages.success(request, 'Scheduled task deleted successfully!')
     return response
 
 
@@ -263,6 +279,7 @@ def edit_scheduled_task(request, slug):
                 scheduled_task.save()
                 response = HttpResponseRedirect('/calendar/')
                 response.set_cookie('selectedDate', slug, max_age=300)
+                messages.success(request, 'Scheduled task updated successfully!')
                 return response
     else:
         form = EditScheduledTaskForm(instance=scheduled_task)
@@ -276,4 +293,5 @@ def complete_scheduled_task(request, slug):
     scheduled_task.save()
     response = HttpResponseRedirect('/calendar/')
     response.set_cookie('selectedDate', slug, max_age=300)
+    messages.success(request, 'Scheduled task completed successfully!')
     return response
