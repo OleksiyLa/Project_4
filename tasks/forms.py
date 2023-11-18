@@ -9,16 +9,16 @@ class GoalForm(forms.ModelForm):
     title = forms.CharField(
         min_length=3,
         max_length=200,
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter a title'}),
         error_messages={'required': "Please enter a title."}
         )
     description = forms.CharField(
         min_length=10,
-        widget=forms.Textarea(attrs={'class': 'form-control'}),
+        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Describe your goal and how you will achieve it'}),
         error_messages={'required': "Please enter a description."}
         )
     expected_deadline = forms.DateField(
-        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'placeholder': 'Estimate time to achieve your goal'}),
         error_messages={'required': "Please enter a deadline."}
     )
 
@@ -51,9 +51,21 @@ class EditGoalForm(GoalForm):
     
 
 class TaskForm(forms.ModelForm):
-  class Meta:
-    model = Task
-    fields = '__all__'
+    title = forms.CharField(
+        min_length=3,
+        max_length=200,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter a title'}),
+        error_messages={'required': "Please enter a title."}
+    )
+    description = forms.CharField(
+        min_length=10,
+        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Describe your task and how it will help you achieve your goal'}),
+        error_messages={'required': "Please enter a description."}
+    )
+    
+    class Meta:
+        model = Task
+        fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         super(TaskForm, self).__init__(*args, **kwargs)

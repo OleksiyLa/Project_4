@@ -13,8 +13,8 @@ class GoalAdmin(admin.ModelAdmin):
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created_at', 'due_date', 'completed')
-    list_filter = ('created_at', 'due_date', 'completed')
+    list_display = ('title', 'created_at', 'completed')
+    list_filter = ('created_at', 'completed')
     search_fields = ('title', 'description')
     prepopulated_fields = {'slug': ('title',)}
 

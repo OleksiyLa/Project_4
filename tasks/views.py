@@ -72,7 +72,7 @@ def add_task(request, slug):
     else:
         form = TaskForm()
 
-    return render(request, 'add_task.html', {'form': form, 'goal': goal.id })
+    return render(request, 'add_task.html', {'form': form, 'goal': goal.id, 'goal_title': goal.title.capitalize() })
 
 
 class TasksView(LoginRequiredMixin, ListView):
@@ -97,14 +97,12 @@ class EditTaskView(LoginRequiredMixin, UpdateView):
     template_name = 'edit_task.html'
     success_url = '/tasks'
 
-    def get_queryset(self):
-        return Task.objects.filter(user=self.request.user).order_by('goal__title')
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["active_link"] = 'tasks'
-        goals = Task.objects.values_list('goal__title', 'goal__slug').distinct()
-        context["goals"] = goals
+        task = self.get_object()
+        context["goal_id"] = task.goal.pk
+        context["goal_title"] = task.goal.title
         return context
 
 

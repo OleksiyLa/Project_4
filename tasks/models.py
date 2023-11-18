@@ -37,7 +37,6 @@ class Task(models.Model):
     description = models.TextField()
     goal = models.ForeignKey(Goal, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    due_date = models.DateField()
     completed = models.BooleanField(default=False, blank=True)
 
     def save(self, *args, **kwargs):
