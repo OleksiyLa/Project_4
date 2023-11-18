@@ -1,9 +1,6 @@
 from django import forms
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Field, HTML, Submit
 from .models import Goal, Task, ScheduledTask
-from datetime import timedelta, datetime
-from django.contrib.auth.models import User
+from datetime import datetime
 
 class GoalForm(forms.ModelForm):
     title = forms.CharField(

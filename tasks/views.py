@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.db.models import Q
 from datetime import timedelta, datetime
-from .forms import GoalForm, TaskForm, ScheduledTaskForm, AddScheduledTaskForm, EditScheduledTaskForm, AddGoalForm, EditGoalForm
+from .forms import TaskForm, AddScheduledTaskForm, EditScheduledTaskForm, AddGoalForm, EditGoalForm
 from .models import Goal, Task, ScheduledTask
 
 

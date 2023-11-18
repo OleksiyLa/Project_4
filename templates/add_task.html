@@ -18,7 +18,7 @@
           {% endfor %}
         {% endfor %}
       {% endif %}
-      <form method="post" class="my-5">
+      <form method="post" class="my-5" novalidate>
         {% csrf_token %}
         <div class="mb-3">
             {{ form.title|as_crispy_field }}
@@ -29,7 +29,7 @@
         <input type="hidden" name="{{ form.goal.name }}" value="{{ goal }}">
         <input type="hidden" name="{{ form.user.name }}" value="{{ user.id }}">
         <button type="submit" class="btn btn-lg btn-primary w-100">Create Task</button>
-    </form>
+      </form>
     </div>
   </div>
 </div>
