@@ -1,4 +1,5 @@
 {% extends "./base.html" %}
+{% load crispy_forms_tags %}
 
 {% block title %}Goals Board{% endblock %}
 
@@ -6,40 +7,27 @@
 <div class="container my-3">
   <div class="row">
     <div class="col-md-6 mt-3 offset-md-3 shadow-lg p-5">
-      <h1 class="text-center h3">Create a New Goal</h1>
+      <h1 class="text-center h3 mb-3">Create a New Goal</h1>
       {% if form.errors %}
-      <div class="alert alert-danger">
-          <strong>There was an error:</strong>
-          <ul>
-              {% for field, errors in form.errors.items %}
-                  {% for error in errors %}
-                      <li>{{ error }}</li>
-                  {% endfor %}
-              {% endfor %}
-          </ul>
-      </div>
+        {% for field, errors in form.errors.items %}
+          {% for error in errors %}
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ error }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endfor %}
+        {% endfor %}
       {% endif %}
-      <form class="my-5" method="POST">
+      <form class="my-5" method="POST" novalidate>
         {% csrf_token %}
         <div class="mb-3">
-            <label for="{{ form.title.id_for_label }}" class="form-label d-block text-center lead">
-              {{ form.title.label_tag }}
-            </label>
-            <input type="text" id="{{ form.title.id_for_label }}"
-            name="{{ form.title.name }}" class="form-control w-100 p-2"
-            placeholder="Please provide a title for your goal">
+            {{ form.title|as_crispy_field }}
         </div>
         <div class="mb-3">
-            <label for="{{ form.description.id_for_label }}" class="form-label d-block text-center lead">
-              {{ form.description.label_tag }}
-            </label>
-            <textarea rows="12" id="{{ form.description.id_for_label }}" name="{{ form.description.name }}" class="form-control w-100 p-2" placeholder="Please describe your goal using the SMART criteria, ensuring it is Specific, Measurable, Achievable, Relevant, and Time-bound"></textarea>
+            {{ form.description|as_crispy_field }}
         </div>
         <div class="mb-3">
-            <label for="{{ form.expected_deadline.id_for_label }}" class="form-label d-block text-center lead">
-              {{ form.expected_deadline.label_tag }}
-            </label>
-            <input type="date" id="{{ form.expected_deadline.id_for_label }}" name="{{ form.expected_deadline.name }}" class="form-control w-100 p-2">
+            {{ form.expected_deadline|as_crispy_field }}
         </div>
         <button type="submit" class="btn btn-lg btn-primary w-100">Create Goal</button>
       </form>

@@ -1,5 +1,4 @@
 from django import forms
-from django.core.exceptions import ValidationError
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Field, HTML, Submit
 from .models import Goal, Task, ScheduledTask
@@ -7,6 +6,22 @@ from datetime import timedelta, datetime
 from django.contrib.auth.models import User
 
 class GoalForm(forms.ModelForm):
+    title = forms.CharField(
+        min_length=3,
+        max_length=200,
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        error_messages={'required': "Please enter a title."}
+        )
+    description = forms.CharField(
+        min_length=10,
+        widget=forms.Textarea(attrs={'class': 'form-control'}),
+        error_messages={'required': "Please enter a description."}
+        )
+    expected_deadline = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+        error_messages={'required': "Please enter a deadline."}
+    )
+
     class Meta:
         model = Goal
         fields = '__all__'
@@ -14,6 +29,25 @@ class GoalForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(GoalForm, self).__init__(*args, **kwargs)
         self.fields['user'].required = False
+    
+
+class AddGoalForm(GoalForm):
+    def clean(self):
+        cleaned_data = super().clean()
+        expected_deadline = cleaned_data.get('expected_deadline')
+
+        if expected_deadline and expected_deadline < datetime.today().date():
+            self.add_error('expected_deadline', 'Estimation must be today or later.')
+
+        return cleaned_data
+
+
+class EditGoalForm(GoalForm):
+    status = forms.ChoiceField(
+        choices=Goal.STATUS,
+        widget=forms.Select(attrs={'class': 'form-select w-100 p-2'}),
+        error_messages={'required': "Please select a status."}
+    )
     
 
 class TaskForm(forms.ModelForm):
@@ -50,7 +84,7 @@ class ScheduledTaskForm(forms.ModelForm):
         end_time = cleaned_data.get('end_time')
 
         if start_time and end_time and start_time >= end_time:
-            raise ValidationError('End time must be later than start time.')
+            self.add_error(None, 'End time must be later than start time.')
         return cleaned_data
 
 
@@ -81,7 +115,7 @@ class AddScheduledTaskForm(ScheduledTaskForm):
         date = cleaned_data.get('date')
 
         if date and date < datetime.today().date():
-            raise ValidationError('Date must be today or later.')
+            self.add_error(None, 'Date must be today or later.')
 
         if end_date and date:
             if end_date < date:

@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ValidationError
 from django.db.models import Q
 from datetime import timedelta, datetime
-from .forms import GoalForm, TaskForm, ScheduledTaskForm, AddScheduledTaskForm, EditScheduledTaskForm
+from .forms import GoalForm, TaskForm, ScheduledTaskForm, AddScheduledTaskForm, EditScheduledTaskForm, AddGoalForm, EditGoalForm
 from .models import Goal, Task, ScheduledTask
 
 
@@ -28,7 +28,7 @@ class GoalsBoardView(LoginRequiredMixin, ListView):
 
 class CreateGoalView(LoginRequiredMixin, CreateView):
     model = Goal
-    form_class = GoalForm
+    form_class = AddGoalForm
     template_name = 'create_goal.html'
     success_url = '/'
 
@@ -39,7 +39,7 @@ class CreateGoalView(LoginRequiredMixin, CreateView):
 
 class EditGoalView(LoginRequiredMixin, UpdateView):
     model = Goal
-    form_class = GoalForm
+    form_class = EditGoalForm
     template_name = 'edit_goal.html'
     success_url = '/'
 
