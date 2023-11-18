@@ -15,43 +15,38 @@
   {% endfor %}
   {% endif %}
   <h1 class="h3 m-5 text-center">Goals Board</h1>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-2 sticky-top">
+  <nav class="navbar navbar-expand-xl navbar-dark px-2 sticky-top" id="goals-nav">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#goals">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="goals">
-        <ul class="navbar-nav d-sm-none">
+        <ul class="navbar-nav d-xl-none">
           <li class="nav-item">
-            <a class="nav-link text-center border-bottom border-secondary active" href="#">All</a>
-            </li>
-          <li class="nav-item">
-          <a class="nav-link text-center border-bottom border-secondary active" href="#">To Do</a>
+            <a class="nav-link text-center border-bottom border-secondary" href="#todo">To Do</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link text-center border-bottom border-secondary" href="#">In Progress</a>
+            <a class="nav-link text-center border-bottom border-secondary" href="#progress">In Progress</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link text-center border-bottom border-secondary" href="#">On Hold</a>
+            <a class="nav-link text-center border-bottom border-secondary" href="#hold">On Hold</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-center" href="#">Done</a>
+              <a class="nav-link text-center" href="#done">Done</a>
           </li>
         </ul>
         <a class="btn btn-success ms-auto text-center d-block" href="{% url 'create_goal' %}">Create Goal</a>
       </div>
     </div>
   </nav>
-
   <div id="goals-board" class="container p-0 mb-5">
     <div class="row">
-      <div class="col-12 col-lg-6 col-xl-3">
-        <div class="card card-border-primary">
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="card card-border-primary" id="todo">
           <div class="card-header">
             <h5 class="card-title text-center">To Do</h5>
             <h6 class="card-subtitle text-muted text-center">Newly created goals without tasks.</h6>
           </div>
-
           {% for goal in goals %}
           {% if goal.status == '0' %}
           <div class="card-body p-3">
@@ -62,7 +57,7 @@
                 <h3 class="h4 text-center my-2">{{ goal.title }}</h3>
                 <p class="text-center">{{ goal.description }}</p>
                 <sub>Deadline: {{ goal.expected_deadline }}</sub>
-                <a class="btn btn-outline-primary d-block mt-5 mb-2" href="{% url 'edit_goal' slug=goal.slug %}">Edit</a>
+                <a class="btn btn-outline-primary d-block mt-3 mb-1" href="{% url 'edit_goal' slug=goal.slug %}">Edit</a>
                 <a class="btn btn-success d-block" href="{% url 'add_task' slug=goal.slug %}">Add Task</a>
               </div>
             </div>
@@ -73,8 +68,8 @@
         </div>
       </div>
 
-      <div class="col-12 col-lg-6 col-xl-3">
-        <div class="card card-border-warning">
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="card card-border-warning" id="progress">
             <div class="card-header">
               <h5 class="card-title text-center">In Progress</h5>
               <h6 class="card-subtitle text-muted text-center">
@@ -91,7 +86,7 @@
                   <h3 class="h4 text-center my-2">{{ goal.title }}</h3>
                   <p class="text-center">{{ goal.description }}</p>
                   <sub>Deadline: {{ goal.expected_deadline }}</sub>
-                  <a class="btn btn-outline-primary d-block mt-5 mb-2" href="{% url 'edit_goal' slug=goal.slug %}">Edit</a>
+                  <a class="btn btn-outline-primary d-block mt-3 mb-1" href="{% url 'edit_goal' slug=goal.slug %}">Edit</a>
                   <a class="btn btn-success d-block" href="{% url 'add_task' slug=goal.slug %}">Add Task</a>
                 </div>
               </div>
@@ -101,8 +96,8 @@
         </div>
       </div>
 
-      <div class="col-12 col-lg-6 col-xl-3">
-        <div class="card card-border-danger">
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="card card-border-danger" id="hold">
           <div class="card-header">
             <h5 class="card-title text-center">On Hold</h5>
             <h6 class="card-subtitle text-muted text-center">
@@ -119,7 +114,7 @@
                 <h3 class="h4 text-center my-2">{{ goal.title }}</h3>
                 <p class="text-center">{{ goal.description }}</p>
                 <sub>Deadline: {{ goal.expected_deadline }}</sub>
-                <a class="btn btn-outline-primary d-block mt-5 mb-2" href="{% url 'edit_goal' slug=goal.slug %}">Edit</a>
+                <a class="btn btn-outline-primary d-block mt-3 mb-1" href="{% url 'edit_goal' slug=goal.slug %}">Edit</a>
                 <a class="btn btn-success d-block" href="{% url 'add_task' slug=goal.slug %}">Add Task</a>
               </div>
             </div>
@@ -129,8 +124,8 @@
         </div>
       </div>
 
-      <div class="col-12 col-lg-6 col-xl-3">
-        <div class="card card-border-success">
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="card card-border-success" id="done">
           <div class="card-header">
             <h5 class="card-title text-center">Done</h5>
             <h6 class="card-subtitle text-muted text-center">Successfully accomplished goals.</h6>
@@ -145,7 +140,7 @@
                 <h3 class="h4 text-center my-2">{{ goal.title }}</h3>
                 <p class="text-center">{{ goal.description }}</p>
                 <sub>Deadline: {{ goal.expected_deadline }}</sub>
-                <a class="btn btn-outline-primary d-block mt-5 mb-2" href="{% url 'edit_goal' slug=goal.slug %}">Edit</a>
+                <a class="btn btn-outline-primary d-block mt-3 mb-1" href="{% url 'edit_goal' slug=goal.slug %}">Edit</a>
                 <a class="btn btn-success d-block" href="{% url 'add_task' slug=goal.slug %}">Add Task</a>
               </div>
             </div>
