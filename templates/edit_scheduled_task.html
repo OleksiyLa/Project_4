@@ -7,31 +7,27 @@
 <div class="container my-3">
   <div class="row">
     <div class="col-md-6 mt-3 offset-md-3 shadow-lg p-5">
-      <h1 class="text-center h3">Edit {{ form.task.name }}</h1>
+      <h1 class="text-center h3 mb-3">Edit Task "{{ task_title }}"</h1>
       {% if form.errors %}
-      <div class="alert alert-danger">
-          <strong>There was an error:</strong>
-          <ul>
-              {% for field, errors in form.errors.items %}
-                  {% for error in errors %}
-                      <li>{{ error }}</li>
-                  {% endfor %}
-              {% endfor %}
-          </ul>
-      </div>
+        {% for field, errors in form.errors.items %}
+          {% for error in errors %}
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ error }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endfor %}
+        {% endfor %}
       {% endif %}
-      <form method="post" class="my-5">
+      <form method="post" class="my-5" novalidate>
         {% csrf_token %}
         <div class="mb-3 d-flex justify-content-around">
           {{ form.start_time|as_crispy_field }}
           {{ form.end_time|as_crispy_field }}
         </div>
-        {{ form.date|as_crispy_field }}
-        {{ form.completed|as_crispy_field }}
-        <input type="hidden" name="{{ form.task.name }}" value="{{  task.id }}">
-        <input type="hidden" name="{{ form.user.name }}" value="{{  user.id }}">
-        <button type="submit" class="btn btn-lg btn-primary w-100">Edit</button>
-    </form>
+          {{ form.date|as_crispy_field }}
+          {{ form.completed|as_crispy_field }}
+          <button type="submit" class="btn btn-primary p-2 mt-4 w-100">Edit</button>
+      </form>
     </div>
   </div>
 </div>

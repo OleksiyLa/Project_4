@@ -6,8 +6,9 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ValidationError
+from django.db.models import Q
 from datetime import timedelta, datetime
-from .forms import GoalForm, TaskForm, ScheduledTaskForm
+from .forms import GoalForm, TaskForm, ScheduledTaskForm, AddScheduledTaskForm, EditScheduledTaskForm
 from .models import Goal, Task, ScheduledTask
 
 
@@ -117,17 +118,18 @@ def delete_task(request, slug):
 @login_required
 def schedule_task(request, slug):
     task = Task.objects.get(slug=slug, user=request.user)
+    task_title = task.title.capitalize()
     if not task:
         return redirect('tasks')
     
     if request.method == 'POST':
-        form = ScheduledTaskForm(request.POST)
+        form = AddScheduledTaskForm(request.POST)
         if form.is_valid():
             start_time = request.POST.get('start_time')
             end_time = request.POST.get('end_time')
             date = request.POST.get('date')
             end_date = request.POST.get('end_date')
-            selected_days = request.POST.getlist('selectedDays[]')
+            selected_days = request.POST.getlist('selected_days')
             start_date = datetime.strptime(date, "%Y-%m-%d").date()
             validation_failed = False
             if end_date:
@@ -138,6 +140,7 @@ def schedule_task(request, slug):
                     return render(request, 'schedule.html', {'form': form, 'task': task.id})
                 delta = timedelta(days=1)
                 validatied_tasks = []
+                print(selected_days)
                 while start_date <= end_date and not validation_failed:
                     if str(start_date.weekday()) in selected_days:
                         conflicting_tasks = ScheduledTask.objects.filter(
@@ -149,25 +152,20 @@ def schedule_task(request, slug):
                         if conflicting_tasks.exists():
                             error_message = 'Task overlaps with another scheduled task.'
                             form.add_error(None, error_message)
-                            return render(request, 'schedule.html', {'form': form, 'task': task})
+                            return render(request, 'schedule.html', {'form': form, 'task': task, 'task_title': task_title})
                         scheduled_task = ScheduledTask(
                             task=task, date=start_date, start_time=start_time, end_time=end_time, user=request.user
                         )
-                        try:
-                            scheduled_task.full_clean()
-                            validatied_tasks.append(scheduled_task)
-                        except ValidationError as e:
-                            form.add_error(None, e)
-                            validation_failed = True
+                        validatied_tasks.append(scheduled_task)
                     start_date += delta
                 if validation_failed:
-                    return render(request, 'schedule.html', {'form': form, 'task': task.id})
+                    return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
                 try:
                     for task in validatied_tasks:
                         task.save()
                 except ValidationError as e:
                     form.add_error(None, e)
-                    return render(request, 'schedule.html', {'form': form, 'task': task.id})
+                    return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
             else:
                 scheduled_task = ScheduledTask(
                     task=task, date=start_date, start_time=start_time, end_time=end_time, user=request.user
@@ -181,19 +179,18 @@ def schedule_task(request, slug):
                 if conflicting_tasks.exists():
                     error_message = 'Task overlaps with another scheduled task.'
                     form.add_error(None, error_message)
-                    return render(request, 'schedule.html', {'form': form, 'task': task})
+                    return render(request, 'schedule.html', {'form': form, 'task': task, 'task_title': task_title})
                 try:
-                    scheduled_task.full_clean()
                     scheduled_task.save()
                 except ValidationError as e:
                     form.add_error(None, e)
-                    return render(request, 'schedule.html', {'form': form, 'task': task.id})
+                    return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
             return redirect(reverse('tasks'))
         else:
-            return render(request, 'schedule.html', {'form': form, 'task': task.id})
+            return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
     else:
-        form = ScheduledTaskForm()
-        return render(request, 'schedule.html', {'form': form, 'task': task.id})
+        form = AddScheduledTaskForm()
+        return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
 
 
 class CalendarView(LoginRequiredMixin, TemplateView):
@@ -245,12 +242,13 @@ def delete_scheduled_task(request, slug):
 def edit_scheduled_task(request, slug):
     scheduled_task = ScheduledTask.objects.get(slug=slug, user=request.user)
     if request.method == 'POST':
-        form = ScheduledTaskForm(request.POST, instance=scheduled_task)
+        form = EditScheduledTaskForm(request.POST, instance=scheduled_task)
         if form.is_valid():
-            start_time = request.POST.get('start_time')
-            end_time = request.POST.get('end_time')
-            date = request.POST.get('date')
+            start_time = form.cleaned_data['start_time']
+            end_time = form.cleaned_data['end_time']
+            date = form.cleaned_data['date']
             conflicting_tasks = ScheduledTask.objects.filter(
+                ~Q(pk=scheduled_task.pk),
                 date=date,
                 start_time__lt=end_time,
                 end_time__gt=start_time,
@@ -260,13 +258,17 @@ def edit_scheduled_task(request, slug):
                 error_message = 'Task overlaps with another scheduled task.'
                 form.add_error(None, error_message)
             else:
-                form.save()
+                scheduled_task.start_time = start_time
+                scheduled_task.end_time = end_time
+                scheduled_task.date = date
+                scheduled_task.completed = form.cleaned_data['completed']
+                scheduled_task.save()
                 response = HttpResponseRedirect('/calendar/')
                 response.set_cookie('selectedDate', slug, max_age=300)
                 return response
     else:
-        form = ScheduledTaskForm(instance=scheduled_task)
-    return render(request, 'edit_scheduled_task.html', {'form': form, 'task': scheduled_task.task })
+        form = EditScheduledTaskForm(instance=scheduled_task)
+    return render(request, 'edit_scheduled_task.html', {'form': form, 'task_title': scheduled_task.task.title.capitalize() })
 
 
 @login_required

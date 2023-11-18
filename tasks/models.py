@@ -50,12 +50,12 @@ class Task(models.Model):
 
 
 class ScheduledTask(models.Model):
-    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='scheduled_dates')
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='scheduled_dates', null=False, blank=True)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField()
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=True)
+    date = models.DateField(null=False)
+    start_time = models.TimeField(null=False)
+    end_time = models.TimeField(null=False)
     completed = models.BooleanField(default=False, blank=True)
 
     class Meta:
@@ -68,7 +68,3 @@ class ScheduledTask(models.Model):
 
     def __str__(self):
         return f"{self.task.title} - {self.date} {self.start_time} - {self.end_time}"
-
-    def clean(self):
-        if self.start_time and self.end_time and self.start_time >= self.end_time:
-            raise ValidationError('End time must be later than start time.')

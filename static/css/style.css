@@ -8,6 +8,13 @@ body{
   min-height: 100vh;
 }
 
+.form-check label {
+  cursor: pointer;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
 
 #logo-svg {
   width: 2rem;
