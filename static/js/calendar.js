@@ -5,6 +5,8 @@ const elementsDOM = {
   calendar: document.getElementById("calendar-table"),
   tasks: document.getElementById("scheduled-tasks-body"),
   selected_date: document.getElementById("selected-date"),
+  spinner: document.querySelector('.spinner-border'),
+  calendarContainer: document.querySelector('.calendar')
 };
 
 const months = [
@@ -129,6 +131,8 @@ function fetchData() {
         selectDate(new Date().toDateString())
         elementsDOM.tasks.innerHTML = getTasksHTML(new Date().toDateString())
       }
+      elementsDOM.spinner.style.display = 'none';
+      elementsDOM.calendarContainer.classList.remove('d-none');
     })
     .catch(error => {
       console.error('Fetch error:', error);

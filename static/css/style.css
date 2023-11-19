@@ -94,6 +94,12 @@ to {
 }
 
 /* Calendar */
+.spinner-border {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
 .calendar {
   height: 92vh;
 }
