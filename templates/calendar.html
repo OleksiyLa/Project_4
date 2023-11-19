@@ -15,12 +15,12 @@
   {% endfor %}
   {% endif %}
   <div class="row">
-    <div class="col-12 col-md-6 calendar-container">
+    <div class="col-12 col-md-6 calendar-container my-5">
       <div>
+        <span id="current-month-year"></span>
         <div class="calendar-controls d-flex justify-content-between">
-            <button id="prev-month" class="btn btn-dark">Previous</button>
-            <span id="current-month-year"></span>
-            <button id="next-month" class="btn btn-dark">Next</button>
+            <button id="prev-month" class="btn btn-dark p-1">Previous</button>
+            <button id="next-month" class="btn btn-dark p-1">Next</button>
         </div>
         <table class="table table-bordered" id="calendar-table">
           <thead>
@@ -38,7 +38,7 @@
           </tbody>
         </table>
         <div class="calendar-controls d-flex justify-content-between">
-          <button id="today" class="btn btn-dark">Today</button>
+          <button id="today" class="btn btn-dark p-1">Today</button>
         </div>
       </div>
     </div>

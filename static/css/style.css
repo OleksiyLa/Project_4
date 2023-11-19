@@ -8,15 +8,17 @@ body{
 }
 
 header {
-  height: 10vh;
+  z-index: 99;
+  min-height: 8vh;
 }
 
 header nav {
   z-index: 99;
+  min-height: 8vh;
 }
 
 #main {
-  min-height: 90vh;
+  min-height: 92vh;
 }
 
 #goals-board .card-header {
@@ -93,7 +95,7 @@ to {
 
 /* Calendar */
 .calendar {
-  flex-grow: 1;
+  height: 92vh;
 }
 
 .calendar > .row {
@@ -118,10 +120,6 @@ to {
 .calendar td:hover {
   background: #eee;
 }
-
-/* .calendar td.selected {
-  background: #ddd;
-} */
 
 .calendar td.today {
   background: #eee;
@@ -157,11 +155,16 @@ to {
   color: #ccc;
 }
 
+#scheduled-tasks {
+  height: 92vh;
+  overflow-y: auto;
+}
+
 #scheduled-tasks .card {
   height: 100%;
 }
 #scheduled-tasks .row {
-  height: 50vh;
+  height: 100%;
 }
 
 #scheduled-tasks .card .card-body {
@@ -175,7 +178,6 @@ to {
 
 .not-completed {
   box-shadow: 0 0 1px #000000;
-  /* color: #0d6efd; */
 }
 
 .completed {
@@ -197,4 +199,26 @@ footer a:hover .social-svg {
 .social-svg {
   fill: #fff;
   width: 100%
+}
+
+@media (max-width: 768px) {
+  .calendar {
+    height: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .calendar {
+    height: 100%;
+  }
+  #scheduled-tasks {
+    height: 100%;
+  }
+}
+
+
+@media (max-width: 350px) {
+  .calendar th {
+    font-size: 10px;
+  }
 }

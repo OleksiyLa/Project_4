@@ -93,7 +93,7 @@ function renderCalendar(date, data) {
   }
 
   const currentMonthYear = document.getElementById("current-month-year");
-  currentMonthYear.innerHTML = `<h2>${diplayedDate.toLocaleString("default", { month: "long" })} ${diplayedDate.getFullYear()}</h2>`;
+  currentMonthYear.innerHTML = `<h2 class="text-center">${diplayedDate.toLocaleString("default", { month: "long" })} ${diplayedDate.getFullYear()}</h2>`;
 }
 
 function getPreviousMonthHTML(today, startingDay) {
