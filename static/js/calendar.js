@@ -166,10 +166,10 @@ function getTasksHTML(date){
       const completed = schedule[i].completed;
       const classCompleted = completed ? "completed" : "not-completed";
       const isDone = completed ? "Done" : "Not done";
-      const deleteIcon = completed ? "" : `<img src="/static/svg/delete_icon.svg" alt="delete-icon" class="float-end delete-icon" data-txt="scheduled task" data-title="${item.title}" data-url="/delete_scheduled_task/${schedule[i].slug}">`;
-      const editBtn = completed ? `
-      <a class="btn btn-sm btn-outline-success w-100" href="/edit_scheduled_task/${schedule[i].slug}">Edit</a>` : `
-      <a class="btn btn-dark w-100" href="/edit_scheduled_task/${schedule[i].slug}">Edit</a>`;
+      const deleteIcon = completed ? "" : `<img src="/static/svg/delete_icon.svg" alt="delete-icon" class="float-end delete-icon control-icon" data-txt="scheduled task" data-title="${item.title}" data-url="/delete_scheduled_task/${schedule[i].slug}">`;
+
+      const editIcon = `<a class="my-1" href="/edit_scheduled_task/${schedule[i].slug}">
+      <img src="/static/svg/edit_icon.svg" alt="edit-icon" class="control-icon"></a>`;
       const finishTaskBtn = completed ? "" : `<a class="btn btn-outline-dark w-100 my-2" href="/complete_scheduled_task/${schedule[i].slug}">
       <strong>Complete</strong></a>`;
       const timeDone = completed ? "" : `<h3 class="h4 text-center my-2">From <span>${schedule[i].start_time.slice(0, -3)}</span> To <span>${schedule[i].end_time.slice(0, -3)}</span></h3>`;
@@ -178,13 +178,15 @@ function getTasksHTML(date){
       <div class="card mb-3 bg-light ${classCompleted}">
         <h2 class="text-center">${isDone}</h2>
         <div class="card-body p-3 ${classCompleted}">
-          ${deleteIcon}
+          <div class="float-end d-flex flex-column">
+            ${deleteIcon}
+            ${editIcon}
+          </div>
           ${timeDone}
           <h3 class="h4 text-center my-2">${item.title}</h3>
           <p class="text-center">${item.description}</p>
           <div class="mt-3">
             ${finishTaskBtn}
-            ${editBtn}
           </div>
         </div>
       </div>`])

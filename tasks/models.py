@@ -27,6 +27,9 @@ class Goal(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def task_count(self):
+        return Task.objects.filter(goal=self).count()
 
 
 class Task(models.Model):
@@ -45,6 +48,15 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def scheduled_task_count(self):
+        return self.scheduled_dates.count()
+
+    def completed_task_count(self):
+        return self.scheduled_dates.filter(completed=True).count()
+
+    def not_completed_task_count(self):
+        return self.scheduled_dates.filter(completed=False).count()
 
 
 class ScheduledTask(models.Model):
