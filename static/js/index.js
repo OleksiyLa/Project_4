@@ -38,3 +38,22 @@ document.body.addEventListener('click', (e) => {
       confirmDelete(e.target.dataset.title, e.target.dataset.url, e.target.dataset.txt);
     }
 });
+
+document.body.addEventListener('click', (e) => {
+  const target = e.target;
+  let toggleChevron;
+  if(target.classList.contains('tasks-toggler')) {
+    if(target.classList.contains('card-title')) {
+      toggleChevron = target.children[0];
+    } else if(e.target.classList.contains('tasks-toggler-svg')) {
+      toggleChevron = target;
+    } else {
+      toggleChevron = target.parentElement;
+    }
+    if(toggleChevron.style.transform === "rotate(180deg)") {
+      toggleChevron.style.transform = "rotate(0deg)"
+      return
+    }
+    toggleChevron.style.transform = "rotate(180deg)"
+  } 
+});

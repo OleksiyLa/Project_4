@@ -28,6 +28,10 @@ header nav {
   color: #ffffff;
 }
 
+a {
+  text-decoration: none;
+}
+
 .form-check label {
   cursor: pointer;
 }
