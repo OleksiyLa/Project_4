@@ -49,7 +49,30 @@ class EditGoalView(LoginRequiredMixin, UpdateView):
         form.instance.user = self.request.user
         messages.success(self.request, 'Goal updated successfully!')
         return super().form_valid(form)
+    
+@login_required
+def select_progress_status(request, slug):
+    goal = Goal.objects.get(slug=slug, user=request.user)
+    goal.status = '1'
+    goal.save()
+    messages.success(request, 'Goal status updated successfully!')
+    return redirect(reverse('goals_board'))
 
+@login_required
+def select_on_hold_status(request, slug):
+    goal = Goal.objects.get(slug=slug, user=request.user)
+    goal.status = '2'
+    goal.save()
+    messages.success(request, 'Goal status updated successfully!')
+    return redirect(reverse('goals_board'))
+
+@login_required
+def select_done_status(request, slug):
+    goal = Goal.objects.get(slug=slug, user=request.user)
+    goal.status = '3'
+    goal.save()
+    messages.success(request, 'Goal status updated successfully!')
+    return redirect(reverse('goals_board'))
 
 @login_required
 def delete_goal(request, slug):

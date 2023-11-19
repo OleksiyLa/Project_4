@@ -124,7 +124,7 @@ class AddScheduledTaskForm(ScheduledTaskForm):
         date = cleaned_data.get('date')
 
         if date and date < datetime.today().date():
-            self.add_error(None, 'Date must be today or later.')
+            self.add_error('date', 'Date must be today or later.')
 
         if end_date and date:
             if end_date < date:
