@@ -11,7 +11,7 @@ class Goal(models.Model):
         ('2', "On Hold"),
         ('3', "Done"),
     ]
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
@@ -20,10 +20,16 @@ class Goal(models.Model):
     expected_deadline = models.DateField()
     status = models.CharField(default='0', blank=True, max_length=1, choices=STATUS)
 
+    class Meta:
+        unique_together = ('title', 'user')
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-        super(Goal, self).save(*args, **kwargs)
+            conflicting_slugs = Task.objects.filter(slug=self.slug).exclude(pk=self.pk)
+            if conflicting_slugs.exists():
+                self.slug = f"{self.slug}-{self.pk}"
+        super(Task, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -33,7 +39,7 @@ class Goal(models.Model):
 
 
 class Task(models.Model):
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
@@ -41,9 +47,15 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     completed = models.BooleanField(default=False, blank=True)
 
+    class Meta:
+        unique_together = ('title', 'user')
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
+            conflicting_slugs = Task.objects.filter(slug=self.slug).exclude(pk=self.pk)
+            if conflicting_slugs.exists():
+                self.slug = f"{self.slug}-{self.pk}"
         super(Task, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -69,11 +81,15 @@ class ScheduledTask(models.Model):
     completed = models.BooleanField(default=False, blank=True)
 
     class Meta:
-        unique_together = ['date', 'start_time', 'end_time']
-
+        unique_together = ['date', 'start_time', 'end_time', 'user', 'task']
+    
+    
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = f"{slugify(self.date)}-{slugify(self.start_time)}-{slugify(self.end_time)}"
+            conflicting_slugs = Task.objects.filter(slug=self.slug).exclude(pk=self.pk)
+            if conflicting_slugs.exists():
+                self.slug = f"{self.slug}-{self.pk}"
         super(ScheduledTask, self).save(*args, **kwargs)
 
     def __str__(self):
