@@ -98,9 +98,13 @@ class ScheduledTaskForm(forms.ModelForm):
 
 
 class AddScheduledTaskForm(ScheduledTaskForm):
-    end_date = forms.DateField(label='End Date', required=False, widget=forms.DateInput(attrs={'type': 'date'}))
+    date = forms.DateField(
+        label='Exact date or start date',
+        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control pr-5'}),
+        error_messages={'required': "Please enter a date."}
+        )
+    end_date = forms.DateField(label='End date (Optional)', required=False, widget=forms.DateInput(attrs={'type': 'date'}))
     selected_days = forms.MultipleChoiceField(
-        label='Selected Days',
         choices=[
             ('0', 'Monday'),
             ('1', 'Tuesday'),

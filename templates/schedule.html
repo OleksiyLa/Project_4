@@ -35,12 +35,14 @@
         {{ form.date|as_crispy_field }}
         {{ form.end_date|as_crispy_field }}
         <div class="checkbox-container p-2 m-3 d-flex flex-column">
+          <p class="text-center">Applies when end date is selected</p>
         {% for checkbox in form.selected_days %}
             <div class="form-group">
                 {{ checkbox.tag }}
                 <label for="{{ checkbox.id_for_label }}">{{ checkbox.choice_label }}</label>
             </div>
         {% endfor %}
+
         </div>
         <input type="hidden" name="{{ form.task.name }}" value="{{ task.id }}">
         <input type="hidden" name="{{ form.user.name }}" value="{{ user.id }}">
