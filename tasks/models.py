@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from django.utils import timezone
 # Create your models here.
 
 
@@ -20,16 +21,11 @@ class Goal(models.Model):
     expected_deadline = models.DateField()
     status = models.CharField(default='0', blank=True, max_length=1, choices=STATUS)
 
-    class Meta:
-        unique_together = ('title', 'user')
-
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title)
-            conflicting_slugs = Task.objects.filter(slug=self.slug).exclude(pk=self.pk)
-            if conflicting_slugs.exists():
-                self.slug = f"{self.slug}-{self.pk}"
-        super(Task, self).save(*args, **kwargs)
+        slug = slugify(self.title)
+        current_timestamp = int(timezone.now().timestamp())
+        self.slug = f"{slug}-{current_timestamp}"
+        super(Goal, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -46,16 +42,11 @@ class Task(models.Model):
     goal = models.ForeignKey(Goal, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     completed = models.BooleanField(default=False, blank=True)
-
-    class Meta:
-        unique_together = ('title', 'user')
-
+    
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title)
-            conflicting_slugs = Task.objects.filter(slug=self.slug).exclude(pk=self.pk)
-            if conflicting_slugs.exists():
-                self.slug = f"{self.slug}-{self.pk}"
+        slug = slugify(self.title)
+        current_timestamp = int(timezone.now().timestamp())
+        self.slug = f"{slug}-{current_timestamp}"
         super(Task, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -81,15 +72,10 @@ class ScheduledTask(models.Model):
     completed = models.BooleanField(default=False, blank=True)
 
     class Meta:
-        unique_together = ['date', 'start_time', 'end_time', 'user', 'task']
-    
+        unique_together = ['date', 'start_time', 'end_time', 'user']
     
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = f"{slugify(self.date)}-{slugify(self.start_time)}-{slugify(self.end_time)}"
-            conflicting_slugs = Task.objects.filter(slug=self.slug).exclude(pk=self.pk)
-            if conflicting_slugs.exists():
-                self.slug = f"{self.slug}-{self.pk}"
+        self.slug = f"{slugify(self.date)}-{slugify(self.start_time)}-{slugify(self.end_time)}-{slugify(self.user)}"
         super(ScheduledTask, self).save(*args, **kwargs)
 
     def __str__(self):

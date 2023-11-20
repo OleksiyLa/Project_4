@@ -27,6 +27,20 @@ class GoalForm(forms.ModelForm):
         super(GoalForm, self).__init__(*args, **kwargs)
         self.fields['user'].required = False
     
+    def clean(self):
+        cleaned_data = super().clean()
+        title = cleaned_data.get('title')
+        user = cleaned_data.get('user')
+
+        if title and user:
+            existing_goals = Goal.objects.filter(title=title, user=user)
+            if self.instance and self.instance.pk:
+                existing_goals = existing_goals.exclude(pk=self.instance.pk)
+            if existing_goals.exists():
+                self.add_error('title', "Goal with this Title and already exists.")
+        
+        return cleaned_data
+
 
 class AddGoalForm(GoalForm):
     def clean(self):
@@ -67,6 +81,20 @@ class TaskForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(TaskForm, self).__init__(*args, **kwargs)
         self.fields['goal'].required = False
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        title = cleaned_data.get('title')
+        user = cleaned_data.get('user')
+
+        if title and user:
+            existing_tasks = Task.objects.filter(title=title, user=user)
+            if self.instance and self.instance.pk:
+                existing_tasks = existing_tasks.exclude(pk=self.instance.pk)
+            if existing_tasks.exists():
+                self.add_error('title', "Task with this Title and already exists.")
+        
+        return cleaned_data
 
 
 class ScheduledTaskForm(forms.ModelForm):
