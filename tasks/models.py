@@ -78,3 +78,6 @@ class ScheduledTask(models.Model):
 
     def __str__(self):
         return f"{self.task.title} - {self.date} {self.start_time} - {self.end_time}"
+    
+    def is_date_past_goal_deadline(self):
+        return self.task.goal.expected_deadline < self.date

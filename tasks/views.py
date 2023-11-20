@@ -195,9 +195,16 @@ def schedule_task(request, slug):
                 if validation_failed:
                     return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
                 try:
+                    num_of_past_deadline = 0
                     for task in validatied_tasks:
                         task.save()
-                    messages.success(request, 'Tasks scheduled successfully!')
+                        if(task.is_date_past_goal_deadline()):
+                            num_of_past_deadline += 1
+                    num_of_scheduled_tasks = len(validatied_tasks)
+                    if num_of_past_deadline > 0:
+                        messages.warning(request, f'{num_of_scheduled_tasks} tasks scheduled successfully, but {num_of_past_deadline} of them are past the goal deadline.')
+                    else:
+                        messages.success(request, f'{num_of_scheduled_tasks} tasks scheduled successfully!')
                 except ValidationError as e:
                     form.add_error(None, e)
                     return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
@@ -217,7 +224,11 @@ def schedule_task(request, slug):
                     return render(request, 'schedule.html', {'form': form, 'task': task, 'task_title': task_title})
                 try:
                     scheduled_task.save()
-                    messages.success(request, 'Task scheduled successfully!')
+                    if(scheduled_task.is_date_past_goal_deadline()):
+                        messages.warning(request, 'Task scheduled successfully, but the date is past the goal deadline.')
+                    else:
+                        messages.success(request, 'Task scheduled successfully!')
+
                 except ValidationError as e:
                     form.add_error(None, e)
                     return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
