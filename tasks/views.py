@@ -134,6 +134,27 @@ class TasksView(LoginRequiredMixin, ListView):
         context["goals"] = goals
         return context
 
+class TaskDetailView(LoginRequiredMixin, DetailView):
+    model = Task
+    template_name = 'task_detail.html'
+
+@login_required
+def complete_task(request, slug):
+    task = Task.objects.get(slug=slug, user=request.user)
+    task.completed = True
+    task.save()
+    response = HttpResponseRedirect('/tasks/')
+    messages.success(request, 'Task completed successfully!')
+    return response
+
+@login_required
+def uncomplete_task(request, slug):
+    task = Task.objects.get(slug=slug, user=request.user)
+    task.completed = False
+    task.save()
+    response = HttpResponseRedirect('/tasks/')
+    messages.success(request, 'Task is not completed now, success!')
+    return response
 
 class EditTaskView(LoginRequiredMixin, UpdateView):
     model = Task

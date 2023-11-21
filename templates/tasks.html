@@ -35,7 +35,11 @@
                         {% for task in tasks %}
                             {% if task.goal.title == goal.0 %}
                                 <div class="col-12 col-md-6 col-xl-4">
+                                  {% if task.completed %}
+                                    <div class="card task-card mb-3 p-3 bg-light d-flex flex-column justify-content-between completed">
+                                  {% else %}
                                     <div class="card task-card mb-3 p-3 bg-light d-flex flex-column justify-content-between">
+                                  {% endif %}
                                           <div class="d-flex justify-content-between">
                                             <sup class="mt-3">Created: {{ task.created_at }}</sup>
                                             <div class="d-flex flex-column">
@@ -47,12 +51,18 @@
                                           </div>
                                           <h3 class="h4 text-center my-2">{{ task.title }}</h3>
                                           <p class="text-center mb-5">{{ task.description|truncatechars_html:100 }}</p>
+                                          <a href="{% url 'task_detail' slug=task.slug %}" class="link d-block text-center details-link">Details...</a>
                                           <div>
                                             <p class="m-0">Scheduled tasks: {{ task.scheduled_task_count }}</p>
                                             <p class="m-0">Completed: {{ task.completed_task_count }}</p>
                                             <p class="m-0">Not completed: {{ task.not_completed_task_count }}</p>
                                             <div class="mt-3">
-                                                <a class="btn btn-outline-primary w-100" href="{% url 'schedule_task' slug=task.slug %}">Schedule</a>
+                                              {% if not task.completed %}
+                                              <a href="{% url 'complete_task' slug=task.slug %}" class="btn btn-success my-1 w-100">Complete</a>
+                                              <a class="btn w-100 btn-outline-primary" href="{% url 'schedule_task' slug=task.slug %}">Schedule</a>
+                                              {% else %}
+                                              <a href="{% url 'uncomplete_task' slug=task.slug %}" class="btn btn-outline-success w-100">Uncomplete</a>
+                                              {% endif %}
                                             </div>
                                           </div>
                                     </div>
