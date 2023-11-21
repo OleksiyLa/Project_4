@@ -25,10 +25,6 @@ header nav {
   min-height: 90px;
 }
 
-.goal-card {
-  /* height: 700px; */
-}
-
 #tasks-container .card {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;

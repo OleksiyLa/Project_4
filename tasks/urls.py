@@ -5,6 +5,7 @@ from django.conf.urls import handler404
 urlpatterns = [
     path('', views.GoalsBoardView.as_view(), name='goals_board'),
     path('create_goal/', views.CreateGoalView.as_view(), name='create_goal'),
+    path('goal_detail/<slug:slug>/', views.GoalDetailView.as_view(), name='goal_detail'),
     path('delete_goal/<slug:slug>/', views.delete_goal, name='delete_goal'),
     path('edit_goal/<slug:slug>/', views.EditGoalView.as_view(), name='edit_goal'),
     path('progress_status/<slug:slug>/', views.select_progress_status, name='progress_status'),

@@ -1,0 +1,35 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block title %}Goal Detail{% endblock %}
+
+{% block content %}
+<div class="modal" id="delete-goal-modal"></div>
+<div class="container my-3">
+    <div class="card-body p-2">
+        <div class="card bg-light p-2">
+          <div class="card-body p-2">
+            <div class="d-flex justify-content-between">
+              <p>Created: {{ object.created_at }}</p>
+              <div class="d-flex flex-column">
+                <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="delete-icon control-icon mb-1" data-url="{% url 'delete_goal' slug=goal.slug %}" data-txt="goal">
+                <a class="mb-1 mb-3" href="{% url 'edit_goal' slug=goal.slug %}">
+                    <img src="{% static 'svg/edit_icon.svg' %}" alt="edit-icon" class="control-icon">
+                </a>
+              </div>
+            </div>
+            <h3 class="h4 text-center my-5">{{ object.title }}</h3>
+            <p class="justify">{{ object.description }}</p>
+            <p>Deadline: {{ object.expected_deadline }}</p>
+            <p>Number of Tasks: {{ object.task_count }}</p>
+            <a class="btn btn-success d-block mt-1" href="{% url 'add_task' slug=object.slug %}">Add Task</a>
+          </div>
+        </div>
+      </div>
+</div>
+{% endblock %}
+
+{% block js %}
+  <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}
+

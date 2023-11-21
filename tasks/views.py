@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, CreateView, TemplateView
+from django.views.generic import ListView, CreateView, TemplateView, DetailView
 from django.views.generic.edit import UpdateView
 from django.urls import reverse
 from django.http import JsonResponse, HttpResponseRedirect, Http404
@@ -28,6 +28,11 @@ class GoalsBoardView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context["active_link"] = 'goals'
         return context
+
+
+class GoalDetailView(LoginRequiredMixin, DetailView):
+    model = Goal
+    template_name = 'goal_detail.html'
 
 
 class CreateGoalView(LoginRequiredMixin, CreateView):
