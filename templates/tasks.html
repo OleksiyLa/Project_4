@@ -39,7 +39,7 @@
                                         <div class="card-body p-3">
                                             <sup>Created: {{ task.created_at }}</sup>
                                             <div class="float-end d-flex flex-column">
-                                                <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="float-end delete-icon control-icon" data-title="{{ task.title }}" data-url="{% url 'delete_task' slug=task.slug %}" data-txt="task">
+                                                <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="float-end delete-icon control-icon" data-url="{% url 'delete_task' slug=task.slug %}" data-txt="task">
                                                 <a class="my-1" href="{% url 'edit_task' slug=task.slug %}">
                                                   <img src="{% static 'svg/edit_icon.svg' %}" alt="edit-icon" class="control-icon">
                                                 </a>

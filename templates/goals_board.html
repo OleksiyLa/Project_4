@@ -49,21 +49,21 @@
           </div>
           {% for goal in goals %}
           {% if goal.status == '0' %}
-          <div class="card-body p-2">
+          <div class="card-body p-2 goal-card">
             <div class="card bg-light">
               <div class="card-body p-2">
-                <sup>Created: {{ goal.created_at }}</sup>
+                <sup>Deadline: {{ goal.expected_deadline }}</sup>
                 <div class="float-end d-flex flex-column">
-                  <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="delete-icon control-icon mb-1" data-title="{{ goal.title }}" data-url="{% url 'delete_goal' slug=goal.slug %}" data-txt="goal">
+                  <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="delete-icon control-icon mb-1" data-url="{% url 'delete_goal' slug=goal.slug %}" data-txt="goal">
                   <a class="mb-1 mb-3" href="{% url 'edit_goal' slug=goal.slug %}">
                     <img src="{% static 'svg/edit_icon.svg' %}" alt="edit-icon" class="control-icon">
                   </a>
                 </div>
-                <h3 class="h4 text-center my-2">{{ goal.title }}</h3>
-                <p class="text-center">{{ goal.description }}</p>
-                <p>Number of tasks: {{ goal.task_count }}</p>
-                <sub>Deadline: {{ goal.expected_deadline }}</sub>
-                <p class="mt-3 mb-0">Change status:</p>
+                <h3 class="h4 text-center my-5">{{ goal.title }}</h3>
+                <p class="text-center">{{ goal.description|truncatechars_html:100 }}</p>
+                <p class="text-center">Number of Tasks: {{ goal.task_count }}</p>
+                <a class="link my-4 d-block text-center details-link">Details...</a>
+                <p class="mt-3 text-center mb-0">Change Status</p>
                 <div class="btn-group w-100" role="group" aria-label="Goal status.">
                   <a href="{% url 'progress_status' slug=goal.slug %}" class="btn btn-warning col-4">Progress</a>
                   <a href="{% url 'on_hold_status' slug=goal.slug %}" class="btn btn-danger col-4">On Hold</a>
@@ -88,21 +88,21 @@
             </div>
             {% for goal in goals %}
             {% if goal.status == '1' %}
-            <div class="card-body p-2">
+            <div class="card-body p-2 goal-card">
               <div class="card bg-light">
                 <div class="card-body p-2">
-                  <sup>Created: {{ goal.created_at }}</sup>
+                  <sup>Deadline: {{ goal.expected_deadline }}</sup>
                   <div class="float-end d-flex flex-column">
-                    <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="delete-icon control-icon mb-1" data-title="{{ goal.title }}" data-url="{% url 'delete_goal' slug=goal.slug %}" data-txt="goal">
+                    <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="delete-icon control-icon mb-1" data-url="{% url 'delete_goal' slug=goal.slug %}" data-txt="goal">
                     <a class="mb-1 mb-3" href="{% url 'edit_goal' slug=goal.slug %}">
                       <img src="{% static 'svg/edit_icon.svg' %}" alt="edit-icon" class="control-icon">
                     </a>
                   </div>
-                  <h3 class="h4 text-center my-2">{{ goal.title }}</h3>
-                  <p class="text-center">{{ goal.description }}</p>
-                  <p>Number of tasks: {{ goal.task_count }}</p>
-                  <sub>Deadline: {{ goal.expected_deadline }}</sub>
-                  <p class="mt-3 mb-0">Change status:</p>
+                  <h3 class="h4 text-center my-5">{{ goal.title }}</h3>
+                  <p class="text-center">{{ goal.description|truncatechars_html:100 }}</p>
+                  <p class="text-center">Number of Tasks: {{ goal.task_count }}</p>
+                  <a class="link my-4 d-block text-center details-link">Details...</a>
+                  <p class="mt-3 text-center mb-0">Change Status</p>
                   <div class="btn-group w-100" role="group" aria-label="Goal status.">
                     <a href="{% url 'on_hold_status' slug=goal.slug %}" class="btn btn-danger col-6">On Hold</a>
                     <a href="{% url 'done_status' slug=goal.slug %}" class="btn btn-success col-6">Done</a>
@@ -126,21 +126,21 @@
           </div>
           {% for goal in goals %}
           {% if goal.status == '2' %}
-          <div class="card-body p-2">
+          <div class="card-body p-2 goal-card">
             <div class="card bg-light">
               <div class="card-body p-2">
-                <sup>Created: {{ goal.created_at }}</sup>
+                <sup>Deadline: {{ goal.expected_deadline }}</sup>
                 <div class="float-end d-flex flex-column">
-                  <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="delete-icon control-icon mb-1" data-title="{{ goal.title }}" data-url="{% url 'delete_goal' slug=goal.slug %}" data-txt="goal">
+                  <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="delete-icon control-icon mb-1" data-url="{% url 'delete_goal' slug=goal.slug %}" data-txt="goal">
                   <a class="mb-1 mb-3" href="{% url 'edit_goal' slug=goal.slug %}">
                     <img src="{% static 'svg/edit_icon.svg' %}" alt="edit-icon" class="control-icon">
                   </a>
                 </div>
-                <h3 class="h4 text-center my-2">{{ goal.title }}</h3>
-                <p class="text-center">{{ goal.description }}</p>
-                <p>Number of tasks: {{ goal.task_count }}</p>
-                <sub>Deadline: {{ goal.expected_deadline }}</sub>
-                <p class="mt-3 mb-0">Change status:</p>
+                <h3 class="h4 text-center my-5">{{ goal.title }}</h3>
+                <p class="text-center">{{ goal.description|truncatechars_html:100 }}</p>
+                <p class="text-center">Number of Tasks: {{ goal.task_count }}</p>
+                <a class="link my-4 d-block text-center details-link details-link">Details...</a>
+                <p class="mt-3 text-center mb-0">Change Status</p>
                 <div class="btn-group w-100" role="group" aria-label="Goal status.">
                   <a href="{% url 'progress_status' slug=goal.slug %}" class="btn btn-warning col-6">Progress</a>
                   <a href="{% url 'done_status' slug=goal.slug %}" class="btn btn-success col-6">Done</a>
@@ -162,21 +162,21 @@
           </div>
           {% for goal in goals %}
           {% if goal.status == '3' %}
-          <div class="card-body p-2">
+          <div class="card-body p-2 goal-card">
             <div class="card bg-light">
               <div class="card-body p-2">
-                <sup>Created: {{ goal.created_at }}</sup>
+                <sup>Deadline: {{ goal.expected_deadline }}</sup>
                 <div class="float-end d-flex flex-column">
-                  <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="delete-icon control-icon mb-1" data-title="{{ goal.title }}" data-url="{% url 'delete_goal' slug=goal.slug %}" data-txt="goal">
+                  <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="delete-icon control-icon mb-1" data-url="{% url 'delete_goal' slug=goal.slug %}" data-txt="goal">
                   <a class="mb-1 mb-3" href="{% url 'edit_goal' slug=goal.slug %}">
                     <img src="{% static 'svg/edit_icon.svg' %}" alt="edit-icon" class="control-icon">
                   </a>
                 </div>
-                <h3 class="h4 text-center my-2">{{ goal.title }}</h3>
-                <p class="text-center">{{ goal.description }}</p>
-                <p>Number of tasks: {{ goal.task_count }}</p>
-                <sub>Deadline: {{ goal.expected_deadline }}</sub>
-                <p class="mt-3 mb-0">Change status:</p>
+                <h3 class="h4 text-center my-5">{{ goal.title }}</h3>
+                <p class="text-center">{{ goal.description|truncatechars_html:100 }}</p>
+                <p class="text-center">Number of Tasks: {{ goal.task_count }}</p>
+                <a class="link my-4 d-block text-center details-link details-link">Details...</a>
+                <p class="mt-3 text-center mb-0">Change Status</p>
                 <div class="btn-group w-100" role="group" aria-label="Goal status.">
                   <a href="{% url 'progress_status' slug=goal.slug %}" class="btn btn-warning col-4">Progress</a>
                   <a href="{% url 'on_hold_status' slug=goal.slug %}" class="btn btn-danger col-4">On Hold</a>

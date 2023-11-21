@@ -170,8 +170,7 @@ function getTasksHTML(date){
       const completed = schedule[i].completed;
       const classCompleted = completed ? "completed" : "not-completed";
       const isDone = completed ? "Done" : "Not done";
-      const deleteIcon = completed ? "" : `<img src="/static/svg/delete_icon.svg" alt="delete-icon" class="float-end delete-icon control-icon" data-txt="scheduled task" data-title="${item.title}" data-url="/delete_scheduled_task/${schedule[i].slug}">`;
-
+      const deleteIcon = completed ? "" : `<img src="/static/svg/delete_icon.svg" alt="delete-icon" class="float-end delete-icon control-icon" data-txt="scheduled task" data-url="/delete_scheduled_task/${schedule[i].slug}">`;
       const editIcon = `<a class="my-1" href="/edit_scheduled_task/${schedule[i].slug}">
       <img src="/static/svg/edit_icon.svg" alt="edit-icon" class="control-icon"></a>`;
       const finishTaskBtn = completed ? "" : `<a class="btn btn-outline-dark w-100 my-2" href="/complete_scheduled_task/${schedule[i].slug}">
