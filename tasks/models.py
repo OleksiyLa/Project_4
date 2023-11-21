@@ -12,10 +12,10 @@ class Goal(models.Model):
         ('2', "On Hold"),
         ('3', "Done"),
     ]
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    description = models.TextField()
+    description = models.TextField(max_length=2500)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     expected_deadline = models.DateField()
@@ -35,10 +35,10 @@ class Goal(models.Model):
 
 
 class Task(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    description = models.TextField()
+    description = models.TextField(max_length=2500)
     goal = models.ForeignKey(Goal, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     completed = models.BooleanField(default=False, blank=True)
