@@ -125,7 +125,7 @@ class TasksView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["active_link"] = 'tasks'
-        goals = Task.objects.filter(user=self.request.user).values_list('goal__title', 'goal__slug').distinct()
+        goals = Task.objects.filter(user=self.request.user).values_list('goal__title', 'goal__slug', 'goal__id').distinct()
         context["goals"] = goals
         return context
 

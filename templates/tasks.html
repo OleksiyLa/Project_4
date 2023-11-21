@@ -23,7 +23,7 @@
                         <a class="btn btn-success d-inline float-end" href="{% url 'add_task' slug=goal.1 %}">Add Task</a>
                     </div>
                     <div class="card-header">
-                        <a data-bs-toggle="collapse" href="#{{ goal.1 }}" role="button" aria-expanded="false" aria-controls="{{ goal.0 }}">
+                        <a data-bs-toggle="collapse" href="#toggle{{ goal.2 }}" role="button" aria-expanded="false" aria-controls="{{ goal.0 }}">
                             <h5 class="card-title text-center p-1 tasks-toggler">My Goal: "{{ goal.0 }}" 
                             <svg class="tasks-toggler tasks-toggler-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
                             <path class="tasks-toggler" fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
@@ -31,7 +31,7 @@
                             </h5>
                         </a>
                     </div>
-                    <div class="row p-1 collapse" id="{{ goal.1 }}">
+                    <div class="row p-1 collapse" id="toggle{{ goal.2 }}">
                         {% for task in tasks %}
                             {% if task.goal.title == goal.0 %}
                                 <div class="col-12 col-md-6 col-xl-4">
