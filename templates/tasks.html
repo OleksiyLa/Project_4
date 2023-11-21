@@ -18,7 +18,7 @@
     {% if goals %}
         {% for goal in goals %}
             <div class="container p-0 mb-5">
-                <div class="card card-border-primary">
+                <div class="card card-border-primary task">
                     <div class="bg-dark p-2 create_panel" href="#">
                         <a class="btn btn-success create_btn d-inline float-end" href="{% url 'add_task' slug=goal.1 %}">Add Task</a>
                     </div>
@@ -31,11 +31,11 @@
                             </h5>
                         </a>
                     </div>
-                    <div class="row p-1 collapse show" id="toggle{{ goal.2 }}">
+                    <div class="row p-2 collapse show" id="toggle{{ goal.2 }}">
                         {% for task in tasks %}
                             {% if task.goal.title == goal.0 %}
                                 <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="card mb-3 bg-light">
+                                    <div class="card task-card mb-3 bg-light">
                                         <div class="card-body p-3">
                                             <sup>Created: {{ task.created_at }}</sup>
                                             <div class="float-end d-flex flex-column">

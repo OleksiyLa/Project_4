@@ -25,12 +25,13 @@ header nav {
   min-height: 90px;
 }
 
-#goals-nav {
-  background: rgba(0, 0, 0, 0.9);
-  color: #ffffff;
+#tasks-container .card {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  min-height: 60px
+}
+
+.task-card {
+  box-shadow: 0 0 4px #000000;
 }
 
 .create_panel {
@@ -46,6 +47,10 @@ header nav {
   height: 40px;
   top: 10px;
   right: 10px;
+}
+
+.tasks-toggler {
+  color: #000000;
 }
 
 a {
