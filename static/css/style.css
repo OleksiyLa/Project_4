@@ -33,7 +33,15 @@ header nav {
   min-height: 60px
 }
 
-#create_goal_btn {
+.create_panel {
+  background: rgba(0, 0, 0, 0.9);
+  color: #ffffff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  min-height: 60px
+}
+
+.create_btn {
   position: absolute;
   height: 40px;
   top: 10px;
