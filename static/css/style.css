@@ -28,6 +28,14 @@ header nav {
 #goals-nav {
   background: rgba(0, 0, 0, 0.9);
   color: #ffffff;
+  position: relative;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#create_goal_btn {
+  position: absolute;
+  right: 10px;
 }
 
 a {

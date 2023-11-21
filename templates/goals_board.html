@@ -15,12 +15,12 @@
   {% endfor %}
   {% endif %}
   <h1 class="h3 m-5 text-center">Goals Board</h1>
-  <nav class="navbar navbar-expand-xl navbar-dark px-2 sticky-top" id="goals-nav">
+  <nav class="navbar navbar-expand-xl navbar-dark px-2 sticky-top p-xl-4" id="goals-nav">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#goals">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="btn btn-success ms-auto text-center d-block" href="{% url 'create_goal' %}">Create Goal</a>
+      <a class="btn btn-success" id="create_goal_btn" href="{% url 'create_goal' %}">Create Goal</a>
       <div class="collapse navbar-collapse" id="goals">
         <ul class="navbar-nav d-xl-none">
           <li class="nav-item">
