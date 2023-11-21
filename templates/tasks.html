@@ -35,25 +35,26 @@
                         {% for task in tasks %}
                             {% if task.goal.title == goal.0 %}
                                 <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="card task-card mb-3 bg-light">
-                                        <div class="card-body p-3">
-                                            <sup>Created: {{ task.created_at }}</sup>
-                                            <div class="float-end d-flex flex-column">
-                                                <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="float-end delete-icon control-icon" data-url="{% url 'delete_task' slug=task.slug %}" data-txt="task">
-                                                <a class="my-1" href="{% url 'edit_task' slug=task.slug %}">
-                                                  <img src="{% static 'svg/edit_icon.svg' %}" alt="edit-icon" class="control-icon">
-                                                </a>
+                                    <div class="card task-card mb-3 p-3 bg-light d-flex flex-column justify-content-between">
+                                          <div class="d-flex justify-content-between">
+                                            <sup class="mt-3">Created: {{ task.created_at }}</sup>
+                                            <div class="d-flex flex-column">
+                                              <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="float-end delete-icon control-icon" data-url="{% url 'delete_task' slug=task.slug %}" data-txt="task">
+                                              <a class="my-1" href="{% url 'edit_task' slug=task.slug %}">
+                                                <img src="{% static 'svg/edit_icon.svg' %}" alt="edit-icon" class="control-icon">
+                                              </a>
                                             </div>
-                                            <h3 class="h4 text-center my-2">{{ task.title }}</h3>
-                                            <h3 class="h4 text-center my-2">{{ task.goal.title }}</h3>
-                                            <p class="text-center mb-5">{{ task.description }}</p>
+                                          </div>
+                                          <h3 class="h4 text-center my-2">{{ task.title }}</h3>
+                                          <p class="text-center mb-5">{{ task.description|truncatechars_html:100 }}</p>
+                                          <div>
                                             <p class="m-0">Scheduled tasks: {{ task.scheduled_task_count }}</p>
-                                            <p class="m-0">Completed scheduled tasks: {{ task.completed_task_count }}</p>
-                                            <p class="m-0">Not completed scheduled tasks: {{ task.not_completed_task_count }}</p>
+                                            <p class="m-0">Completed: {{ task.completed_task_count }}</p>
+                                            <p class="m-0">Not completed: {{ task.not_completed_task_count }}</p>
                                             <div class="mt-3">
                                                 <a class="btn btn-outline-primary w-100" href="{% url 'schedule_task' slug=task.slug %}">Schedule</a>
                                             </div>
-                                        </div>
+                                          </div>
                                     </div>
                                 </div>
                             {% endif %}
