@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.conf.urls import handler404
 
 urlpatterns = [
     path('', views.GoalsBoardView.as_view(), name='goals_board'),
@@ -20,3 +21,5 @@ urlpatterns = [
     path('edit_scheduled_task/<slug:slug>/', views.edit_scheduled_task, name='edit_scheduled_task'),
     path('complete_scheduled_task/<slug:slug>/', views.complete_scheduled_task, name='complete_scheduled_task'),
 ]
+
+handler404 = views.custom_404_view

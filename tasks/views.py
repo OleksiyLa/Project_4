@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, TemplateView
 from django.views.generic.edit import UpdateView
 from django.urls import reverse
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -14,6 +14,9 @@ from .models import Goal, Task, ScheduledTask
 
 
 # Create your views here.
+def custom_404_view(request, exception):
+    return render(request, '404.html', status=404)
+
 class GoalsBoardView(LoginRequiredMixin, ListView):
     model = Goal
     template_name = 'goals_board.html'
@@ -49,6 +52,14 @@ class EditGoalView(LoginRequiredMixin, UpdateView):
         form.instance.user = self.request.user
         messages.success(self.request, 'Goal updated successfully!')
         return super().form_valid(form)
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset=queryset)
+        if not obj:
+            raise Http404("No goal found")
+        if not obj.user == self.request.user:
+            raise Http404("No goal found")
+        return obj
     
 @login_required
 def select_progress_status(request, slug):
@@ -139,6 +150,14 @@ class EditTaskView(LoginRequiredMixin, UpdateView):
         task.save()   
         messages.success(self.request, 'Task updated successfully!')
         return super().form_valid(form)
+    
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset=queryset)
+        if not obj:
+            raise Http404("No task found")
+        if not obj.user == self.request.user:
+            raise Http404("No task found")
+        return obj
 
 
 @login_required
