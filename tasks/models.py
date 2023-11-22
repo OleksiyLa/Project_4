@@ -66,6 +66,9 @@ class Task(models.Model):
 
     def not_completed_task_count(self):
         return self.scheduled_dates.filter(completed=False).count()
+    
+    def failed_task_count(self):
+        return self.scheduled_dates.filter(completed=False, date__lt=timezone.now().date()).count()
 
 
 class ScheduledTask(models.Model):

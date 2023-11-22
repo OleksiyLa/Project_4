@@ -36,6 +36,7 @@
               <p class="text-center m-2">Scheduled tasks: {{ object.scheduled_task_count }}</p>
               <p class="text-center m-2">Completed Scheduled Tasks: {{ object.completed_task_count }}</p>
               <p class="text-center m-2">Not Completed Scheduled Tasks: {{ object.not_completed_task_count }}</p>
+              <p class="text-center m-2">Faild Scheduled Tasks: {{ object.failed_task_count }}</p>
               <div class="btn-group w-100 my-3" role="group" aria-label="Goal status.">
                 {% if not object.completed %}
                 <a href="{% url 'complete_task' slug=object.slug %}" class="btn btn-success col-6">Complete</a>
