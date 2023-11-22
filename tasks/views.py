@@ -213,13 +213,17 @@ def schedule_task(request, slug):
             validation_failed = False
             if end_date:
                 end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
+                days_schedlued = (end_date - start_date).days + 1
+                if(days_schedlued > 365):
+                    error_message = "Scheduling can only be done within a one-year period, up to 365 days."
+                    form.errors['end_date'] = form.error_class([error_message])
+                    return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
                 if end_date <= start_date:
                     error_message = "End date should be later than start date."
                     form.errors['end_date'] = form.error_class([error_message])
-                    return render(request, 'schedule.html', {'form': form, 'task': task.id})
+                    return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
                 delta = timedelta(days=1)
                 validatied_tasks = []
-                print(selected_days)
                 while start_date <= end_date and not validation_failed:
                     if str(start_date.weekday()) in selected_days:
                         conflicting_tasks = ScheduledTask.objects.filter(
