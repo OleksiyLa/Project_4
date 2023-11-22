@@ -5,13 +5,13 @@
 
 {% block content %}
 <div class="modal" id="delete-goal-modal"></div>
-<h1 class="m-5 text-center h2">Your Task Details</h1>
-<div class="container my-3 row">
-    <div class="card-body p-2">
+<h1 class="my-5 text-center h2">Your Task Details</h1>
+<div class="container my-3">
+    <div class="card-body p-2 row">
 			{% if object.completed %}
-        <div class="card bg-light p-2 completed col-md-8 offset-md-3">
+        <div class="card bg-light p-2 completed col-md-8 offset-md-2">
 			{% else %}
-				<div class="card bg-light p-2 col-md-8 offset-md-3">
+				<div class="card bg-light p-2 col-md-8 offset-md-2">
 			{% endif %}
           <div class="card-body p-2">
             <div class="d-flex justify-content-between">
