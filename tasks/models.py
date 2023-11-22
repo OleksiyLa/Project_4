@@ -12,10 +12,10 @@ class Goal(models.Model):
         ('2', "On Hold"),
         ('3', "Done"),
     ]
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, null=False)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    description = models.TextField(max_length=2500)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    description = models.TextField(max_length=2500, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     expected_deadline = models.DateField()
@@ -31,15 +31,21 @@ class Goal(models.Model):
         return self.title
     
     def task_count(self):
-        return Task.objects.filter(goal=self).count()
+        return self.tasks.filter(goal=self).count()
+    
+    def all_tasks_done(self):
+        return self.tasks.filter(goal=self, completed=True).count() == self.tasks.filter(goal=self).count() and self.tasks.filter(goal=self).count() != 0
+    
+    def tasks_to_complete(self):
+        return self.tasks.filter(goal=self, completed=False).count()
 
 
 class Task(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, null=False)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    description = models.TextField(max_length=2500)
-    goal = models.ForeignKey(Goal, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    description = models.TextField(max_length=2500, null=False)
+    goal = models.ForeignKey(Goal, on_delete=models.CASCADE, related_name='tasks', null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     completed = models.BooleanField(default=False, blank=True)
     

@@ -49,7 +49,11 @@
           </div>
           {% for goal in goals %}
           {% if goal.status == '0' %}
+          {% if goal.all_tasks_done %}
+          <div class="card-body p-2 goal-card completed">
+          {% else %}
           <div class="card-body p-2 goal-card">
+          {% endif %}
             <div class="card bg-light">
               <div class="card-body p-2">
                 <sup>Deadline: {{ goal.expected_deadline }}</sup>
@@ -88,7 +92,11 @@
             </div>
             {% for goal in goals %}
             {% if goal.status == '1' %}
+            {% if goal.all_tasks_done %}
+            <div class="card-body p-2 goal-card completed">
+            {% else %}
             <div class="card-body p-2 goal-card">
+            {% endif %}
               <div class="card bg-light">
                 <div class="card-body p-2">
                   <sup>Deadline: {{ goal.expected_deadline }}</sup>
@@ -126,7 +134,11 @@
           </div>
           {% for goal in goals %}
           {% if goal.status == '2' %}
+          {% if goal.all_tasks_done %}
+          <div class="card-body p-2 goal-card completed">
+          {% else %}
           <div class="card-body p-2 goal-card">
+          {% endif %}
             <div class="card bg-light">
               <div class="card-body p-2">
                 <sup>Deadline: {{ goal.expected_deadline }}</sup>
@@ -162,7 +174,11 @@
           </div>
           {% for goal in goals %}
           {% if goal.status == '3' %}
+          {% if goal.all_tasks_done %}
+          <div class="card-body p-2 goal-card completed">
+          {% else %}
           <div class="card-body p-2 goal-card">
+          {% endif %}
             <div class="card bg-light">
               <div class="card-body p-2">
                 <sup>Deadline: {{ goal.expected_deadline }}</sup>
