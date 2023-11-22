@@ -298,7 +298,7 @@ def schedule_task(request, slug):
                 except ValidationError as e:
                     form.add_error(None, e)
                     return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
-            return redirect(reverse('tasks'))
+            return redirect(reverse('calendar'))
         else:
             return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
     else:
