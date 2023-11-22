@@ -34,6 +34,14 @@ class GoalDetailView(LoginRequiredMixin, DetailView):
     model = Goal
     template_name = 'goal_detail.html'
 
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset=queryset)
+        if not obj:
+            raise Http404("Not found")
+        if not obj.user == self.request.user:
+            raise Http404("Not found")
+        return obj
+
 
 class CreateGoalView(LoginRequiredMixin, CreateView):
     model = Goal
@@ -138,6 +146,14 @@ class TasksView(LoginRequiredMixin, ListView):
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     template_name = 'task_detail.html'
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset=queryset)
+        if not obj:
+            raise Http404("Not found")
+        if not obj.user == self.request.user:
+            raise Http404("Not found")
+        return obj
 
 @login_required
 def complete_task(request, slug):
