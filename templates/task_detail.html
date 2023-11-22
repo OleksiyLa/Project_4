@@ -24,9 +24,9 @@
             </div>
 						{% if object.completed %}
 						<p class="text-center m-2">This task has been completed.</p>
-				{% else %}
+            {% else %}
 						<p class="text-center m-2">This task is not yet completed.</p>
-				{% endif %}
+            {% endif %}
 						<p class="text-center m-2">Goal: {{ object.goal.title }}</p>
             <h3 class="h4 text-center my-5">{{ object.title }}</h3>
             <p class="justify">{{ object.description }}</p>
@@ -41,7 +41,6 @@
 							<a href="{% url 'uncomplete_task' slug=object.slug %}" class="btn btn-outline-success col-6">Uncomplete</a>
 							{% endif %}
 						</div>
-						
           </div>
         </div>
       </div>
