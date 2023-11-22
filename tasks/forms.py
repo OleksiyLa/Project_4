@@ -198,6 +198,8 @@ class CustomLoginForm(LoginForm):
             'required': 'Password is required'
         }
 
+        self.fields['password'].help_text = None
+
 class CustomSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -212,6 +214,7 @@ class CustomSignupForm(SignupForm):
         self.fields['password1'].error_messages = {
             'required': 'Password is required'
         }
+
         self.fields['password2'].error_messages = {
             'required': 'Password confirmation is required'
         }
