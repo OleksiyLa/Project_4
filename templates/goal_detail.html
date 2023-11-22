@@ -5,6 +5,7 @@
 
 {% block content %}
 <div class="modal" id="delete-goal-modal"></div>
+<h1 class="text-center h3 my-5">Your Goal Details</h1>
 <div class="container my-3">
     <div class="card-body p-2 row">
         {% if object.all_tasks_done %}
@@ -22,8 +23,9 @@
                 </a>
               </div>
             </div>
-            <h3 class="h4 text-center my-5">{{ object.title }}</h3>
-            <p class="text-center mb-5">{{ object.description }}</p>
+            
+            <h3 class="h4 text-center my-5"><sup class="d-block h5 m-0">Title</sup>{{ object.title }}</h3>
+            <p class="text-center mb-5"><sup class="d-block h5 m-0">Description</sup>{{ object.description }}</p>
             <p class="m-0">Deadline: {{ object.expected_deadline }}</p>
             <p class="m-0">Tasks: {{ object.task_count }}</p>
             {% if object.all_tasks_done %}

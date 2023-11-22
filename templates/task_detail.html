@@ -5,6 +5,7 @@
 
 {% block content %}
 <div class="modal" id="delete-goal-modal"></div>
+<h1 class="text-center h3 my-5">Your Task Details</h1>
 <div class="container my-3 row">
     <div class="card-body p-2">
 			{% if object.completed %}
@@ -30,11 +31,11 @@
             {% endif %}
             </div>
             <div class="container">
-              <h3 class="h4 text-center mb-5">{{ object.title }} ({{ object.goal.title }})</h3>
-              <p class="text-center">{{ object.description }}</p>
+              <h3 class="h4 text-center my-5"><sup class="d-block h5 m-0">Title</sup>{{ object.title }} ({{ object.goal.title }})</h3>
+              <p class="text-center my-5"><sup class="d-block h5 m-0">Description</sup>{{ object.description }}</p>
               <p class="text-center m-2">Scheduled tasks: {{ object.scheduled_task_count }}</p>
-              <p class="text-center m-2">Completed: {{ object.completed_task_count }}</p>
-              <p class="text-center m-2">Not completed: {{ object.not_completed_task_count }}</p>
+              <p class="text-center m-2">Completed Scheduled Tasks: {{ object.completed_task_count }}</p>
+              <p class="text-center m-2">Not Completed Scheduled Tasks: {{ object.not_completed_task_count }}</p>
               <div class="btn-group w-100 my-3" role="group" aria-label="Goal status.">
                 {% if not object.completed %}
                 <a href="{% url 'complete_task' slug=object.slug %}" class="btn btn-success col-6">Complete</a>
