@@ -34,6 +34,10 @@ header nav {
   min-height: 500px;
 }
 
+.title-wrapper {
+  word-wrap: break-word;
+}
+
 .create_panel {
   background: rgba(0, 0, 0, 0.9);
   color: #ffffff;

@@ -65,6 +65,7 @@ class EditGoalView(LoginRequiredMixin, UpdateView):
         if not obj.user == self.request.user:
             raise Http404("No goal found")
         return obj
+
     
 @login_required
 def select_progress_status(request, slug):

@@ -7,7 +7,7 @@
 <div class="container my-3">
   <div class="row">
     <div class="col-lg-6 mt-3 offset-lg-3 shadow-lg p-5">
-      <h1 class="text-center h3 mb-3">Schedule Task "{{ task_title }}"</h1>
+      <h1 class="text-center h3 mb-3 title-wrapper">Schedule Task <span class="d-block">{{ task_title }}</span></h1>
       {% for field in form %}
         {% if field.errors %}
           {% for error in field.errors %}
