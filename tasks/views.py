@@ -9,7 +9,8 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.db.models import Q
 from datetime import timedelta, datetime
-from .forms import TaskForm, AddScheduledTaskForm, EditScheduledTaskForm, AddGoalForm, EditGoalForm
+from allauth.account.views import LoginView, SignupView
+from .forms import TaskForm, AddScheduledTaskForm, EditScheduledTaskForm, AddGoalForm, EditGoalForm, CustomLoginForm, CustomSignupForm
 from .models import Goal, Task, ScheduledTask
 
 
@@ -395,3 +396,11 @@ def complete_scheduled_task(request, slug):
     response.set_cookie('selectedDate', slug, max_age=300)
     messages.success(request, 'Scheduled task completed successfully!')
     return response
+
+
+class CustomLoginView(LoginView):
+    form_class = CustomLoginForm
+
+
+class CustomSignupView(SignupView):
+    form_class = CustomSignupForm

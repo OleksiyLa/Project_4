@@ -1,6 +1,10 @@
 from django import forms
-from .models import Goal, Task, ScheduledTask
 from datetime import datetime
+from allauth.account.forms import LoginForm, SignupForm
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
+from .models import Goal, Task, ScheduledTask
+
 
 class GoalForm(forms.ModelForm):
     title = forms.CharField(
@@ -177,3 +181,37 @@ class EditScheduledTaskForm(ScheduledTaskForm):
 
     class Meta(ScheduledTaskForm.Meta):
         fields = ScheduledTaskForm.Meta.fields + ['completed']
+
+
+class CustomLoginForm(LoginForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Login'))
+
+        self.fields['login'].error_messages = {
+            'required': 'Username is required',
+        }
+
+        self.fields['password'].error_messages = {
+            'required': 'Password is required'
+        }
+
+class CustomSignupForm(SignupForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Sign Up'))
+
+        self.fields['username'].error_messages = {
+            'required': 'Username is required',
+        }
+
+        self.fields['password1'].error_messages = {
+            'required': 'Password is required'
+        }
+        self.fields['password2'].error_messages = {
+            'required': 'Password confirmation is required'
+        }

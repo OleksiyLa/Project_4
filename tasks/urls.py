@@ -24,6 +24,8 @@ urlpatterns = [
     path('delete_scheduled_task/<slug:slug>/', views.delete_scheduled_task, name='delete_scheduled_task'),
     path('edit_scheduled_task/<slug:slug>/', views.edit_scheduled_task, name='edit_scheduled_task'),
     path('complete_scheduled_task/<slug:slug>/', views.complete_scheduled_task, name='complete_scheduled_task'),
+    path('accounts/login/', views.CustomLoginView.as_view(), name='account_login'),
+    path('accounts/signup/', views.CustomSignupView.as_view(), name='account_signup'),
 ]
 
 handler404 = views.custom_404_view
