@@ -10,18 +10,22 @@ from django.core.exceptions import ValidationError
 from django.db.models import Q
 from datetime import timedelta, datetime
 from allauth.account.views import LoginView, SignupView
-from .forms import TaskForm, AddScheduledTaskForm, EditScheduledTaskForm, AddGoalForm, EditGoalForm, CustomLoginForm, CustomSignupForm
+import tasks.forms as myFormModels
 from .models import Goal, Task, ScheduledTask
 
 
 # Create your views here.
 def custom_404_view(request, exception):
+    """Custom 404 error handler."""
     return render(request, '404.html', status=404)
 
+
 class GoalsBoardView(LoginRequiredMixin, ListView):
+    """View for the goals board."""
     model = Goal
     template_name = 'goals_board.html'
     context_object_name = 'goals'
+
     def get_queryset(self):
         return Goal.objects.filter(user=self.request.user)
 
@@ -32,6 +36,7 @@ class GoalsBoardView(LoginRequiredMixin, ListView):
 
 
 class GoalDetailView(LoginRequiredMixin, DetailView):
+    """View for the goal details."""
     model = Goal
     template_name = 'goal_detail.html'
 
@@ -45,8 +50,9 @@ class GoalDetailView(LoginRequiredMixin, DetailView):
 
 
 class CreateGoalView(LoginRequiredMixin, CreateView):
+    """View for creating a goal."""
     model = Goal
-    form_class = AddGoalForm
+    form_class = myFormModels.AddGoalForm
     template_name = 'create_goal.html'
     success_url = '/'
 
@@ -57,14 +63,20 @@ class CreateGoalView(LoginRequiredMixin, CreateView):
 
 
 class EditGoalView(LoginRequiredMixin, UpdateView):
+    """
+    View for editing a goal.
+    edit_goal_url is used in the template
+    to redirect back to the goals board page.
+    """
     model = Goal
-    form_class = EditGoalForm
+    form_class = myFormModels.EditGoalForm
     template_name = 'edit_goal.html'
     success_url = '/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        messages.success(self.request, 'Goal updated successfully!')
+        messages.success(self.request,
+                         'Goal updated successfully!')
         return super().form_valid(form)
 
     def get_object(self, queryset=None):
@@ -82,13 +94,21 @@ class EditGoalView(LoginRequiredMixin, UpdateView):
 
 
 class EditGoalViewFromDetails(LoginRequiredMixin, UpdateView):
+    """
+    View for editing a goal.
+    This view is used when editing a goal from the goal details page
+    and redirects to the goal details page after editing the goal.
+    edit_goal_url is used in the template
+    to redirect back to the goal details page.
+    """
     model = Goal
-    form_class = EditGoalForm
+    form_class = myFormModels.EditGoalForm
     template_name = 'edit_goal.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        messages.success(self.request, 'Goal updated successfully!')
+        messages.success(self.request,
+                         'Goal updated successfully!')
         return super().form_valid(form)
 
     def get_object(self, queryset=None):
@@ -98,10 +118,10 @@ class EditGoalViewFromDetails(LoginRequiredMixin, UpdateView):
         if not obj.user == self.request.user:
             raise Http404("No goal found")
         return obj
-    
+
     def get_success_url(self):
         return reverse('goal_detail', kwargs={'slug': self.object.slug})
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["edit_goal_url"] = 'goal_detail'
@@ -109,33 +129,39 @@ class EditGoalViewFromDetails(LoginRequiredMixin, UpdateView):
         return context
 
 
-    
 @login_required
 def select_progress_status(request, slug):
+    """View for selecting the progress status of a goal."""
     goal = Goal.objects.get(slug=slug, user=request.user)
     goal.status = '1'
     goal.save()
     messages.success(request, 'Goal status updated successfully!')
     return redirect(reverse('goals_board'))
 
+
 @login_required
 def select_on_hold_status(request, slug):
+    """View for selecting the on hold status of a goal."""
     goal = Goal.objects.get(slug=slug, user=request.user)
     goal.status = '2'
     goal.save()
     messages.success(request, 'Goal status updated successfully!')
     return redirect(reverse('goals_board'))
 
+
 @login_required
 def select_done_status(request, slug):
+    """View for selecting the done status of a goal."""
     goal = Goal.objects.get(slug=slug, user=request.user)
     goal.status = '3'
     goal.save()
     messages.success(request, 'Goal status updated successfully!')
     return redirect(reverse('goals_board'))
 
+
 @login_required
 def delete_goal(request, slug):
+    """View for deleting a goal."""
     goal = Goal.objects.get(slug=slug, user=request.user)
     goal.delete()
     messages.success(request, 'Goal deleted successfully!')
@@ -144,12 +170,16 @@ def delete_goal(request, slug):
 
 @login_required
 def add_task(request, slug):
+    """
+    View for adding a task.
+    Redirects to the goals board page after adding a task.
+    """
     goal = Goal.objects.get(slug=slug, user=request.user)
     if goal is None:
         return redirect('goals_board')
 
     if request.method == 'POST':
-        form = TaskForm(request.POST)
+        form = myFormModels.TaskForm(request.POST)
         if form.is_valid():
             task = form.save(commit=False)
             task.goal = goal
@@ -158,19 +188,28 @@ def add_task(request, slug):
             messages.success(request, 'Task added successfully')
             return redirect('tasks')
     else:
-        form = TaskForm()
+        form = myFormModels.TaskForm()
 
-    return render(request, 'add_task.html', {'form': form, 'goal': goal.id, 'goal_title': goal.title.capitalize(), 'add_task_url': 'goals_board' })
+    return render(request, 'add_task.html',
+                  {'form': form,
+                   'goal': goal.id,
+                   'goal_title': goal.title.capitalize(),
+                   'add_task_url': 'goals_board'})
 
 
 @login_required
 def add_task_from_tasks(request, slug):
+    """
+    View for adding a task. Redirects to the tasks page after adding a task.
+    Actions in this view are almost the same as the add_task view,
+    except for the redirect and the add_task_url.
+    """
     goal = Goal.objects.get(slug=slug, user=request.user)
     if goal is None:
         return redirect('tasks')
 
     if request.method == 'POST':
-        form = TaskForm(request.POST)
+        form = myFormModels.TaskForm(request.POST)
         if form.is_valid():
             task = form.save(commit=False)
             task.goal = goal
@@ -179,28 +218,43 @@ def add_task_from_tasks(request, slug):
             messages.success(request, 'Task added successfully')
             return redirect('tasks')
     else:
-        form = TaskForm()
+        form = myFormModels.TaskForm()
 
-    return render(request, 'add_task.html', {'form': form, 'goal': goal.id, 'goal_title': goal.title.capitalize(), 'add_task_url': 'tasks' })
+    return render(request, 'add_task.html',
+                  {'form': form,
+                   'goal': goal.id,
+                   'goal_title': goal.title.capitalize(),
+                   'add_task_url': 'tasks'})
 
 
 class TasksView(LoginRequiredMixin, ListView):
+    """
+    View for the tasks page. Displays all the tasks of the user.
+    """
     model = Task
     template_name = 'tasks.html'
     context_object_name = 'tasks'
 
     def get_queryset(self):
-        return Task.objects.filter(user=self.request.user).order_by('goal__title')
-    
+        return Task.objects.filter(
+            user=self.request.user).order_by('goal__title')
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["active_link"] = 'tasks'
-        goals = Task.objects.filter(user=self.request.user).values_list('goal__title', 'goal__slug', 'goal__id').distinct()
+        goals = Task.objects.filter(
+            user=self.request.user).values_list(
+                'goal__title', 'goal__slug', 'goal__id'
+                ).distinct()
         context["goals"] = goals
         return context
 
 
 class TaskDetailView(LoginRequiredMixin, DetailView):
+    """
+    View for the task details.
+    Displays the details of a task.
+    """
     model = Task
     template_name = 'task_detail.html'
 
@@ -215,6 +269,10 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
 
 @login_required
 def complete_task(request, slug):
+    """
+    View for completing a task.
+    Redirects to the tasks page after completing a task.
+    """
     task = Task.objects.get(slug=slug, user=request.user)
     task.completed = True
     task.save()
@@ -222,18 +280,30 @@ def complete_task(request, slug):
     messages.success(request, 'Task completed successfully!')
     return response
 
+
 @login_required
 def uncomplete_task(request, slug):
+    """
+    View for uncompleting a task.
+    Redirects to the tasks page after uncompleting a task.
+    """
     task = Task.objects.get(slug=slug, user=request.user)
     task.completed = False
     task.save()
     response = HttpResponseRedirect('/tasks/')
-    messages.success(request, 'Task is not completed now, success!')
+    messages.success(request,
+                     'Task is not completed now, success!')
     return response
 
+
 class EditTaskView(LoginRequiredMixin, UpdateView):
+    """
+    View for editing a task.
+    edit_task_url is used in the template
+    to redirect back to the tasks page.
+    """
     model = Task
-    form_class = TaskForm
+    form_class = myFormModels.TaskForm
     template_name = 'edit_task.html'
     success_url = '/tasks'
 
@@ -245,14 +315,15 @@ class EditTaskView(LoginRequiredMixin, UpdateView):
         context["goal_title"] = task.goal.title
         context["edit_task_url"] = 'tasks'
         return context
-    
+
     def form_valid(self, form):
         task = form.save(commit=False)
         task.user = self.request.user
-        task.save()   
-        messages.success(self.request, 'Task updated successfully!')
+        task.save()
+        messages.success(self.request,
+                         'Task updated successfully!')
         return super().form_valid(form)
-    
+
     def get_object(self, queryset=None):
         obj = super().get_object(queryset=queryset)
         if not obj:
@@ -263,8 +334,15 @@ class EditTaskView(LoginRequiredMixin, UpdateView):
 
 
 class EditTaskViewFromDetails(LoginRequiredMixin, UpdateView):
+    """
+    View for editing a task.
+    This view is used when editing
+    a task from the task details page
+    and redirects to the task details
+    page after editing the task.
+    """
     model = Task
-    form_class = TaskForm
+    form_class = myFormModels.TaskForm
     template_name = 'edit_task.html'
 
     def get_context_data(self, **kwargs):
@@ -276,14 +354,15 @@ class EditTaskViewFromDetails(LoginRequiredMixin, UpdateView):
         context["edit_task_url"] = 'task_detail'
         context["slug"] = self.object.slug
         return context
-    
+
     def form_valid(self, form):
         task = form.save(commit=False)
         task.user = self.request.user
-        task.save()   
-        messages.success(self.request, 'Task updated successfully!')
+        task.save()
+        messages.success(self.request,
+                         'Task updated successfully!')
         return super().form_valid(form)
-    
+
     def get_object(self, queryset=None):
         obj = super().get_object(queryset=queryset)
         if not obj:
@@ -291,13 +370,18 @@ class EditTaskViewFromDetails(LoginRequiredMixin, UpdateView):
         if not obj.user == self.request.user:
             raise Http404("No task found")
         return obj
-    
+
     def get_success_url(self):
-        return reverse('task_detail', kwargs={'slug': self.object.slug})
+        return reverse('task_detail',
+                       kwargs={'slug': self.object.slug})
 
 
 @login_required
 def delete_task(request, slug):
+    """
+    View for deleting a task.
+    Redirects to the tasks page after deleting a task.
+    """
     task = Task.objects.get(slug=slug, user=request.user)
     task.delete()
     messages.success(request, 'Task deleted successfully')
@@ -306,13 +390,28 @@ def delete_task(request, slug):
 
 @login_required
 def schedule_task(request, slug):
+    """
+    View for scheduling a task.
+    Redirects to the calendar page
+    after scheduling a task.
+    Creates one task if the end date is not specified.
+    Tasks can be scheduled within a specified
+    time frame when an end date is selected.
+    Within the specified time range,
+    tasks will be scheduled on the selected days of the week.
+    The validation is included.
+    If the task overlaps with another scheduled task,
+    the task will not be scheduled.
+    The maximum number of tasks that can be scheduled is 365,
+    representing the maximum time range available.
+    """
     task = Task.objects.get(slug=slug, user=request.user)
     task_title = task.title.capitalize()
     if not task:
         return redirect('tasks')
-    
+
     if request.method == 'POST':
-        form = AddScheduledTaskForm(request.POST)
+        form = myFormModels.AddScheduledTaskForm(request.POST)
         if form.is_valid():
             start_time = request.POST.get('start_time')
             end_time = request.POST.get('end_time')
@@ -324,14 +423,21 @@ def schedule_task(request, slug):
             if end_date:
                 end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
                 days_schedlued = (end_date - start_date).days + 1
-                if(days_schedlued > 365):
-                    error_message = "Scheduling can only be done within a one-year period, up to 365 days."
+                if (days_schedlued > 365):
+                    error_message = "Scheduling is limited to 365 days."
                     form.errors['end_date'] = form.error_class([error_message])
-                    return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
+                    return render(request,
+                                  'schedule.html',
+                                  {'form': form,
+                                   'task': task.id,
+                                   'task_title': task_title})
                 if end_date <= start_date:
                     error_message = "End date should be later than start date."
                     form.errors['end_date'] = form.error_class([error_message])
-                    return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
+                    return render(request, 'schedule.html',
+                                  {'form': form,
+                                   'task': task.id,
+                                   'task_title': task_title})
                 delta = timedelta(days=1)
                 validatied_tasks = []
                 while start_date <= end_date and not validation_failed:
@@ -343,33 +449,54 @@ def schedule_task(request, slug):
                             user=request.user
                         )
                         if conflicting_tasks.exists():
-                            error_message = 'Task overlaps with another scheduled task.'
+                            error_message = 'Task overlaps with another task.'
                             form.add_error(None, error_message)
-                            return render(request, 'schedule.html', {'form': form, 'task': task, 'task_title': task_title})
+                            return render(request, 'schedule.html',
+                                          {'form': form,
+                                           'task': task,
+                                           'task_title': task_title})
                         scheduled_task = ScheduledTask(
-                            task=task, date=start_date, start_time=start_time, end_time=end_time, user=request.user
+                            task=task,
+                            date=start_date,
+                            start_time=start_time,
+                            end_time=end_time,
+                            user=request.user
                         )
                         validatied_tasks.append(scheduled_task)
                     start_date += delta
                 if validation_failed:
-                    return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
+                    return render(request, 'schedule.html',
+                                  {'form': form,
+                                   'task': task.id,
+                                   'task_title': task_title})
                 try:
-                    num_of_past_deadline = 0
+                    past_deadline = 0
                     for task in validatied_tasks:
                         task.save()
-                        if(task.is_date_past_goal_deadline()):
-                            num_of_past_deadline += 1
-                    num_of_scheduled_tasks = len(validatied_tasks)
-                    if num_of_past_deadline > 0:
-                        messages.warning(request, f'{num_of_scheduled_tasks} tasks scheduled successfully, but {num_of_past_deadline} of them are past the goal deadline.')
+                        if (task.is_date_past_goal_deadline()):
+                            past_deadline += 1
+                    num_of_tasks = len(validatied_tasks)
+                    err_msg_1 = f'{num_of_tasks}tasks scheduled successfully'
+                    err_msg_2 = f'{past_deadline} of them are past the goal'
+                    if past_deadline > 0:
+                        messages.warning(
+                            request,
+                            f'{err_msg_1}, but {err_msg_2} deadline.')
                     else:
-                        messages.success(request, f'{num_of_scheduled_tasks} tasks scheduled successfully!')
+                        messages.success(request, f'{msg}!')
                 except ValidationError as e:
                     form.add_error(None, e)
-                    return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
+                    return render(request, 'schedule.html',
+                                  {'form': form,
+                                   'task': task.id,
+                                   'task_title': task_title})
             else:
                 scheduled_task = ScheduledTask(
-                    task=task, date=start_date, start_time=start_time, end_time=end_time, user=request.user
+                    task=task,
+                    date=start_date,
+                    start_time=start_time,
+                    end_time=end_time,
+                    user=request.user
                 )
                 conflicting_tasks = ScheduledTask.objects.filter(
                     date=start_date,
@@ -378,30 +505,46 @@ def schedule_task(request, slug):
                     user=request.user
                 )
                 if conflicting_tasks.exists():
-                    error_message = 'Task overlaps with another scheduled task.'
+                    error_message = 'Task overlaps with another task.'
                     form.add_error(None, error_message)
-                    return render(request, 'schedule.html', {'form': form, 'task': task, 'task_title': task_title})
+                    return render(request, 'schedule.html',
+                                  {'form': form,
+                                   'task': task,
+                                   'task_title': task_title})
                 try:
                     scheduled_task.save()
-                    if(scheduled_task.is_date_past_goal_deadline()):
-                        messages.warning(request, 'Task scheduled successfully, but the date is past the goal deadline.')
+                    msg = 'Task scheduled successfully'
+                    if (scheduled_task.is_date_past_goal_deadline()):
+                        messages.warning(
+                            request,
+                            {msg},
+                            'but the date is past the goal deadline.')
                     else:
-                        messages.success(request, 'Task scheduled successfully!')
+                        messages.success(request, f'{msg}!')
 
                 except ValidationError as e:
                     form.add_error(None, e)
-                    return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
+                    return render(request, 'schedule.html',
+                                  {'form': form,
+                                   'task': task.id,
+                                   'task_title': task_title})
             return redirect(reverse('calendar'))
         else:
-            return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
+            return render(request, 'schedule.html',
+                          {'form': form,
+                           'task': task.id,
+                           'task_title': task_title})
     else:
-        form = AddScheduledTaskForm()
-        return render(request, 'schedule.html', {'form': form, 'task': task.id, 'task_title': task_title})
+        form = myFormModels.AddScheduledTaskForm()
+        return render(request, 'schedule.html',
+                      {'form': form,
+                       'task': task.id,
+                       'task_title': task_title})
 
 
 class CalendarView(LoginRequiredMixin, TemplateView):
+    """View for the calendar page."""
     template_name = 'calendar.html'
-    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -411,6 +554,10 @@ class CalendarView(LoginRequiredMixin, TemplateView):
 
 @login_required
 def calendar_data(request):
+    """
+    View for sending the calendar data.
+    Returns a JSON response.
+    """
     all_tasks = Task.objects.filter(user=request.user)
     schedule_data = []
 
@@ -437,7 +584,12 @@ def calendar_data(request):
 
 @login_required
 def delete_scheduled_task(request, slug):
-    scheduled_task = ScheduledTask.objects.get(slug=slug, user=request.user)
+    """
+    View for deleting a scheduled task.
+    The task deleted is the one selected in the calendar.
+    """
+    scheduled_task = ScheduledTask.objects.get(slug=slug,
+                                               user=request.user)
     scheduled_task.delete()
     response = HttpResponseRedirect('/calendar/')
     response.set_cookie('selectedDate', slug, max_age=300)
@@ -447,9 +599,15 @@ def delete_scheduled_task(request, slug):
 
 @login_required
 def edit_scheduled_task(request, slug):
-    scheduled_task = ScheduledTask.objects.get(slug=slug, user=request.user)
+    """
+    View for editing a scheduled task.
+    The task edited is the one selected in the calendar.
+    """
+    scheduled_task = ScheduledTask.objects.get(
+        slug=slug, user=request.user)
     if request.method == 'POST':
-        form = EditScheduledTaskForm(request.POST, instance=scheduled_task)
+        form = myFormModels.EditScheduledTaskForm(
+            request.POST, instance=scheduled_task)
         if form.is_valid():
             start_time = form.cleaned_data['start_time']
             end_time = form.cleaned_data['end_time']
@@ -472,16 +630,24 @@ def edit_scheduled_task(request, slug):
                 scheduled_task.save()
                 response = HttpResponseRedirect('/calendar/')
                 response.set_cookie('selectedDate', slug, max_age=300)
-                messages.success(request, 'Scheduled task updated successfully!')
+                messages.success(request,
+                                 'Scheduled task updated successfully!')
                 return response
     else:
-        form = EditScheduledTaskForm(instance=scheduled_task)
-    return render(request, 'edit_scheduled_task.html', {'form': form, 'task_title': scheduled_task.task.title.capitalize() })
+        form = myFormModels.EditScheduledTaskForm(instance=scheduled_task)
+    return render(request, 'edit_scheduled_task.html',
+                  {'form': form,
+                   'task_title': scheduled_task.task.title.capitalize()})
 
 
 @login_required
 def complete_scheduled_task(request, slug):
-    scheduled_task = ScheduledTask.objects.get(slug=slug, user=request.user)
+    """
+    View for completing a scheduled task.
+    The task completed is the one selected in the calendar.
+    """
+    scheduled_task = ScheduledTask.objects.get(slug=slug,
+                                               user=request.user)
     scheduled_task.completed = True
     scheduled_task.save()
     response = HttpResponseRedirect('/calendar/')
@@ -491,8 +657,10 @@ def complete_scheduled_task(request, slug):
 
 
 class CustomLoginView(LoginView):
-    form_class = CustomLoginForm
+    """Custom login view."""
+    form_class = myFormModels.CustomLoginForm
 
 
 class CustomSignupView(SignupView):
-    form_class = CustomSignupForm
+    """Custom signup view."""
+    form_class = myFormModels.CustomSignupForm
