@@ -54,28 +54,37 @@ document.body.addEventListener('click', (e) => {
   } 
 });
 
+const goBackAnchor = document.getElementById("go_back_arrow");
+goBackAnchor.addEventListener("click", e => {
+  const previousUrl = document.referrer;
+  const currentUrl = window.location.href;
+  if(new URL(previousUrl).hostname === new URL(currentUrl).hostname) {
+    if(!(previousUrl === currentUrl)) {
+      goBackAnchor.href = previousUrl;
+    }
+  }
+});
 
+// document.addEventListener("DOMContentLoaded", function() {
+//   const goBackAnchor = document.getElementById("go_back_arrow");
+  
+//   if(!goBackAnchor) return;
+//   const previousUrl = document.referrer;
+//   const currentUrl = window.location.href;
+//   const link = document.createElement("a");
+//   link.href = previousUrl;
+//   link.classList.add("float-start", "mt-1");
+//   link.innerHTML = '<img src="/static/svg/back_icon.svg" alt="back-icon" class="control-icon">';
+//   console.log(previousUrlDiv);
+//   if(new URL(previousUrl).hostname === new URL(currentUrl).hostname) {
+    
+//   } else {
 
-// function createModalHTML(title, url, txt) {
-//   return `
-//   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-//   <div class="modal-dialog modal-dialog-centered" role="document">
-//     <div class="modal-content">
-//       <div class="modal-header">
-//         <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-//         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-//           <span aria-hidden="true">&times;</span>
-//         </button>
-//       </div>
-//       <div class="modal-body">
-//         ...
-//       </div>
-//       <div class="modal-footer">
-//         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-//         <button type="button" class="btn btn-primary">Save changes</button>
-//       </div>
-//     </div>
-//   </div>
-// </div>
-// `;
+//   }
+//   console.log(new URL(previousUrl).hostname, new URL(currentUrl).hostname);
+//   previousUrlDiv.insertBefore(link, previousUrlDiv.firstChild);
+// });
+
+// function navigateBack() {
+//   window.history.back();
 // }

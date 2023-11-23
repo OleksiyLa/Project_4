@@ -15,7 +15,10 @@
         {% endif %}
           <div class="card-body p-2">
             <div class="d-flex justify-content-between">
-              <p>Created: {{ object.created_at }}</p>
+                <a href="{% url 'goals_board' %}" class="mt-1">
+                  <img src="{% static 'svg/back_icon.svg' %}" alt="back-icon" class="control-icon">
+                </a>
+              <p class="mx-4 mt-1">Created: {{ object.created_at }}</p>
               <div class="d-flex flex-column">
                 <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="delete-icon control-icon mb-1" data-url="{% url 'delete_goal' slug=goal.slug %}" data-txt="goal">
                 <a class="mb-1 mb-3" href="{% url 'edit_goal' slug=goal.slug %}">

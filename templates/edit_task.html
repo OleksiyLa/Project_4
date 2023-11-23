@@ -1,5 +1,6 @@
 {% extends "./base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}Edit Task{% endblock %}
 
@@ -7,7 +8,14 @@
 <div class="container my-3">
   <div class="row">
     <div class="col-lg-6 mt-3 offset-lg-3 shadow-lg p-5">
-      <h1 class="text-center h3 mb-3 title-wrapper">Edit your Task for <span class="d-block">{{ goal_title }}</span></h1>
+      <div class="d-flex align-items-center mb-3 title-wrapper">
+        <a href="{% url 'tasks' %}" class="float-start mt-1" id="go_back_arrow">
+          <img src="{% static 'svg/back_icon.svg' %}" alt="back-icon" class="control-icon">
+        </a>
+        <h1 class="text-center h3 mb-0 mx-auto d-flex align-items-center">
+          <span class="mx-auto">Edit your Task for <span class="d-block">{{ goal_title }}</span></span>
+        </h1>
+      </div>
       {% if form.errors %}
         {% for field, errors in form.errors.items %}
           {% for error in errors %}
@@ -37,4 +45,8 @@
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/index.js' %}"></script>
 {% endblock %}
