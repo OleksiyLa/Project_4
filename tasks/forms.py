@@ -8,13 +8,13 @@ from .models import Goal, Task, ScheduledTask
 
 class GoalForm(forms.ModelForm):
     title = forms.CharField(
-        min_length=10,
+        min_length=3,
         max_length=50,
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter a title'}),
         error_messages={'required': "Please enter a title."}
         )
     description = forms.CharField(
-        min_length=40,
+        min_length=20,
         max_length=2500,
         widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Describe your goal and how you will achieve it'}),
         error_messages={'required': "Please enter a description."}
@@ -73,13 +73,13 @@ class EditGoalForm(GoalForm):
 
 class TaskForm(forms.ModelForm):
     title = forms.CharField(
-        min_length=10,
+        min_length=3,
         max_length=50,
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter a title'}),
         error_messages={'required': "Please enter a title."}
     )
     description = forms.CharField(
-        min_length=40,
+        min_length=20,
         max_length=2500,
         widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Describe your task and how it will help you achieve your goal'}),
         error_messages={'required': "Please enter a description."}
