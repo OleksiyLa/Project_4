@@ -30,6 +30,11 @@ class GoalsBoardView(LoginRequiredMixin, ListView):
         context["active_link"] = 'goals'
         return context
 
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        response.set_cookie('go_back', '', max_age=1200)
+        return response
+
 
 class GoalDetailView(LoginRequiredMixin, DetailView):
     model = Goal
@@ -42,6 +47,12 @@ class GoalDetailView(LoginRequiredMixin, DetailView):
         if not obj.user == self.request.user:
             raise Http404("Not found")
         return obj
+    
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        slug = self.kwargs.get('slug')
+        response.set_cookie('slug', f'/goal_detail/{slug}', max_age=1200)
+        return response
 
 
 class CreateGoalView(LoginRequiredMixin, CreateView):
@@ -74,6 +85,7 @@ class EditGoalView(LoginRequiredMixin, UpdateView):
         if not obj.user == self.request.user:
             raise Http404("No goal found")
         return obj
+
 
     
 @login_required
@@ -144,6 +156,11 @@ class TasksView(LoginRequiredMixin, ListView):
         context["goals"] = goals
         return context
 
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        response.set_cookie('go_back', 'tasks', max_age=1200)
+        return response
+
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     template_name = 'task_detail.html'
@@ -155,6 +172,12 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
         if not obj.user == self.request.user:
             raise Http404("Not found")
         return obj
+
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        slug = self.kwargs.get('slug')
+        response.set_cookie('slug', f'/task_detail/{slug}', max_age=1200)
+        return response
 
 @login_required
 def complete_task(request, slug):
