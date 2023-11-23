@@ -1,5 +1,5 @@
 from django import forms
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from allauth.account.forms import LoginForm, SignupForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -48,6 +48,12 @@ class GoalForm(forms.ModelForm):
 
 
 class AddGoalForm(GoalForm):
+    expected_deadline = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control','min': datetime.now().date, 'placeholder': 'Estimate time to achieve your goal'}),
+        initial=date.today(),
+        error_messages={'required': "Please enter a deadline."}
+    )
+
     def clean(self):
         cleaned_data = super().clean()
         expected_deadline = cleaned_data.get('expected_deadline')
@@ -134,10 +140,15 @@ class ScheduledTaskForm(forms.ModelForm):
 class AddScheduledTaskForm(ScheduledTaskForm):
     date = forms.DateField(
         label='Exact date or start date',
-        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control pr-5'}),
+        widget=forms.DateInput(attrs={'type': 'date','min': datetime.now().date, 'class': 'form-control pr-5'}),
+        initial=date.today(),
         error_messages={'required': "Please enter a date."}
         )
-    end_date = forms.DateField(label='End date (Optional)', required=False, widget=forms.DateInput(attrs={'type': 'date'}))
+    end_date = forms.DateField(
+        label='End date (Optional)',
+        required=False,
+        widget=forms.DateInput(attrs={'type': 'date','min': datetime.now().date() + timedelta(days=1), 'class': 'form-control pr-5'}),
+        )
     selected_days = forms.MultipleChoiceField(
         choices=[
             ('0', 'Monday'),
