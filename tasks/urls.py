@@ -8,6 +8,7 @@ urlpatterns = [
     path('goal_detail/<slug:slug>/', views.GoalDetailView.as_view(), name='goal_detail'),
     path('delete_goal/<slug:slug>/', views.delete_goal, name='delete_goal'),
     path('edit_goal/<slug:slug>/', views.EditGoalView.as_view(), name='edit_goal'),
+    path('edit_goal_from_details/<slug:slug>/', views.EditGoalViewFromDetails.as_view(), name='edit_goal_from_details'),
     path('progress_status/<slug:slug>/', views.select_progress_status, name='progress_status'),
     path('on_hold_status/<slug:slug>/', views.select_on_hold_status, name='on_hold_status'),
     path('done_status/<slug:slug>/', views.select_done_status, name='done_status'),

@@ -75,6 +75,39 @@ class EditGoalView(LoginRequiredMixin, UpdateView):
             raise Http404("No goal found")
         return obj
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["edit_goal_url"] = 'goals_board'
+        return context
+
+
+class EditGoalViewFromDetails(LoginRequiredMixin, UpdateView):
+    model = Goal
+    form_class = EditGoalForm
+    template_name = 'edit_goal.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        messages.success(self.request, 'Goal updated successfully!')
+        return super().form_valid(form)
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset=queryset)
+        if not obj:
+            raise Http404("No goal found")
+        if not obj.user == self.request.user:
+            raise Http404("No goal found")
+        return obj
+    
+    def get_success_url(self):
+        return reverse('goal_detail', kwargs={'slug': self.object.slug})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["edit_goal_url"] = 'goal_detail'
+        context["slug"] = self.object.slug
+        return context
+
 
     
 @login_required
