@@ -21,7 +21,7 @@
               <p class="mx-4 mt-1">Created: {{ object.created_at }}</p>
               <div class="d-flex flex-column">
                 <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="float-end delete-icon control-icon" data-url="{% url 'delete_task' slug=object.slug %}" data-txt="task">
-                <a class="my-1" href="{% url 'edit_task' slug=object.slug %}">
+                <a class="my-1" href="{% url 'edit_task_from_details' slug=object.slug %}">
                   <img src="{% static 'svg/edit_icon.svg' %}" alt="edit-icon" class="control-icon">
                 </a>
               </div>

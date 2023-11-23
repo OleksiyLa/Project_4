@@ -243,6 +243,7 @@ class EditTaskView(LoginRequiredMixin, UpdateView):
         task = self.get_object()
         context["goal_id"] = task.goal.pk
         context["goal_title"] = task.goal.title
+        context["edit_task_url"] = 'tasks'
         return context
     
     def form_valid(self, form):
@@ -259,6 +260,40 @@ class EditTaskView(LoginRequiredMixin, UpdateView):
         if not obj.user == self.request.user:
             raise Http404("No task found")
         return obj
+
+
+class EditTaskViewFromDetails(LoginRequiredMixin, UpdateView):
+    model = Task
+    form_class = TaskForm
+    template_name = 'edit_task.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_link"] = 'tasks'
+        task = self.get_object()
+        context["goal_id"] = task.goal.pk
+        context["goal_title"] = task.goal.title
+        context["edit_task_url"] = 'task_detail'
+        context["slug"] = self.object.slug
+        return context
+    
+    def form_valid(self, form):
+        task = form.save(commit=False)
+        task.user = self.request.user
+        task.save()   
+        messages.success(self.request, 'Task updated successfully!')
+        return super().form_valid(form)
+    
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset=queryset)
+        if not obj:
+            raise Http404("No task found")
+        if not obj.user == self.request.user:
+            raise Http404("No task found")
+        return obj
+    
+    def get_success_url(self):
+        return reverse('task_detail', kwargs={'slug': self.object.slug})
 
 
 @login_required

@@ -19,6 +19,7 @@ urlpatterns = [
     path('complete_task/<slug:slug>/', views.complete_task, name='complete_task'),
     path('uncomplete_task/<slug:slug>/', views.uncomplete_task, name='uncomplete_task'),
     path('edit_task/<slug:slug>/', views.EditTaskView.as_view(), name='edit_task'),
+    path('edit_task_from_details/<slug:slug>/', views.EditTaskViewFromDetails.as_view(), name='edit_task_from_details'),
     path('delete_task/<slug:slug>/', views.delete_task, name='delete_task'),
     path('schedule_task/<slug:slug>/', views.schedule_task, name='schedule_task'),
     path('calendar/', views.CalendarView.as_view(), name='calendar'),
