@@ -12,6 +12,7 @@ urlpatterns = [
     path('on_hold_status/<slug:slug>/', views.select_on_hold_status, name='on_hold_status'),
     path('done_status/<slug:slug>/', views.select_done_status, name='done_status'),
     path('add_task/<slug:slug>/', views.add_task, name='add_task'),
+    path('add_task_from_tasks/<slug:slug>/', views.add_task_from_tasks, name='add_task_from_tasks'),
     path('tasks/', views.TasksView.as_view(), name='tasks'),
     path('task_detail/<slug:slug>/', views.TaskDetailView.as_view(), name='task_detail'),
     path('complete_task/<slug:slug>/', views.complete_task, name='complete_task'),

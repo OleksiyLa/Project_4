@@ -12,7 +12,7 @@
             <div class="container p-0 mb-5">
                 <div class="card card-border-primary task">
                     <div class="bg-dark p-2 create_panel" href="#">
-                        <a class="btn btn-success create_btn d-inline float-end" href="{% url 'add_task' slug=goal.1 %}">Add Task</a>
+                        <a class="btn btn-success create_btn d-inline float-end" href="{% url 'add_task_from_tasks' slug=goal.1 %}">Add Task</a>
                     </div>
                     <div class="card-header">
                         <a data-bs-toggle="collapse" href="#toggle{{ goal.2 }}" role="button" aria-expanded="false" aria-controls="{{ goal.0 }}">

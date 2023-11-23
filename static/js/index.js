@@ -1,5 +1,4 @@
 const deleteModal = document.querySelector('#delete-goal-modal');
-const goBackAddAnchor = document.getElementById("go_back_arrow_add");
 
 function createModalHTML(url, txt) {
     return `
@@ -54,38 +53,3 @@ document.body.addEventListener('click', (e) => {
     toggleChevron.style.transform = "rotate(180deg)"
   } 
 });
-
-if(goBackAddAnchor) {
-  const previousUrl = document.referrer;
-  const currentUrl = window.location.href;
-  if(new URL(previousUrl).hostname === new URL(currentUrl).hostname) {
-    const urlFromCookie = getCookie("go_back");
-    if(urlFromCookie === "tasks") {
-      const baseURL = window.location.origin;
-      const fullUrl = `${baseURL}/${urlFromCookie}`;
-      goBackAddAnchor.href = fullUrl;
-      deleteCookie("go_back")
-    }
-  }
-}
-
-function getCookie(cookieName) {
-  const name = cookieName + "=";
-  const decodedCookie = decodeURIComponent(document.cookie);
-  const cookieArray = decodedCookie.split(';');
-
-  for (let i = 0; i < cookieArray.length; i++) {
-    let cookie = cookieArray[i];
-    while (cookie.charAt(0) === ' ') {
-      cookie = cookie.substring(1);
-    }
-    if (cookie.indexOf(name) === 0) {
-      return cookie.substring(name.length, cookie.length);
-    }
-  }
-  return "";
-}
-
-function deleteCookie(name) {
-  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-}
