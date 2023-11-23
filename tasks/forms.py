@@ -50,7 +50,6 @@ class GoalForm(forms.ModelForm):
 class AddGoalForm(GoalForm):
     expected_deadline = forms.DateField(
         widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control','min': datetime.now().date, 'placeholder': 'Estimate time to achieve your goal'}),
-        initial=date.today(),
         error_messages={'required': "Please enter a deadline."}
     )
 
@@ -141,7 +140,6 @@ class AddScheduledTaskForm(ScheduledTaskForm):
     date = forms.DateField(
         label='Exact date or start date',
         widget=forms.DateInput(attrs={'type': 'date','min': datetime.now().date, 'class': 'form-control pr-5'}),
-        initial=date.today(),
         error_messages={'required': "Please enter a date."}
         )
     end_date = forms.DateField(
