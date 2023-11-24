@@ -111,6 +111,11 @@ The Planner App is a game-changer for anyone looking to set and achieve their go
 
   </details>
 
+- __Models__
+    - A PostgreSQL SQL database is utilized. Three Django database models have been established, each containing a user field serving as a foreign key connected to the default Django User model.
+    - The 'Goal' and 'Task' models maintain a one-to-many relationship, with the 'Task' model possessing a 'goal' field acting as a foreign key referencing the 'Goal' table. Additionally, the 'Task' and 'Scheduled Tasks' tables exhibit a one-to-many relationship, where the 'task' field in the 'ScheduledTask' table is a foreign key associated with the 'Task' model
+
+![Visual depiction presenting the relational connections among database models, displaying their fields and respective data types](./README/images/task_app_model.png)
 
 - __Colors__
 
