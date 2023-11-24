@@ -235,10 +235,6 @@ class TasksView(LoginRequiredMixin, ListView):
     template_name = 'tasks.html'
     context_object_name = 'tasks'
 
-    def get_queryset(self):
-        return Task.objects.filter(
-            user=self.request.user).order_by('goal__title')
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["active_link"] = 'tasks'
@@ -248,6 +244,15 @@ class TasksView(LoginRequiredMixin, ListView):
                 ).distinct()
         context["goals"] = goals
         return context
+
+    def get_queryset(self):
+        return Task.objects.filter(
+            user=self.request.user
+        ).order_by(
+            'goal__title',
+            'completed',
+            'created_at'
+        )
 
 
 class TaskDetailView(LoginRequiredMixin, DetailView):
