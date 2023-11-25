@@ -47,9 +47,9 @@ document.body.addEventListener('click', (e) => {
       toggleChevron = target.parentElement;
     }
     if(toggleChevron.style.transform === "rotate(180deg)") {
-      toggleChevron.style.transform = "rotate(0deg)"
-      return
+      toggleChevron.style.transform = "rotate(0deg)";
+      return;
     }
-    toggleChevron.style.transform = "rotate(180deg)"
+    toggleChevron.style.transform = "rotate(180deg)";
   } 
 });

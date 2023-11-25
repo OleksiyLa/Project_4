@@ -23,34 +23,34 @@ let selectedDateCookie;
 elementsDOM.prevMonthBtn.addEventListener("click", () => {
   date.setMonth(date.getMonth() - 1);
   renderCalendar(date, calendarData);
-  selectDate(selectedDate)
+  selectDate(selectedDate);
 });
 elementsDOM.nextMonthBtn.addEventListener("click", () => {
   date.setMonth(date.getMonth() + 1);
   renderCalendar(date, calendarData);
-  selectDate(selectedDate)
+  selectDate(selectedDate);
 });
 elementsDOM.todayBtn.addEventListener("click", () => {
   renderCalendar(new Date(), calendarData);
-  selectDate(new Date().toDateString())
-  elementsDOM.tasks.innerHTML = getTasksHTML(new Date().toDateString())
+  selectDate(new Date().toDateString());
+  elementsDOM.tasks.innerHTML = getTasksHTML(new Date().toDateString());
 });
 elementsDOM.calendar.addEventListener("click", (e) => {
   if(e.target.getAttribute('data-date')) {
-    selectDate(e.target.getAttribute('data-date'))
-    elementsDOM.tasks.innerHTML = getTasksHTML(e.target.getAttribute('data-date'))
+    selectDate(e.target.getAttribute('data-date'));
+    elementsDOM.tasks.innerHTML = getTasksHTML(e.target.getAttribute('data-date'));
   }
-})
+});
 
-fetchData()
+fetchData();
 renderCalendar(date, calendarData);
 
 function renderCalendar(date, data) {
   let scheduledDates;
   let scheduled_tasks;
   if(data) {
-    scheduled_tasks = data.map(item => item.schedule).flat().map(item => [new Date(item.date), item.completed])
-    scheduledDates = scheduled_tasks.map(item => item[0].toDateString())
+    scheduled_tasks = data.map(item => item.schedule).flat().map(item => [new Date(item.date), item.completed]);
+    scheduledDates = scheduled_tasks.map(item => item[0].toDateString());
   }
   const diplayedDate = date;
   const firstDay = new Date(diplayedDate.getFullYear(), diplayedDate.getMonth(), 1);
@@ -74,7 +74,7 @@ function renderCalendar(date, data) {
             if(row.lastChild.classList.contains("completed")) {
               row.lastChild.classList.remove("completed");
             }
-            break
+            break;
           } else {
             row.lastChild.classList.add("completed");
           }
@@ -100,7 +100,7 @@ function renderCalendar(date, data) {
 
 function getPreviousMonthHTML(today, startingDay) {
   const daysInPreviousMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-  const prevMonthDate = []
+  const prevMonthDate = [];
   for (let i = 0; i < startingDay; i++) {
     const day = daysInPreviousMonth - i;
     prevMonthDate.push(`<td class='text-center text-muted'>${day}</td>`);
@@ -117,19 +117,19 @@ function fetchData() {
       return response.json();
     })
     .then(data => {
-      return data
+      return data;
     })
     .then(data => {
-      calendarData = data
+      calendarData = data;
       if(processDateCookie()) {
         renderCalendar(selectedDateCookie, data);
-        selectDate(selectedDateCookie.toDateString())
-        elementsDOM.tasks.innerHTML = getTasksHTML(selectedDateCookie.toDateString())
-        deleteCookie('selectedDate')
+        selectDate(selectedDateCookie.toDateString());
+        elementsDOM.tasks.innerHTML = getTasksHTML(selectedDateCookie.toDateString());
+        deleteCookie('selectedDate');
       } else {
         renderCalendar(date, data);
-        selectDate(new Date().toDateString())
-        elementsDOM.tasks.innerHTML = getTasksHTML(new Date().toDateString())
+        selectDate(new Date().toDateString());
+        elementsDOM.tasks.innerHTML = getTasksHTML(new Date().toDateString());
       }
       elementsDOM.spinner.style.display = 'none';
       elementsDOM.calendarContainer.classList.remove('d-none');
@@ -161,11 +161,11 @@ function getTasksHTML(date){
       return scheduleDate.toDateString() === new Date(selectedDate).toDateString();
     });
   });
-  date = new Date(date)
+  date = new Date(date);
   const tasksArrHTML = [];
-  elementsDOM.selected_date.innerHTML = `<h2>${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}</h2>`
+  elementsDOM.selected_date.innerHTML = `<h2>${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}</h2>`;
   tasks.map(item => {
-    const schedule = item.schedule.filter(schedule => new Date(schedule.date).toDateString() === date.toDateString())
+    const schedule = item.schedule.filter(schedule => new Date(schedule.date).toDateString() === date.toDateString());
     for(let i = 0; i < schedule.length; i++) {
       const completed = schedule[i].completed;
       const classCompleted = completed ? "completed" : "not-completed";
@@ -189,24 +189,24 @@ function getTasksHTML(date){
             ${finishTaskBtn}
           </div>
         </div>
-      </div>`])
+      </div>`]);
     }
-    return
-  })
+    return;
+  });
   if(tasksArrHTML.length === 0) {
-    return `<h2 class="text-center">No scheduled tasks for this day</h2>`
+    return `<h2 class="text-center">No scheduled tasks for this day</h2>`;
   } else {
-    tasksArrHTML.sort((a, b) => a[0] > b[0] ? 1 : -1)
-    return tasksArrHTML.map(item => item.pop()).join("")
+    tasksArrHTML.sort((a, b) => a[0] > b[0] ? 1 : -1);
+    return tasksArrHTML.map(item => item.pop()).join("");
   }
 }
 
 function processDateCookie() {
-  const cookie = getCookie('selectedDate')
+  const cookie = getCookie('selectedDate');
   if(cookie) {
-    const dateArr = cookie.split("-")
+    const dateArr = cookie.split("-");
     const date = new Date(dateArr[0], Number(dateArr[1]) - 1, dateArr[2]);
-    selectedDateCookie = date
+    selectedDateCookie = date;
     return true;
   } else {
     return false;
