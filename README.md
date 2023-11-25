@@ -1,7 +1,7 @@
 # Planner App
 The Planner App is a game-changer for anyone looking to set and achieve their goals. This web-based platform is designed to simplify the goal-setting process. It allows you to create, prioritize, and break down your goals into manageable tasks, while also providing the flexibility to schedule your activities. Plus, with in-depth goal statistics, you'll gain a clear view of your achievements and areas for improvement. Whether you're a student, professional, or goal-oriented individual, this app is your pathway to success.
 
-![Responsive website on different devices](./README/)
+![Goals Board page](./README/web_site_images/goals_board.png)
 
 ## Planning & Development
 - __Target audience__
@@ -113,7 +113,32 @@ The Planner App is a game-changer for anyone looking to set and achieve their go
 
 - __Models__
     - A PostgreSQL SQL database is utilized. Three Django database models have been established, each containing a user field serving as a foreign key connected to the default Django User model.
-    - The 'Goal' and 'Task' models maintain a one-to-many relationship, with the 'Task' model possessing a 'goal' field acting as a foreign key referencing the 'Goal' table. Additionally, the 'Task' and 'Scheduled Tasks' tables exhibit a one-to-many relationship, where the 'task' field in the 'ScheduledTask' table is a foreign key associated with the 'Task' model
+    - The 'Goal' and 'Task' models maintain a one-to-many relationship, with the 'Task' model possessing a 'goal' field acting as a foreign key referencing the 'Goal' table. Additionally, the 'Task' and 'Scheduled Tasks' tables exhibit a one-to-many relationship, where the 'task' field in the 'ScheduledTask' table is a foreign key associated with the 'Task' model.
+    - The 'Goal' model contains the following fields:
+        - user: foreign key referencing the default Django User model with cascade deletion
+        - title: character field with a maximum length of 50 characters
+        - slug: slug field with a maximum length of 200 characters
+        - description: text field with a maximum length of 2500 characters
+        - status: choice field with the following options: 'ToDo', 'In Progress', 'On Hold' and 'Completed'
+        - created_at: date field with a default value of the current date
+        - updated_at: date field with a default value of the current date
+        - expected_deadline: date field
+    - The 'Task' model contains the following fields:
+        - user: foreign key referencing the default Django User model with cascade deletion
+        - goal: foreign key referencing the 'Goal' model with cascade deletion
+        - title: character field with a maximum length of 50 characters
+        - slug: slug field with a maximum length of 200 characters
+        - description: text field with a maximum length of 2500 characters
+        - completed: boolean field with a default value of 'False'
+        - created_at: date field with a default value of the current date
+    - The 'ScheduledTask' model contains the following fields:
+        - user: foreign key referencing the default Django User model with cascade deletion
+        - task: foreign key referencing the 'Task' model with cascade deletion
+        - slug: slug field with a maximum length of 200 characters
+        - date: date field
+        - start_time: time field
+        - end_time: time field
+        - completed: boolean field with a default value of 'False'
 
 ![Visual depiction presenting the relational connections among database models, displaying their fields and respective data types](./README/images/task_app_model.png)
 
