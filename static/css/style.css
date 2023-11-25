@@ -237,6 +237,10 @@ a {
 }
 
 /* Footer */
+footer {
+  font-family: 'Playfair Display', serif;
+}
+
 footer a {
   display: inline-block;
   margin: 2rem;
