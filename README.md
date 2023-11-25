@@ -1,4 +1,4 @@
-# Planner App
+# Planner App (Task Manager)
 The Planner App is a game-changer for anyone looking to set and achieve their goals. This web-based platform is designed to simplify the goal-setting process. It allows you to create, prioritize, and break down your goals into manageable tasks, while also providing the flexibility to schedule your activities. Plus, with in-depth goal statistics, you'll gain a clear view of your achievements and areas for improvement. Whether you're a student, professional, or goal-oriented individual, this app is your pathway to success.
 
 ![Goals Board page](./README/web_site_images/goals_board.png)
@@ -144,19 +144,27 @@ The Planner App is a game-changer for anyone looking to set and achieve their go
 
 - __Colors__
 
+The chosen color palette represents a deliberate and meticulous selection aimed at fostering an environment of simplicity and comfort for all users. Each color was thoughtfully chosen to maintain a minimalist and visually unobtrusive interface, prioritizing ease of comprehension and user focus within the application.
+
+    - The application utilized the following color palette:
+        - #023685: Used as the link color.
+        - #000000: Predominantly employed as the text color due to its high contrast.
+        - #025702: Designated for marking completed tasks in the calendar.
+        - #8B0000: Reserved for tasks yet to be done in the calendar.
+        - #eeeeee: Applied to denote today's date in the calendar and when hovering over dates.
+        - #DAA520: Designated for highlighting the selected day in the calendar.
+        - #ffffff: Utilized for the logo, text panel, and social links.
+        - #fafafa: Chosen as the overall background color.
+        - #500e86: Allocated for the edit icon.
+        - #b10b0b: Designated as the delete icon color.
+
+![Color Pallete](./README/images/color_pallete_1.png)
+![Color Pallete](./README/images/color_pallete_2.png)
+
 - __Fonts__
 
-- __Flow chart__
-
-  <br>
-  <details><summary>flowchart</summary>
-
-    ![flowchart](./README/)
-
-  </details>
-
 - __Technologies__
-  - Packages:
+  - Django
 
   - Languages:
     - Python

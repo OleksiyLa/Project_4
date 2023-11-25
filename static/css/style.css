@@ -21,7 +21,7 @@ header nav {
 
 #logo-svg {
   width: 2rem;
-  fill: #fff;
+  fill: #ffffff;
   animation: rotateAnimation 3s infinite linear;
 }
 
@@ -182,11 +182,11 @@ a {
 }
 
 .calendar td:hover {
-  background: #eee;
+  background: #eeeeee;
 }
 
 .calendar td.today {
-  background: #eee;
+  background: #eeeeee;
 }
 
 .calendar td.scheduled-date {
@@ -240,7 +240,7 @@ footer a:hover .social-svg {
 }
 
 .social-svg {
-  fill: #fff;
+  fill: #ffffff;
   width: 100%
 }
 
