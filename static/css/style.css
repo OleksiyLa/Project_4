@@ -1,3 +1,4 @@
+/* Global */
 html {
   min-height: 100%;
 }
@@ -7,6 +8,7 @@ body{
   min-height: 100vh;
 }
 
+/* Header (nav) */
 header {
   z-index: 99;
   min-height: 8vh;
@@ -17,27 +19,70 @@ header nav {
   min-height: 8vh;
 }
 
-#main {
-  min-height: 92vh;
+#logo-svg {
+  width: 2rem;
+  fill: #fff;
+  animation: rotateAnimation 3s infinite linear;
 }
 
-#goals-board .card-header {
-  min-height: 90px;
+/* Logo animation */
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-#tasks-container .card {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+/* Common */
+a {
+  text-decoration: none;
 }
 
-.task-card {
-  min-height: 600px;
+/* Helpers classes*/
+.details-link {
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #023685;
+}
+
+.form-check label {
+  cursor: pointer;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .title-wrapper {
   word-wrap: break-word;
 }
+.scroll-auto {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
+.not-completed {
+  box-shadow: 0 0 1px #000000;
+}
+
+.completed {
+  box-shadow: 0 0 1px #025702;
+  color: #025702;
+}
+
+/*Icons */
+.control-icon {
+  width: 1.2rem;
+  cursor: pointer;
+}
+
+.control-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Goal & Task panel */
 .create_panel {
   background: rgba(0, 0, 0, 0.9);
   color: #ffffff;
@@ -57,55 +102,31 @@ header nav {
   color: #000000;
 }
 
+/* Main */
+#main {
+  min-height: 92vh;
+}
+
+/* SignUp Password helper text */
 #id_password1_helptext li {
   color: #000000;
 }
 
-a {
-  text-decoration: none;
-}
-
-.details-link {
-  cursor: pointer;
-  font-size: 1.1rem;
-  color: #023685;
-}
-
-.form-check label {
-  cursor: pointer;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
-#logo-svg {
-  width: 2rem;
-  fill: #fff;
-  animation: rotateAnimation 3s infinite linear;
-}
-  
-/* Logo animation */
-@keyframes rotateAnimation {
-from {
-  transform: rotate(0deg);
-}
-to {
-  transform: rotate(360deg);
-}
-}
-
-/* Delete goal */
-.control-icon {
-  width: 1.2rem;
-  cursor: pointer;
-}
-
-.control-icon:hover {
-  transform: scale(1.2);
+/* Goal board */
+#goals-board .card-header {
+  min-height: 90px;
 }
 
 /* Tasks */
+#tasks-container .card {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.task-card {
+  min-height: 600px;
+}
+
 .card.card-task {
   width: 40%;
 }
@@ -122,7 +143,7 @@ to {
 }
 
 .checkbox-container input[type="checkbox"]:checked ~ label {
-  color: green;
+  color: #025702;
 }
 
 .checkbox-container label {
@@ -207,20 +228,6 @@ to {
   height: fit-content;
 }
 
-.scroll-auto {
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.not-completed {
-  box-shadow: 0 0 1px #000000;
-}
-
-.completed {
-  box-shadow: 0 0 1px #025702;
-  color: #025702;
-}
-
 /* Footer */
 footer a {
   display: inline-block;
@@ -237,6 +244,7 @@ footer a:hover .social-svg {
   width: 100%
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
   .calendar {
     height: 100%;
