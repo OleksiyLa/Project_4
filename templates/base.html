@@ -6,9 +6,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Meta tags for SEO -->
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Turn Your Dreams into Achievements with Our Task Manager App! Effortlessly stay on top of your tasks using our intuitive and feature-rich planner. Seamlessly plan your goals, effortlessly add tasks, and smoothly schedule them within our user-friendly calendar interface.">
+  <meta name="keywords" content="achieve your goals, plan your goals, task manager, to-do list, productivity app, project management, task organizer, time management, deadlines, task tracking, task scheduling, workflow management">
+  <meta name="author" content="Planner App (Task Manager App)">
   <!-- Title -->
   <title>{% block title %}{% endblock %}</title>
   <!-- Favicon -->
@@ -25,14 +25,14 @@
     {% for message in messages %}
       <div class="container">
         <div class="alert alert-{{ message.tags }} alert-dismissible fade show w-100 text-center" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       <div class="container">
     {% endfor %}
-{% endif %}
-  {% block content %}
-  {% endblock %}
+    {% endif %}
+    {% block content %}
+    {% endblock %}
   </main>
   {% include './footer.html' %}
   {% block js %}{% endblock %}

@@ -1,14 +1,16 @@
 {% extends "./base.html" %}
 {% load static %}
 
-{% block title %}Tasks{% endblock %}
+{% block title %}Not Found{% endblock %}
 
 {% block content %}
-<div class="container">
-  <h1 class="my-5 text-center py-5">Page Not Found</h1>
-  <p class="my-5 text-center">Sorry, but the page you were trying to view does not exist.</p>
-  <a class="link d-block text-center h3 {% if active_link == 'goals' %}active{% endif %}" href="{% url 'goals_board' %}">Go to the Goals Board...</a>
-</div>
+  <div class="container">
+    <h1 class="my-5 text-center py-5">Page Not Found</h1>
+    <p class="my-5 text-center">Sorry, but the page you were trying to view does not exist.</p>
+    <a class="link d-block text-center h3 {% if active_link == 'goals' %}active{% endif %}" href="{% url 'goals_board' %}">
+      Go to the Goals Board...
+    </a>
+  </div>
 {% endblock %}
 
 {% block js %}

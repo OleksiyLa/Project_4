@@ -3,6 +3,8 @@
 
 {% load i18n %}
 
+{% block title %}Register{% endblock %}
+
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
@@ -45,7 +47,7 @@
         {% endif %}
         <button class="btn btn-signup btn-success w-100" type="submit">{% trans "Sign Up" %}</button>
       </form>
-      <p>{% blocktrans %}<a class="link m-4 float-end" href="{{ login_url }}">Sign In</a>{% endblocktrans %}</p>
+      <p>{% blocktrans %}<a class="link m-4 float-end details-link" href="{{ login_url }}">Sign In</a>{% endblocktrans %}</p>
     </div>
   </div>
 </div>

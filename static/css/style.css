@@ -64,6 +64,7 @@ a {
 .details-link {
   cursor: pointer;
   font-size: 1.1rem;
+  color: #023685;
 }
 
 .form-check label {
@@ -183,14 +184,7 @@ to {
 
 .calendar td.selected-date {
   background: #DAA520;
-}
-
-.prev-month-day {
-  color: #ccc;
-}
-
-.next-month-day {
-  color: #ccc;
+  color: #000000;
 }
 
 #scheduled-tasks {

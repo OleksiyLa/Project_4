@@ -6,69 +6,67 @@
 {% block content %}
 <div class="modal" id="delete-goal-modal"></div>
 <div class="container" id="tasks-container">
-    <h1 class="my-5 text-center">Tasks</h1>
-    {% if goals %}
-        {% for goal in goals %}
-            <div class="container p-0 mb-5">
-                <div class="card card-border-primary task">
-                    <div class="bg-dark p-2 create_panel" href="#">
-                        <a class="btn btn-success create_btn d-inline float-end" href="{% url 'add_task_from_tasks' slug=goal.1 %}">Add Task</a>
-                    </div>
-                    <div class="card-header">
-                        <a data-bs-toggle="collapse" href="#toggle{{ goal.2 }}" role="button" aria-expanded="false" aria-controls="{{ goal.0 }}">
-                            <h5 class="card-title text-center p-1 tasks-toggler">My Goal: "{{ goal.0 }}"
-                            <svg class="tasks-toggler tasks-toggler-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
-                                <path class="tasks-toggler" fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
-                              </svg>
-                            </h5>
+  <h1 class="my-5 text-center">Tasks</h1>
+  {% if goals %}
+    {% for goal in goals %}
+      <div class="container p-0 mb-5">
+        <div class="card card-border-primary task">
+          <div class="bg-dark p-2 create_panel" href="#">
+            <a class="btn btn-success create_btn d-inline float-end" href="{% url 'add_task_from_tasks' slug=goal.1 %}">Add Task</a>
+          </div>
+          <div class="card-header">
+            <a data-bs-toggle="collapse" href="#toggle{{ goal.2 }}" role="button" aria-expanded="false" aria-controls="{{ goal.0 }}">
+              <h2 class="h5 card-title text-center p-1 tasks-toggler">My Goal: "{{ goal.0 }}"
+              <svg class="tasks-toggler tasks-toggler-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+                  <path class="tasks-toggler" fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                </svg>
+              </h2>
+            </a>
+          </div>
+          <div class="row p-2 collapse show" id="toggle{{ goal.2 }}">
+            {% for task in tasks %}
+              {% if task.goal.title == goal.0 %}
+                <div class="col-12 col-md-6 col-xl-4">
+                  {% if task.completed %}
+                  <div class="card task-card mb-3 p-3 bg-light d-flex flex-column justify-content-between completed">
+                  {% else %}
+                  <div class="card task-card mb-3 p-3 bg-light d-flex flex-column justify-content-between">
+                  {% endif %}
+                    <div class="d-flex justify-content-between">
+                      <sup class="mt-3">Created: {{ task.created_at }}</sup>
+                      <div class="d-flex flex-column">
+                        <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="float-end delete-icon control-icon" data-url="{% url 'delete_task' slug=task.slug %}" data-txt="task">
+                        <a class="my-1" href="{% url 'edit_task' slug=task.slug %}">
+                          <img src="{% static 'svg/edit_icon.svg' %}" alt="edit-icon" class="control-icon">
                         </a>
+                      </div>
                     </div>
-                    <div class="row p-2 collapse show" id="toggle{{ goal.2 }}">
-                        {% for task in tasks %}
-                            {% if task.goal.title == goal.0 %}
-                                <div class="col-12 col-md-6 col-xl-4">
-                                  {% if task.completed %}
-                                    <div class="card task-card mb-3 p-3 bg-light d-flex flex-column justify-content-between completed">
-                                  {% else %}
-                                    <div class="card task-card mb-3 p-3 bg-light d-flex flex-column justify-content-between">
-                                  {% endif %}
-                                          <div class="d-flex justify-content-between">
-                                            <sup class="mt-3">Created: {{ task.created_at }}</sup>
-                                            <div class="d-flex flex-column">
-                                              <img src="{% static 'svg/delete_icon.svg' %}" alt="delete-icon" class="float-end delete-icon control-icon" data-url="{% url 'delete_task' slug=task.slug %}" data-txt="task">
-                                              <a class="my-1" href="{% url 'edit_task' slug=task.slug %}">
-                                                <img src="{% static 'svg/edit_icon.svg' %}" alt="edit-icon" class="control-icon">
-                                              </a>
-                                            </div>
-                                          </div>
-                                          <h3 class="h4 text-center my-2">{{ task.title }}</h3>
-                                          <p class="text-center mb-5">{{ task.description|truncatechars_html:100 }}</p>
-                                          <div>
-                                            <a href="{% url 'task_detail' slug=task.slug %}" class="link d-block text-center details-link mb-5">Details...</a>
-                                            <p class="m-0">Scheduled tasks: {{ task.scheduled_task_count }}</p>
-                                            <p class="m-0">Completed Scheduled Tasks: {{ task.completed_task_count }}</p>
-                                            <p class="m-0">Not Completed Scheduled Tasks: {{ task.not_completed_task_count }}</p>
-                                            <p class="m-0">Failed Scheduled Tasks: {{ task.failed_task_count }}</p>
-                                            <div class="mt-3">
-                                              {% if not task.completed %}
-                                              <a href="{% url 'complete_task' slug=task.slug %}" class="btn btn-success my-1 w-100">Complete</a>
-                                              <a class="btn w-100 btn-outline-primary" href="{% url 'schedule_task' slug=task.slug %}">Schedule</a>
-                                              {% else %}
-                                              <a href="{% url 'uncomplete_task' slug=task.slug %}" class="btn btn-outline-success w-100">Uncomplete</a>
-                                              {% endif %}
-                                            </div>
-                                          </div>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+                    <h3 class="h4 text-center my-2">{{ task.title }}</h3>
+                    <p class="text-center mb-5">{{ task.description|truncatechars_html:100 }}</p>
+                    <div>
+                      <a href="{% url 'task_detail' slug=task.slug %}" class="link d-block text-center details-link mb-5">Details...</a>
+                      <p class="m-0">Scheduled tasks: {{ task.scheduled_task_count }}</p>
+                      <p class="m-0">Completed Scheduled Tasks: {{ task.completed_task_count }}</p>
+                      <p class="m-0">Not Completed Scheduled Tasks: {{ task.not_completed_task_count }}</p>
+                      <p class="m-0">Failed Scheduled Tasks: {{ task.failed_task_count }}</p>
+                      <div class="mt-3">
+                        {% if not task.completed %}
+                        <a href="{% url 'complete_task' slug=task.slug %}" class="btn btn-success my-1 w-100">Complete</a>
+                        <a class="btn w-100 btn-primary" href="{% url 'schedule_task' slug=task.slug %}">Schedule</a>
+                        {% endif %}
+                      </div>
                     </div>
+                  </div>
                 </div>
-            </div>
-        {% endfor %}
-    {% else %}
-        <h2 class="display-3 text-center">No tasks yet</h2>
-    {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <h2 class="display-3 text-center">No tasks yet</h2>
+  {% endif %}
 </div>
 {% endblock %}
 

@@ -34,7 +34,7 @@
             {% endif %}
             </div>
             <div class="container">
-              <h3 class="h4 text-center my-5"><sup class="d-block h5 m-0">Title</sup>{{ object.title }} ({{ object.goal.title }})</h3>
+              <h2 class="h4 text-center my-5"><sup class="d-block h5 m-0">Title</sup>{{ object.title }} ({{ object.goal.title }})</h2>
               <p class="text-center my-5"><sup class="d-block h5 m-0">Description</sup>{{ object.description }}</p>
               <p class="text-center m-2">Scheduled tasks: {{ object.scheduled_task_count }}</p>
               <p class="text-center m-2">Completed Scheduled Tasks: {{ object.completed_task_count }}</p>
@@ -42,10 +42,10 @@
               <p class="text-center m-2">Failed Scheduled Tasks: {{ object.failed_task_count }}</p>
               <div class="btn-group w-100 my-3" role="group" aria-label="Goal status.">
                 {% if not object.completed %}
-                <a href="{% url 'complete_task' slug=object.slug %}" class="btn btn-success col-6">Complete</a>
-                <a class="btn btn-outline-primary col-6" href="{% url 'schedule_task' slug=object.slug %}">Schedule</a>
+                <a href="{% url 'complete_task' slug=object.slug %}" class="btn btn-success col-md-6">Complete</a>
+                <a class="btn btn-primary col-md-6" href="{% url 'schedule_task' slug=object.slug %}">Schedule</a>
                 {% else %}
-                <a href="{% url 'uncomplete_task' slug=object.slug %}" class="btn btn-outline-success col-6">Uncomplete</a>
+                <a href="{% url 'uncomplete_task' slug=object.slug %}" class="btn btn-success col-6">Uncomplete</a>
                 {% endif %}
               </div>
             </div>

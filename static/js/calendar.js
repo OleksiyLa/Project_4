@@ -85,7 +85,7 @@ function renderCalendar(date, data) {
     if(day === daysInMonth && (startingDay + day) % 7 !== 0) {
       let nextMonthDay = 1;
       for(let i = (startingDay + day) % 7; i < 7; i++) {
-        row.innerHTML += `<td class='text-center next-month-day'>${nextMonthDay++}</td>`;
+        row.innerHTML += `<td class='text-center text-muted'>${nextMonthDay++}</td>`;
       }
     }
     if ((day + startingDay) % 7 === 0 || day === daysInMonth) {
@@ -103,7 +103,7 @@ function getPreviousMonthHTML(today, startingDay) {
   const prevMonthDate = []
   for (let i = 0; i < startingDay; i++) {
     const day = daysInPreviousMonth - i;
-    prevMonthDate.push(`<td class='text-center prev-month-day'>${day}</td>`);
+    prevMonthDate.push(`<td class='text-center text-muted'>${day}</td>`);
   }
   return prevMonthDate.reverse().join("");
 }
@@ -172,7 +172,7 @@ function getTasksHTML(date){
       const deleteIcon = completed ? "" : `<img src="/static/svg/delete_icon.svg" alt="delete-icon" class="float-end delete-icon control-icon" data-txt="scheduled task" data-url="/delete_scheduled_task/${schedule[i].slug}">`;
       const editIcon = `<a class="my-1" href="/edit_scheduled_task/${schedule[i].slug}">
       <img src="/static/svg/edit_icon.svg" alt="edit-icon" class="control-icon"></a>`;
-      const finishTaskBtn = completed ? "" : `<a class="btn btn-outline-dark w-100 my-2" href="/complete_scheduled_task/${schedule[i].slug}">
+      const finishTaskBtn = completed ? "" : `<a class="btn btn-success w-100 my-2" href="/complete_scheduled_task/${schedule[i].slug}">
       <strong>Complete</strong></a>`;
       const timeDone = `<h3 class="h4 text-center my-2">From <span>${schedule[i].start_time.slice(0, -3)}</span> To <span>${schedule[i].end_time.slice(0, -3)}</span></h3>`;
 

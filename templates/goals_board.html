@@ -9,7 +9,7 @@
   <h1 class="my-5 text-center">Goals Board</h1>
   <nav class="navbar navbar-expand-xl navbar-dark sticky-top create_panel">
     <div class="container-fluid" id="goal-nav-container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#goals">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#goals" aria-label="Open navigation menu to navigate to goals with different statuses on this page">
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="btn btn-success create_btn" href="{% url 'create_goal' %}">Create Goal</a>
@@ -25,7 +25,7 @@
             <a class="nav-link text-center border-bottom border-secondary" href="#hold">On Hold</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link text-center" href="#done">Done</a>
+            <a class="nav-link text-center" href="#done">Done</a>
           </li>
         </ul>
       </div>
@@ -36,8 +36,8 @@
       <div class="col-12 col-md-6 col-xl-3">
         <div class="card card-border-primary" id="todo">
           <div class="card-header">
-            <h5 class="card-title text-center">To Do</h5>
-            <h6 class="card-subtitle text-muted text-center">Newly created goals without tasks.</h6>
+            <h2 class="h5 card-title text-center">To Do</h2>
+            <h3 class="h6 card-subtitle text-center">Newly created goals without tasks.</h3>
           </div>
           {% for goal in goals %}
           {% if goal.status == '0' %}
@@ -70,17 +70,16 @@
           </div>
           {% endif %}
           {% endfor %}
-
         </div>
       </div>
 
       <div class="col-12 col-md-6 col-xl-3">
         <div class="card card-border-warning" id="progress">
             <div class="card-header">
-              <h5 class="card-title text-center">In Progress</h5>
-              <h6 class="card-subtitle text-muted text-center">
+              <h2 class="h5 card-title text-center">In Progress</h2>
+              <h3 class="h6 card-subtitle text-center">
                 Goals to which at least one task assigned.
-              </h6>
+              </h3>
             </div>
             {% for goal in goals %}
             {% if goal.status == '1' %}
@@ -119,10 +118,10 @@
       <div class="col-12 col-md-6 col-xl-3">
         <div class="card card-border-danger" id="hold">
           <div class="card-header">
-            <h5 class="card-title text-center">On Hold</h5>
-            <h6 class="card-subtitle text-muted text-center">
+            <h2 class="h5 card-title text-center">On Hold</h2>
+            <h3 class="h6 card-subtitle text-center">
               Goals which were in progress but needed to be postponed.
-            </h6>
+            </h3>
           </div>
           {% for goal in goals %}
           {% if goal.status == '2' %}
@@ -161,8 +160,8 @@
       <div class="col-12 col-md-6 col-xl-3">
         <div class="card card-border-success" id="done">
           <div class="card-header">
-            <h5 class="card-title text-center">Done</h5>
-            <h6 class="card-subtitle text-muted text-center">Successfully accomplished goals.</h6>
+            <h2 class="h5 card-title text-center">Done</h2>
+            <h3 class="h6 card-subtitle text-center">Successfully accomplished goals.</h3>
           </div>
           {% for goal in goals %}
           {% if goal.status == '3' %}
