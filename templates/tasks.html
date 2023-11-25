@@ -11,13 +11,13 @@
     {% for goal in goals %}
       <div class="container p-0 mb-5">
         <div class="card card-border-primary task">
-          <div class="bg-dark p-2 create_panel" href="#">
+          <div class="bg-dark p-2 create_panel">
             <a class="btn btn-success create_btn d-inline float-end" href="{% url 'add_task_from_tasks' slug=goal.1 %}">Add Task</a>
           </div>
           <div class="card-header">
-            <a data-bs-toggle="collapse" href="#toggle{{ goal.2 }}" role="button" aria-expanded="false" aria-controls="{{ goal.0 }}">
+            <a data-bs-toggle="collapse" href="#toggle{{ goal.2 }}" role="button" aria-expanded="false" aria-controls="toggle{{ goal.2 }}">
               <h2 class="h5 card-title text-center p-1 tasks-toggler">My Goal: "{{ goal.0 }}"
-              <svg class="tasks-toggler tasks-toggler-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up tasks-toggler tasks-toggler-svg" viewBox="0 0 16 16">
                   <path class="tasks-toggler" fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
                 </svg>
               </h2>

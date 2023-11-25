@@ -163,7 +163,7 @@ function getTasksHTML(date){
   });
   date = new Date(date);
   const tasksArrHTML = [];
-  elementsDOM.selected_date.innerHTML = `<h2>${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}</h2>`;
+  elementsDOM.selected_date.innerHTML = `<h2 class="card-title text-center p-2" id="selected-date">${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}</h2>`;
   tasks.map(item => {
     const schedule = item.schedule.filter(schedule => new Date(schedule.date).toDateString() === date.toDateString());
     for(let i = 0; i < schedule.length; i++) {

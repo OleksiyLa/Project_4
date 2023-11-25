@@ -36,8 +36,7 @@ class GoalForm(forms.ModelForm):
     expected_deadline = forms.DateField(
         widget=forms.DateInput(attrs={
             'type': 'date',
-            'class': 'form-control',
-            'placeholder': 'Estimate time to achieve your goal'}),
+            'class': 'form-control'}),
         error_messages={'required': "Please enter a deadline."}
     )
 
@@ -77,8 +76,7 @@ class AddGoalForm(GoalForm):
         widget=forms.DateInput(attrs={
             'type': 'date',
             'class': 'form-control',
-            'min': datetime.now().date,
-            'placeholder': 'Estimate time to achieve your goal'}),
+            'min': datetime.now().date}),
         error_messages={'required': "Please enter a deadline."}
     )
 
