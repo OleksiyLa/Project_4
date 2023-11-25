@@ -57,6 +57,10 @@ header nav {
   color: #000000;
 }
 
+#id_password1_helptext li {
+  color: #000000;
+}
+
 a {
   text-decoration: none;
 }
