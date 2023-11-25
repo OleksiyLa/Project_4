@@ -162,6 +162,12 @@ The chosen color palette represents a deliberate and meticulous selection aimed 
 ![Color Pallete](./README/images/color_pallete_2.png)
 
 - __Fonts__
+The project's font selection comprises 'Playfair Display' and 'Roboto'. 'Playfair Display' is designated for the main headings, footer and the navigation menu to evoke a sense of seriousness and visual elegance. 'Roboto' has been incorporated specifically to enhance legibility.
+
+This choice is intended to establish a formal tone and improve readability. The deliberate juxtaposition of 'Playfair Display' and 'Roboto' serves a dual purpose: creating visual distinction and ensuring content clarity within the project's framework.
+
+    - Playfair Display
+    - Roboto
 
 - __Technologies__
   - Django
