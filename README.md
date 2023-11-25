@@ -16,7 +16,7 @@ The Planner App is a game-changer for anyone looking to set and achieve their go
     - Time Management Enthusiasts: Those interested in improving their time management skills can use the app to schedule tasks, set deadlines, and optimize their daily routines.
 
     - Productivity Seekers: Individuals seeking to boost their productivity and accomplish more in less time can find value in the app's task management and progress tracking features.
-
+<br>
 - __App Objectives__
     - Empower Goal Achievement:
         - Enable users to set, prioritize, and achieve their personal and professional goals effectively. Provide a platform that promotes action and progress toward meaningful objectives.
@@ -41,7 +41,7 @@ The Planner App is a game-changer for anyone looking to set and achieve their go
 
     - Deliver Convenience:
         - Provide a convenient and accessible tool for goal planning and tracking that fits seamlessly into users' daily routines.
-
+<br>
 - __User Stories__
     - Goal Setting and Prioritization
         - As a user, I want to be able to create and prioritize my goals on the app, so I can have a clear overview of what I want to achieve.
@@ -61,14 +61,14 @@ The Planner App is a game-changer for anyone looking to set and achieve their go
         - As a user, I want the app to encourage consistency in my goal-setting and achievement, helping me establish a habit of pursuing my aspirations.
     - Personal Development
         - As a user, I want the app to not only help me achieve specific goals but also support my personal development, productivity, and time management skills.
-
+<br>
 - __Features to be implemented__
     - Goal Board: Create and prioritize your goals in one place.
     - Todo Lists: Break down your goals into actionable tasks and to-do lists.
     - Progress Tracking: Monitor your progress towards each goal.
     - Time Management: Schedule specific activities and allocate time to achieve your goals effectively.
     - Goal Statistics: Gain insights with statistics on achieved and missed goals.
-
+<br>
 - __Wireframes__
 
   <details><summary>Authentication wireframes</summary>
@@ -110,7 +110,7 @@ The Planner App is a game-changer for anyone looking to set and achieve their go
     ![Desktop wireframe](./README/wireframes/desktop/account.png)
 
   </details>
-
+<br>
 - __Models__
     - A PostgreSQL SQL database is utilized. Three Django database models have been established, each containing a user field serving as a foreign key connected to the default Django User model.
     - The 'Goal' and 'Task' models maintain a one-to-many relationship, with the 'Task' model possessing a 'goal' field acting as a foreign key referencing the 'Goal' table. Additionally, the 'Task' and 'Scheduled Tasks' tables exhibit a one-to-many relationship, where the 'task' field in the 'ScheduledTask' table is a foreign key associated with the 'Task' model.
@@ -141,7 +141,7 @@ The Planner App is a game-changer for anyone looking to set and achieve their go
         - completed: boolean field with a default value of 'False'
 
 ![Visual depiction presenting the relational connections among database models, displaying their fields and respective data types](./README/images/task_app_model.png)
-
+<br>
 - __Colors__
 
 The chosen color palette represents a deliberate and meticulous selection aimed at fostering an environment of simplicity and comfort for all users. Each color was thoughtfully chosen to maintain a minimalist and visually unobtrusive interface, prioritizing ease of comprehension and user focus within the application.
@@ -160,7 +160,7 @@ The chosen color palette represents a deliberate and meticulous selection aimed 
 
 ![Color Pallete](./README/images/color_pallete_1.png)
 ![Color Pallete](./README/images/color_pallete_2.png)
-
+<br>
 - __Fonts__
 The project's font selection comprises 'Playfair Display' and 'Roboto'. 'Playfair Display' is designated for the main headings, footer and the navigation menu to evoke a sense of seriousness and visual elegance. 'Roboto' has been incorporated specifically to enhance legibility.
 
@@ -168,12 +168,27 @@ This choice is intended to establish a formal tone and improve readability. The 
 
     - Playfair Display
     - Roboto
-
+<br>
 - __Technologies__
-  - Django
+    Framework
+      - Django
 
-  - Languages:
-    - Python
-    - HTML
-    - CSS
-    - JavaScript
+    Languages:
+			- Python
+			- HTML
+			- CSS
+			- JavaScript
+		
+		Databases:
+			- PostgreSQL
+		
+		Libraries:
+			- Bootstrap 5
+			- Font Awesome
+			- Google Fonts
+			- Django Crispy Forms
+			- Django Allauth
+			- Django Extensions
+			- Gunicorn
+			- Psycopg2
+			- Whitenoise
