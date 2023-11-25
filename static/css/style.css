@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
 /* Global */
 html {
   min-height: 100%;
@@ -6,6 +8,11 @@ html {
 body{
   background: #fafafa;
   min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
 }
 
 /* Header (nav) */
@@ -17,6 +24,7 @@ header {
 header nav {
   z-index: 99;
   min-height: 8vh;
+  font-family: 'Playfair Display', serif;
 }
 
 #logo-svg {
