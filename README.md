@@ -215,6 +215,85 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 ## Features
 ## Future Features
 ## Testing
+
+### Manual Testing
+
+- __Authentication__
+    Form validation is handled by Django. The following tests were conducted to ensure the authentication process is working as intended.
+<br>
+
+    - When accessing the website, it automatically redirects to the login page.
+    
+  <details><summary>Initial Login Page</summary>
+
+    ![Login Page](./README/tests/manual_testing/auth/initial_sign_in.png)
+
+  </details> 
+    
+    - If incorrect data is submitted in any field, the system displays error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
+
+  <details><summary>Login Page (Password is required)</summary>
+
+    ![Login Page (Password is required)](./README/tests/manual_testing/auth/sign_in_password_required.png)
+
+  </details> 
+
+    - If the user enters an incorrect username or password, the system displays an error message to indicate the error. Specifically, an error message highlighted in red appears above the form, just under title, to highlight the mistake. The system intentionally displays an error message solely below the 'Sign In' title, deliberately omitting specific field-related error messages. This design choice aims to avoid indicating which data entry—username or password—was incorrect.
+
+  <details><summary>Login Page (Username or Password is incorrect)</summary>
+
+    ![Login Page (Password is required)](./README/tests/manual_testing/auth/sign_in_error.png)
+
+  </details> 
+    
+    - If the user enters the correct username and password, the system redirects to the 'Goals Board' page.
+
+  <details><summary>Goals Board Logged in</summary>
+
+    ![Goals Board Logged in](./README/tests/manual_testing/auth/goals_board_signed_in.png)
+
+  </details> 
+    
+    - If the user clicks the 'Sign Up' link, the system redirects to the 'Sign Up' page.
+
+  <details><summary>Sign Up Form</summary>
+
+    ![Sign Up Form](./README/tests/manual_testing/auth/sign_up_form.png)
+
+  </details>
+
+    - If the user types incorrect data in any field, the system displays error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
+
+  <details><summary>Sign Up Form</summary>
+
+    ![Sign Up Form](./README/tests/manual_testing/auth/sign_up_error.png)
+
+  </details>
+
+    - Upon successful registration, the system redirects to the 'Goals Board' page.
+
+  <details><summary>Goals Board (signed up)</summary>
+
+    ![Goals Board (signed up)](./README/tests/manual_testing/auth/goals_board_signed_up.png)
+
+  </details>
+
+    - If the user clicks logout at the rigth top corner, the system redirects to the 'Sign Out' page to confirm logout.
+
+  <details><summary>Goals Board (signed up)</summary>
+
+    ![Goals Board (signed up)](./README/tests/manual_testing/auth/sign_out.png)
+
+  </details>
+
+    - Upon confirmation, the system redirects to the 'Sign In' page.
+
+  <details><summary>Sign in page after logout</summary>
+
+    ![Sign in page after logout](./README/tests/manual_testing/auth/sign_in_after_sign_out.pngg)
+
+  </details>
+
 ## Bugs
 ## Deployment
  - __Deployment Steps__
