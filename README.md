@@ -210,4 +210,82 @@ In developing my Task Manager App using Django, the implementation of Agile meth
  - Future Iterations and Agile Integration:
     - Armed with a comprehensive understanding of Django and refined Agile practices, I am poised to integrate Agile principles more seamlessly into future iterations. The adaptive journey within Agile, while initially marked by adjustments and unconventional tactics, has been instrumental in my learning trajectory. My newfound confidence in Django and a strengthened Agile foundation will undoubtedly shape more efficient and structured sprint planning processes in future iterations of the Task Manager App.
 
+ - Kanban board: https://github.com/users/OleksiyLa/projects/2
+
 ## Features
+## Future Features
+## Testing
+## Bugs
+## Deployment
+ - __Deployment Steps__
+    - The Task Manager App was deployed to Heroku using the following steps:
+        - Create a virtual environment and install Django.
+            - python -m venv myenv
+            - myenv\Scripts\activate
+            - Install Django using pip install Django
+        - Create a project and app.
+            - django-admin startproject project_name
+            - cd project_name
+            - python manage.py startapp app_name
+        - Heroku setup
+            - Log in to Heroku or create an account if required.
+            - Click "Create new app".
+            - Select the relevant region.
+            - Enter a unique app name.
+            - Click "Create app".
+        - Update Django settings for Heroku.
+            - Ensure DEBUG is set to False.
+            - Update ALLOWED_HOSTS to include your Heroku app's domain.
+            - Update the DATABASES configuration to use dj_database_url for the Heroku PostgreSQL database.
+            - Add logic for Heroku-specific configurations, e.g., handling static files.
+        - Install dependencies.
+        - Prepare requirements file.
+            - Use pip3 freeze > requirements.txt to generate a requirements.txt file listing the Python dependencies for your project.
+        - Create a Procfile.
+            - Create a Procfile to declare what commands are run by your app's dynos on the Heroku platform. For example, for a Django project, it might contain: web: gunicorn your_app_name.wsgi.
+        - Push project to GitHub.
+            - Push your project to a GitHub repository.
+        - Configure environment variables.
+            - Scroll down to the "Config Vars" section.
+            Click "Reveal Config Vars".
+            Add the following environment variables:
+            DATABASE_URL: Link to your PostgreSQL database.
+            PORT: Set the value to 8000.
+            SECRET_KEY: Set the Django secret key for your application.
+        - Set buildpack.
+            - Scroll down to the buildpacks section of the settings page.
+            Click "Add buildpack".
+            Select "Python" and save changes.
+        - Deployment configuration.
+            - Navigate to the "Deploy" tab.
+            Connect your Heroku app to the GitHub repository containing your project.
+            Choose the branch to deploy.
+        - Deploy to Heroku.
+            - Trigger the deployment process in Heroku either manually or set up automatic deployments.
+            Initiate the deployment process in Heroku.
+            Monitor the build logs to ensure successful deployment
+        - Access live application.
+            - Once deployed, click "View" in Heroku to access your live application.
+
+## Credits
+
+### Content
+- The Roboto and Playfair Display fonts were obtained from Google Fonts: https://fonts.google.com
+
+### Media
+- All SVG icons, including the favicon, were sourced from FontAwesome and Bootstrap icons: 
+    - https://fontawesome.com
+    - https://icons.getbootstrap.com/
+
+### Frameworks and Libraries
+- Django Docs: https://docs.djangoproject.com/en/4.2/
+- Bootsrap5: https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+### README
+- The color palette images featured in the README was sourced from the website http://colormind.io/
+- The text content in the README was composed with the assistance of ChatGPT: https://chat.openai.com
+- The validation image for HTML were captured from: https://validator.w3.org/
+- The validation image for CSS were captured from: https://jigsaw.w3.org/css-validator/
+- The validation image for JS were captured from: https://jshint.com/
+- The validation image for Python were captured from: https://pep8ci.herokuapp.com/#
+- Database model image was created with the assistance of Draw Sql: https://drawsql.app/
