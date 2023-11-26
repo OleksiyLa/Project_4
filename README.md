@@ -218,11 +218,11 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
 ### Manual Testing
 
-- __Authentication__
-    Form validation is handled by Django. The following tests were conducted to ensure the authentication process is working as intended.
-<br>
+#### Authentication
 
-    - When accessing the website, it automatically redirects to the login page.
+ - Form validation is handled by Django. The following tests were conducted to ensure the authentication process is working as intended.
+
+ - When accessing the website, it automatically redirects to the login page.
     
   <details><summary>Initial Login Page</summary>
 
@@ -230,7 +230,7 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
   </details> 
     
-    - If incorrect data is submitted in any field, the system displays error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
+ - If incorrect data is submitted in any field, the system displays error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
 
   <details><summary>Login Page (Password is required)</summary>
 
@@ -238,7 +238,7 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
   </details> 
 
-    - If the user enters an incorrect username or password, the system displays an error message to indicate the error. Specifically, an error message highlighted in red appears above the form, just under title, to highlight the mistake. The system intentionally displays an error message solely below the 'Sign In' title, deliberately omitting specific field-related error messages. This design choice aims to avoid indicating which data entry—username or password—was incorrect.
+ - If the user enters an incorrect username or password, the system displays an error message to indicate the error. Specifically, an error message highlighted in red appears above the form, just under title, to highlight the mistake. The system intentionally displays an error message solely below the 'Sign In' title, deliberately omitting specific field-related error messages. This design choice aims to avoid indicating which data entry—username or password—was incorrect.
 
   <details><summary>Login Page (Username or Password is incorrect)</summary>
 
@@ -246,7 +246,7 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
   </details> 
     
-    - If the user enters the correct username and password, the system redirects to the 'Goals Board' page.
+ - If the user enters the correct username and password, the system redirects to the 'Goals Board' page.
 
   <details><summary>Goals Board Logged in</summary>
 
@@ -254,7 +254,7 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
   </details> 
     
-    - If the user clicks the 'Sign Up' link, the system redirects to the 'Sign Up' page.
+ - If the user clicks the 'Sign Up' link, the system redirects to the 'Sign Up' page.
 
   <details><summary>Sign Up Form</summary>
 
@@ -262,7 +262,7 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
   </details>
 
-    - If the user types incorrect data in any field, the system displays error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
+ - If the user types incorrect data in any field, the system displays error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
 
   <details><summary>Sign Up Form</summary>
 
@@ -270,7 +270,7 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
   </details>
 
-    - Upon successful registration, the system redirects to the 'Goals Board' page.
+ - Upon successful registration, the system redirects to the 'Goals Board' page.
 
   <details><summary>Goals Board (signed up)</summary>
 
@@ -278,7 +278,7 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
   </details>
 
-    - If the user clicks logout at the rigth top corner, the system redirects to the 'Sign Out' page to confirm logout.
+ - If the user clicks logout at the rigth top corner, the system redirects to the 'Sign Out' page to confirm logout.
 
   <details><summary>Goals Board (signed up)</summary>
 
@@ -286,7 +286,7 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
   </details>
 
-    - Upon confirmation, the system redirects to the 'Sign In' page.
+ - Upon confirmation, the system redirects to the 'Sign In' page.
 
   <details><summary>Sign in page after logout</summary>
 
