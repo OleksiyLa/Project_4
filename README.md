@@ -355,146 +355,111 @@ __Goals Board__
 
   - If the user clicks the 'Tasks' link on the navigation menu, the system redirects to the 'Tasks' page.
 
-<details><summary>Tasks page image</summary>
-
   ![No tasks](./README/tests/manual_testing/tasks/tasks_no_tasks.png)
-
-</details>
 
   - The user can create a task by clicking the 'Add Task' button on the goal card on the 'Goals' page.
 
-<details><summary>Goals page, add task image</summary>
-
   ![Goals page, add task](./README/tests/manual_testing/tasks/add_task_goal_board.png)
-
-</details>
 
   - When the user clicks the 'Add Task' button, the system redirects to the 'Add Task' form.
 
-<details><summary>'Add Task' form image</summary>
-
   ![Add task form](./README/tests/manual_testing/tasks/add_task_form.png)
-
-</details>
 
   - If the user submits the form with empty fields, the system displays error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
 
-<details><summary>'Add Task' form, empty field validation image</summary>
-
   !['Add Task' form, empty field validation image](./README/tests/manual_testing/tasks/add_task_form_empty_fields.png)
-
-</details>
 
   - If the user circumvent front end validation by altering it using the inspector tool and removes maximum input validation the user will be able to add unlimited amount of text.
 
-<details><summary>Maximum input validation image</summary>
-
   !['Add Task' form, max validation image](./README/tests/manual_testing/tasks/add_task_form_max_input_validation.png)
-
-</details>
 
   - If the user circumvent front end validation by altering it using the inspector tool and removes minimum input validation and add less text than required.
 
-<details><summary>Minimum input validation image</summary>
-
   !['Add Task' form, min validation image](./README/tests/manual_testing/tasks/add_task_form_min_input_validation.png)
-
-</details>
 
   - When the user submits the correct data, they will be redirected to the Tasks page. Here, a task panel corresponding to the entered goal will be generated, displaying a task card beneath the panel.
 
-<details><summary>Created task image</summary>
-
-  ![Created task](./README/tests/manual_testing/tasks/tasks_created.png)
-
-</details>
+![Created task](./README/tests/manual_testing/tasks/tasks_created.png)
 
   - If the user clicks the 'Edit' icon on the task card, the system redirects to the 'Edit Task' page with the pre-populated form. The form has the same validation as the create task form but an additional field "complete".
 
-<details><summary>Edit task image</summary>
-
-  ![Created task](./README/tests/manual_testing/tasks/edit_task_card.png)
-
-</details>
+![Created task](./README/tests/manual_testing/tasks/edit_task_card.png)
 
   - If the user updates values in the form and submits it, the system redirects to the 'Tasks' page with the notification message just under the navigation menu and the task card is updated.
 
-<details><summary>Updated task image</summary>
-
-  ![Updated task](./README/tests/manual_testing/tasks/edit_task_updated.png)
-  ![Updated task](./README/tests/manual_testing/tasks/edited_task.png)
-
-</details>
+![Updated task](./README/tests/manual_testing/tasks/edit_task_updated.png)
+![Updated task](./README/tests/manual_testing/tasks/edited_task.png)
 
   - If the user clicks the 'Details' link on the task card, the system redirects to the 'Task Details' page.
 
-<details><summary>Task details image</summary>
-
-  ![Task details](./README/tests/manual_testing/tasks/task_details.png)
-
-</details>
+![Task details](./README/tests/manual_testing/tasks/task_details.png)
 
   - If the user clicks the 'Complete' button on the task card or details page, the system redirects to the 'Tasks' page with the notification message just under the navigation menu and the task card is completed and changed color to green.
 
-<details><summary>Task complete image</summary>
-
-  ![Task complete](./README/tests/manual_testing/tasks/task_completed.png)
-
-</details>
+![Task complete](./README/tests/manual_testing/tasks/task_completed.png)
 
   - In details page the user can click the 'Uncomplete' button which redirects the user  to the 'Tasks' page with the notification message just under the navigation menu and the task card is not completed and changed color to the original one.
 
-<details><summary>Task uncomplete image</summary>
-
-  ![Task uncomplete](./README/tests/manual_testing/tasks/task_uncomplete.png)
-  ![Task uncompleted](./README/tests/manual_testing/tasks/task_uncompleted.png)
-
-</details>
+![Task uncomplete](./README/tests/manual_testing/tasks/task_uncomplete.png)
+![Task uncompleted](./README/tests/manual_testing/tasks/task_uncompleted.png)
 
   - When the user clicks on the goal tile under the task panel, it will toggle the task card container. If the cards were open, they will hide; if hidden, they will display. Additionally, the toggle icon will change to its opposite state. This functionality proves convenient for users managing numerous tasks, enabling them to focus on one goal at a time or easily locate specific tasks by closing irrelevant ones.
 
-<details><summary>Task panel closed</summary>
+![Task panel closed](./README/tests/manual_testing/tasks/task_panel_closed.png)
 
-  ![Task panel closed](./README/tests/manual_testing/tasks/task_panel_closed.png)
-
-</details>
 
   - If the user clicks the 'Delete' icon on the task card, the confirmation modal will appear.
 
-<details><summary>Task delete modal image</summary>
+![Delete modal](./README/tests/manual_testing/tasks/task_delete_modal.png)
 
-  ![Delete modal](./README/tests/manual_testing/tasks/task_delete_modal.png)
-
-</details>
 
   - If the user confirms the deletion, the system redirects to the 'Tasks' page with the notification message just under the navigation menu and the task card is deleted.
 
-<details><summary>Task deleted image</summary>
-
-  ![Task deleted](./README/tests/manual_testing/tasks/task_deleted.png)
-
-</details>
+![Task deleted](./README/tests/manual_testing/tasks/task_deleted.png)
 
 <br>
 
 - __Calendar__
   - If the user clicks the 'Calendar' link on the navigation menu, the system redirects to the 'Calendar' page where the user can see the calendar with the current month, year and current day higlighted.
-
-<details><summary>Calendar page no scheduled tasks image</summary>
   
-    ![Calendar page](./README/tests/manual_testing/calendar/calendar_no_tasks.png)
-
-</details>
+![Calendar page](./README/tests/manual_testing/calendar/calendar_no_tasks.png)
 
   - To schedule a task the user needs to click schedule button on the task card on the 'Tasks' page or on the 'Details' page. The system will redirect to the 'Schedule Task' page.
-
-<details><summary>Schedule task form image</summary>
   
-    ![Schedule task](./README/tests/manual_testing/calendar/schedule_task_form.png)
+![Schedule task](./README/tests/manual_testing/calendar/schedule_task_form.png)
 
-</details>
+  - If the user submits fields with empty values, the system will display error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
+
+![Schedule task empty fields](./README/tests/manual_testing/calendar/schedule_task_empty.png)
+
+  - If the user add end time is earlier than start time, the system will display error messages to indicate the errors. Specifically, an error message appears above the form, just under title, to highlight the mistake.
+
+![Schedule task end time earlier than start time](./README/tests/manual_testing/calendar/schedule_task_time_error.png)
+
+  - if the user add end date is earlier than start date, the system will display error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
+
+![Schedule task end date earlier than start date](./README/tests/manual_testing/calendar/schedule_task_end_date.png)
+
+  - If the user add correct data including optional end date but forgets to check at least one weekday, an error message will appear.
+
+![Schedule task no weekdays](./README/tests/manual_testing/calendar/schedule_task_weekday.png) 
+  
+  - If the user add correct data including optional end date and check at least one weekday, the system will redirect to the 'Calendar' page with the notification message just under the navigation menu and the tasks are scheduled within the date range and weekdays selected. If scheduled tasks are over deadline, the warning will appear to notify the user how many tasks are over deadline.
+
+![Schedule tasks](./README/tests/manual_testing/calendar/calendar_tasks_over_deadline.png)
+
+  - To see the scheduled task for the next month, the user needs to click the 'Next' button on the calendar. The 'Calendar' switch to the next month.
+
+![Schedule tasks](./README/tests/manual_testing/calendar/scheduled_tasks_next_month.png)
+
+  - If the user will not select end date, the system will schedule the task for the exact date only.
+
+![Schedule task](./README/tests/manual_testing/calendar/schedule_task.png)
+![Schedule task](./README/tests/manual_testing/calendar/scheduled_task.png)
 
 - __Authorization__
+
+- __Data displayed correctly__
 
 - __Responsiveness__
 
