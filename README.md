@@ -43,29 +43,29 @@ The Planner App is a game-changer for anyone looking to set and achieve their go
         - Provide a convenient and accessible tool for goal planning and tracking that fits seamlessly into users' daily routines.
 
 - __User Stories__
-    - Task Management
-        - As a user, I want to break down my goals into actionable tasks and create to-do lists, allowing me to plan the steps needed to achieve my goals.
-    - Progress Tracking
-        - As a user, I want to track my progress on each goal, so I can stay motivated and ensure I'm making consistent strides toward achieving my objectives.
-    - Time Management
-        - As a user, I want to be able to schedule specific activities and allocate time to work on my goals, helping me manage my time effectively.
-    - Goal Statistics
-        - As a user, I want to see statistics on goals achieved and those that were not, giving me insights into my performance and areas for improvement.
-    - Versatile User Base
-        - As a user, I want the app to cater to different types of goals, whether they are academic, career-related, personal, or hobby-related.
-    - Convenience and Accessibility
-        - As a user, I want to be able to access the app from various devices through a web-based platform, ensuring convenience and flexibility in managing my goals.
-    - Cultivating Consistency
-        - As a user, I want the app to encourage consistency in my goal-setting and achievement, helping me establish a habit of pursuing my aspirations.
-    - Personal Development
-        - As a user, I want the app to not only help me achieve specific goals but also support my personal development, productivity, and time management skills.
+  - Task Management
+    - As a user, I want to break down my goals into actionable tasks and create to-do lists, allowing me to plan the steps needed to achieve my goals.
+  - Progress Tracking
+    - As a user, I want to track my progress on each goal, so I can stay motivated and ensure I'm making consistent strides toward achieving my objectives.
+  - Time Management
+    - As a user, I want to be able to schedule specific activities and allocate time to work on my goals, helping me manage my time effectively.
+  - Goal Statistics
+    - As a user, I want to see statistics on goals achieved and those that were not, giving me insights into my performance and areas for improvement.
+  - Versatile User Base
+    - As a user, I want the app to cater to different types of goals, whether they are academic, career-related, personal, or hobby-related.
+  - Convenience and Accessibility
+    - As a user, I want to be able to access the app from various devices through a web-based platform, ensuring convenience and flexibility in managing my goals.
+  - Cultivating Consistency
+    - As a user, I want the app to encourage consistency in my goal-setting and achievement, helping me establish a habit of pursuing my aspirations.
+  - Personal Development
+    - As a user, I want the app to not only help me achieve specific goals but also support my personal development, productivity, and time management skills.
 
 - __Features to be implemented__
-    - Goal Board: Create and prioritize your goals in one place.
-    - Todo Lists: Break down your goals into actionable tasks and to-do lists.
-    - Progress Tracking: Monitor your progress towards each goal.
-    - Time Management: Schedule specific activities and allocate time to achieve your goals effectively.
-    - Goal Statistics: Gain insights with statistics on achieved and missed goals.
+  - Goal Board: Create and prioritize your goals in one place.
+  - Todo Lists: Break down your goals into actionable tasks and to-do lists.
+  - Progress Tracking: Monitor your progress towards each goal.
+  - Time Management: Schedule specific activities and allocate time to achieve your goals effectively.
+  - Goal Statistics: Gain insights with statistics on achieved and missed goals.
 
 - __Wireframes__
 
@@ -110,33 +110,33 @@ The Planner App is a game-changer for anyone looking to set and achieve their go
   </details>
 
 - __Models__
-    - A PostgreSQL SQL database is utilized. Three Django database models have been established, each containing a user field serving as a foreign key connected to the default Django User model.
-    - The 'Goal' and 'Task' models maintain a one-to-many relationship, with the 'Task' model possessing a 'goal' field acting as a foreign key referencing the 'Goal' table. Additionally, the 'Task' and 'Scheduled Tasks' tables exhibit a one-to-many relationship, where the 'task' field in the 'ScheduledTask' table is a foreign key associated with the 'Task' model.
-    - The 'Goal' model contains the following fields:
-        - user: foreign key referencing the default Django User model with cascade deletion
-        - title: character field with a maximum length of 50 characters
-        - slug: slug field with a maximum length of 200 characters
-        - description: text field with a maximum length of 2500 characters
-        - status: choice field with the following options: 'ToDo', 'In Progress', 'On Hold' and 'Completed'
-        - created_at: date field with a default value of the current date
-        - updated_at: date field with a default value of the current date
-        - expected_deadline: date field
-    - The 'Task' model contains the following fields:
-        - user: foreign key referencing the default Django User model with cascade deletion
-        - goal: foreign key referencing the 'Goal' model with cascade deletion
-        - title: character field with a maximum length of 50 characters
-        - slug: slug field with a maximum length of 200 characters
-        - description: text field with a maximum length of 2500 characters
-        - completed: boolean field with a default value of 'False'
-        - created_at: date field with a default value of the current date
-    - The 'ScheduledTask' model contains the following fields:
-        - user: foreign key referencing the default Django User model with cascade deletion
-        - task: foreign key referencing the 'Task' model with cascade deletion
-        - slug: slug field with a maximum length of 200 characters
-        - date: date field
-        - start_time: time field
-        - end_time: time field
-        - completed: boolean field with a default value of 'False'
+  - A PostgreSQL SQL database is utilized. Three Django database models have been established, each containing a user field serving as a foreign key connected to the default Django User model.
+  - The 'Goal' and 'Task' models maintain a one-to-many relationship, with the 'Task' model possessing a 'goal' field acting as a foreign key referencing the 'Goal' table. Additionally, the 'Task' and 'Scheduled Tasks' tables exhibit a one-to-many relationship, where the 'task' field in the 'ScheduledTask' table is a foreign key associated with the 'Task' model.
+  - The 'Goal' model contains the following fields:
+    - user: foreign key referencing the default Django User model with cascade deletion
+    - title: character field with a maximum length of 50 characters
+    - slug: slug field with a maximum length of 200 characters
+    - description: text field with a maximum length of 2500 characters
+    - status: choice field with the following options: 'ToDo', 'In Progress', 'On Hold' and 'Completed'
+    - created_at: date field with a default value of the current date
+    - updated_at: date field with a default value of the current date
+    - expected_deadline: date field
+  - The 'Task' model contains the following fields:
+    - user: foreign key referencing the default Django User model with cascade deletion
+    - goal: foreign key referencing the 'Goal' model with cascade deletion
+    - title: character field with a maximum length of 50 characters
+    - slug: slug field with a maximum length of 200 characters
+    - description: text field with a maximum length of 2500 characters
+    - completed: boolean field with a default value of 'False'
+    - created_at: date field with a default value of the current date
+  - The 'ScheduledTask' model contains the following fields:
+    - user: foreign key referencing the default Django User model with cascade deletion
+    - task: foreign key referencing the 'Task' model with cascade deletion
+    - slug: slug field with a maximum length of 200 characters
+    - date: date field
+    - start_time: time field
+    - end_time: time field
+    - completed: boolean field with a default value of 'False'
 
 ![Visual depiction presenting the relational connections among database models, displaying their fields and respective data types](./README/images/task_app_model.png)
 
@@ -144,17 +144,17 @@ The Planner App is a game-changer for anyone looking to set and achieve their go
 
 The chosen color palette represents a deliberate and meticulous selection aimed at fostering an environment of simplicity and comfort for all users. Each color was thoughtfully chosen to maintain a minimalist and visually unobtrusive interface, prioritizing ease of comprehension and user focus within the application.
 
-    - The application utilized the following color palette:
-        - #023685: Used as the link color.
-        - #000000: Predominantly employed as the text color due to its high contrast.
-        - #025702: Designated for marking completed tasks in the calendar.
-        - #8B0000: Reserved for tasks yet to be done in the calendar.
-        - #eeeeee: Applied to denote today's date in the calendar and when hovering over dates.
-        - #DAA520: Designated for highlighting the selected day in the calendar.
-        - #ffffff: Utilized for the logo, text panel, and social links.
-        - #fafafa: Chosen as the overall background color.
-        - #500e86: Allocated for the edit icon.
-        - #b10b0b: Designated as the delete icon color.
+  - The application utilized the following color palette:
+    - #023685: Used as the link color.
+    - #000000: Predominantly employed as the text color due to its high contrast.
+    - #025702: Designated for marking completed tasks in the calendar.
+    - #8B0000: Reserved for tasks yet to be done in the calendar.
+    - #eeeeee: Applied to denote today's date in the calendar and when hovering over dates.
+    - #DAA520: Designated for highlighting the selected day in the calendar.
+    - #ffffff: Utilized for the logo, text panel, and social links.
+    - #fafafa: Chosen as the overall background color.
+    - #500e86: Allocated for the edit icon.
+    - #b10b0b: Designated as the delete icon color.
 
 ![Color Pallete](./README/images/color_pallete_1.png)
 ![Color Pallete](./README/images/color_pallete_2.png)
@@ -164,53 +164,53 @@ The project's font selection comprises 'Playfair Display' and 'Roboto'. 'Playfai
 
 This choice is intended to establish a formal tone and improve readability. The deliberate juxtaposition of 'Playfair Display' and 'Roboto' serves a dual purpose: creating visual distinction and ensuring content clarity within the project's framework.
 
-    - Playfair Display
-    - Roboto
+  - Playfair Display
+  - Roboto
 
 - __Technologies__
-    - Framework
-      - Django
+  - Framework
+    - Django
 
-    - Languages:
-        - Python
-        - HTML
-        - CSS
-        - JavaScript
-		
-    - Databases:
-        - PostgreSQL
-    
-    - Libraries:
-        - Bootstrap 5
-        - Font Awesome
-        - Google Fonts
-        - Django Crispy Forms
-        - Django Allauth
-        - Django Extensions
-        - Gunicorn
-        - Psycopg2
-        - Whitenoise
+  - Languages:
+    - Python
+    - HTML
+    - CSS
+    - JavaScript
+  
+  - Databases:
+    - PostgreSQL
+  
+  - Libraries:
+    - Bootstrap 5
+    - Font Awesome
+    - Google Fonts
+    - Django Crispy Forms
+    - Django Allauth
+    - Django Extensions
+    - Gunicorn
+    - Psycopg2
+    - Whitenoise
 
 - __Agile Methotology__
 
 In developing my Task Manager App using Django, the implementation of Agile methodology was both a challenge and a guiding framework. As a solo developer navigating a new technology landscape, the Agile principles of adaptability and iterative progress became my cornerstone.
 
- - Agile Adaptation and Solo Development Challenges:
+  - Agile Adaptation and Solo Development Challenges:
     - Agile methodologies, inherently designed for team collaboration, presented unique challenges in a solo development environment. Estimating tasks accurately within this framework was intricate, especially while acquainting myself with Django's complexities. The Agile structure demanded constant adaptation, a process complicated by the solitary nature of my work and the nuances of a new technology stack.
 
- - Strategic Sprint Adjustments and Agile Principles:
+  - Strategic Sprint Adjustments and Agile Principles:
     - To align Agile principles with my solo development needs, I adopted an adaptive approach. Initially, I found myself frequently refining the structure of sprints due to the novelty of Django. However, as I progressed, the need for caution and strategic planning became apparent. While traditional Agile discourages mid-sprint changes, I maximized efforts on high-priority tasks, deviating to manage uncertainties arising from a new technology landscape.
 
- - Iterative Learning and Agile Efficiency:
+  - Iterative Learning and Agile Efficiency:
     - As my proficiency in Django improved, so did my grasp of task estimations. This iterative learning process allowed me to plan subsequent sprints with greater precision. Evolving beyond mere task completion, I ensured a more nuanced and controlled development process. Agile, as a guiding philosophy, encouraged adaptability in my approach, fostering continuous improvement and efficiency in task estimation and project planning.
 
- - Refinement in Agile Sprint Planning:
+  - Refinement in Agile Sprint Planning:
     - Transitioning from rigid sprint structures, I embraced Agile flexibility, emphasizing task completion over predefined timeframes. This strategic shift allowed me to navigate uncertainties more effectively. Notably, in the project's final phase, my refined estimation process under the Agile umbrella ensured efficient allocation of time, culminating in the successful completion of the Task Manager App.
 
- - Future Iterations and Agile Integration:
+  - Future Iterations and Agile Integration:
     - Armed with a comprehensive understanding of Django and refined Agile practices, I am poised to integrate Agile principles more seamlessly into future iterations. The adaptive journey within Agile, while initially marked by adjustments and unconventional tactics, has been instrumental in my learning trajectory. My newfound confidence in Django and a strengthened Agile foundation will undoubtedly shape more efficient and structured sprint planning processes in future iterations of the Task Manager App.
 
- - Kanban board: https://github.com/users/OleksiyLa/projects/2
+  - Kanban board: https://github.com/users/OleksiyLa/projects/2
 
 ## Features
 
@@ -222,41 +222,41 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
 - __Authentication__
 
- - Form validation is handled by Django. The following tests were conducted to ensure the authentication process is working as intended.
+  - Form validation is handled by Django. The following tests were conducted to ensure the authentication process is working as intended.
 
- - When accessing the website, it automatically redirects to the login page.
+  - When accessing the website, it automatically redirects to the login page.
     
 ![Login Page](./README/tests/manual_testing/auth/initial_sign_in.png)
    
- - If incorrect data is submitted in any field, the system displays error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
+  - If incorrect data is submitted in any field, the system displays error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
 
 ![Login Page (Password is required)](./README/tests/manual_testing/auth/sign_in_password_required.png)
 
- - If the user enters an incorrect username or password, the system displays an error message to indicate the error. Specifically, an error message highlighted in red appears above the form, just under title, to highlight the mistake. The system intentionally displays an error message solely below the 'Sign In' title, deliberately omitting specific field-related error messages. This design choice aims to avoid indicating which data entry—username or password—was incorrect.
+  - If the user enters an incorrect username or password, the system displays an error message to indicate the error. Specifically, an error message highlighted in red appears above the form, just under title, to highlight the mistake. The system intentionally displays an error message solely below the 'Sign In' title, deliberately omitting specific field-related error messages. This design choice aims to avoid indicating which data entry—username or password—was incorrect.
 
 ![Login Page (Password is required)](./README/tests/manual_testing/auth/sign_in_error.png)
     
- - If the user enters the correct username and password, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu.
+  - If the user enters the correct username and password, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu.
 
 ![Goals Board Logged in](./README/tests/manual_testing/auth/goals_board_signed_in.png)
     
- - If the user clicks the 'Sign Up' link, the system redirects to the 'Sign Up' page.
+  - If the user clicks the 'Sign Up' link, the system redirects to the 'Sign Up' page.
 
 ![Sign Up Form](./README/tests/manual_testing/auth/sign_up_form.png)
 
- - If the user types incorrect data in any field, the system displays error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
+  - If the user types incorrect data in any field, the system displays error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
 
 ![Sign Up Form](./README/tests/manual_testing/auth/sign_up_error.png)
 
- - Upon successful registration, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu.
+  - Upon successful registration, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu.
 
 ![Goals Board (signed up)](./README/tests/manual_testing/auth/goals_board_signed_up.png)
 
- - If the user clicks logout at the rigth top corner, the system redirects to the 'Sign Out' page to confirm logout.
+  - If the user clicks logout at the rigth top corner, the system redirects to the 'Sign Out' page to confirm logout.
 
 ![Goals Board (signed up)](./README/tests/manual_testing/auth/sign_out.png)
 
- - Upon confirmation of logout, the system redirects to the 'Sign In' page with the notification message just under the navigation menu.
+  - Upon confirmation of logout, the system redirects to the 'Sign In' page with the notification message just under the navigation menu.
 
 ![Sign in page after logout](./README/tests/manual_testing/auth/sign_in_after_sign_out.png)
 
@@ -264,88 +264,88 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
 __Goals Board__
     
- - When the user is signed in, they get to use the Goals Board!
+  - When the user is signed in, they get to use the Goals Board!
 
 ![Goals Board](./README/tests/manual_testing/goals_board/goals_board.png)
 
- - Let's try it out by creating a goal. Just click the 'Create Goal' button on the goal panel.
+  - Let's try it out by creating a goal. Just click the 'Create Goal' button on the goal panel.
 
 ![Kanban goal panel](./README/tests/manual_testing/goals_board/goals_board-panel.png)
 
- - It'll take you to a form where you can set up a new goal.
+  - It'll take you to a form where you can set up a new goal.
 
 ![Create goal](./README/tests/manual_testing/goals_board/create_goal_datepicker_empty.png)
 
- - When the user clicks on the datepicker, a calendar will appear, and past dates will be disabled or unavailable for selection.
+  - When the user clicks on the datepicker, a calendar will appear, and past dates will be disabled or unavailable for selection.
 
 ![Create goal datepicker open](./README/tests/manual_testing/goals_board/create_goal_datepicker_past_dates_unavailable.png)
 
- - When attempting to submit empty fields, error messages will appear to prompt the user to fill in the required information.
+  - When attempting to submit empty fields, error messages will appear to prompt the user to fill in the required information.
 
 ![Empty fields submission create goal](./README/tests/manual_testing/goals_board/create_goal_submit_empty_fields.png)
 
- - In the event that a user tries to circumvent front-end validation by altering it using the inspector tool and selects a past date in the datepicker, the form will reload, displaying error messages indicating the issue. Additionally, if the content in the textarea is fewer than 20 words, an error will be triggered as well.
+  - In the event that a user tries to circumvent front-end validation by altering it using the inspector tool and selects a past date in the datepicker, the form will reload, displaying error messages indicating the issue. Additionally, if the content in the textarea is fewer than 20 words, an error will be triggered as well.
 
 ![Circumvented front-end validation for past dates and textarea create goal](./README/tests/manual_testing/goals_board/invalid_past_dates_textarea.png)
 
- - In case a user attempts to bypass front-end validation by adding an unlimited number of words for the title or in the textarea field, error messages will be triggered to prompt adherence to the specified limitations.
+  - In case a user attempts to bypass front-end validation by adding an unlimited number of words for the title or in the textarea field, error messages will be triggered to prompt adherence to the specified limitations.
 
 ![Unlimited title and textarea create goal](./README/tests/manual_testing/goals_board/invalid_create_goal_more_than_required.png)
 
- - If the user add correct data in all fields, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card in ToDo colomn.
+  - If the user add correct data in all fields, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card in ToDo colomn.
 
 ![Valid input for create goal](./README/tests/manual_testing/goals_board/valid_create_goal.png)
 ![Goals Board created goal](./README/tests/manual_testing/goals_board/goal_card_created.png)
 
- - If the user clicks the "In Progress" button on the goal card, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card in In Progress colomn.
+  - If the user clicks the "In Progress" button on the goal card, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card in In Progress colomn.
 
 ![Goal In Progress](./README/tests/manual_testing/goals_board/goal_card_in_progress.png)
 
- - If the user clicks the "On Hold" button on the goal card, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card in On Hold colomn.
+  - If the user clicks the "On Hold" button on the goal card, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card in On Hold colomn.
 
 ![Goal On Hold](./README/tests/manual_testing/goals_board/goal_card_on_hold.png)
     
- - If the user clicks the "Done" button on the goal card, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card in Done colomn.
+  - If the user clicks the "Done" button on the goal card, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card in Done colomn.
 
 ![Goal Done](./README/tests/manual_testing/goals_board/goal_card_done.png)
 
- - If the user clicks the 'Edit' icon on the goal card, the system redirects to the 'Edit Goal' page.
+  - If the user clicks the 'Edit' icon on the goal card, the system redirects to the 'Edit Goal' page.
 
 ![Edit goal](./README/tests/manual_testing/goals_board/edit_goal.png)
 
- - Edit goal form is pre-populated with the goal data and it has the same validation as the create goal form apart from the status field. The status field is a choice field and it has the same value as the status of the goal card.
+  - Edit goal form is pre-populated with the goal data and it has the same validation as the create goal form apart from the status field. The status field is a choice field and it has the same value as the status of the goal card.
 
 ![Edit goal status](./README/tests/manual_testing/goals_board/edit_goal_status.png)
 
- - If the user circumvent front end validation by altering it using the inspector tool and modifies the value of the status field that does not exist and submits the form, the system will reload the form and display an error message indicating the issue.
+  - If the user circumvent front end validation by altering it using the inspector tool and modifies the value of the status field that does not exist and submits the form, the system will reload the form and display an error message indicating the issue.
 
 ![Edit goal status done](./README/tests/manual_testing/goals_board/edit_goal_status_done.png)
 ![Edit goal status error](./README/tests/manual_testing/goals_board/edit_goal_status_error.png)
 
- - If the user edit the goal and add correct data in all fields, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card with updated data.
+  - If the user edit the goal and add correct data in all fields, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card with updated data.
 
 ![Updated goal card](./README/tests/manual_testing/goals_board/updated_goal_card.png)
 
- - If the user clicks the Details link on the goal card, the system redirects to the 'Goal Details' page.
+  - If the user clicks the Details link on the goal card, the system redirects to the 'Goal Details' page.
 
 ![Goal details](./README/tests/manual_testing/goals_board/goal_details.png)
 
- - If the user clicks the 'Edit' icon on the goal details page, the system redirects to the 'Edit Goal' page.
+  - If the user clicks the 'Edit' icon on the goal details page, the system redirects to the 'Edit Goal' page.
 
- - If the user clicks the 'Delete' icon on the goal details page, the confirmation modal will appear.
+  - If the user clicks the 'Delete' icon on the goal details page, the confirmation modal will appear.
 
 ![Delete modal from details](./README/tests/manual_testing/goals_board/delete_from_details_modal.png)
 
- - If the user clicks the 'Cancel' button on the confirmation modal, the system redirects to the 'Goal Details' page.
- - If the user clicks the 'Confirm' button on the confirmation modal, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card is deleted.
+  - If the user clicks the 'Cancel' button on the confirmation modal, the system redirects to the 'Goal Details' page.
+  - If the user clicks the 'Confirm' button on the confirmation modal, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card is deleted.
 
 ![Deleted card from details](./README/tests/manual_testing/goals_board/delete_from_details_modal.png)
 
- - If the user clicks the 'Delete' icon on the goal card, the confirmation modal will appear.
+  - If the user clicks the 'Delete' icon on the goal card, the confirmation modal will appear.
 
 ![Delete modal from Goals Board](./README/tests/manual_testing/goals_board/delete_from_goals_board_modal.png)
 
- - If the user clicks the 'Confirm' button on the confirmation modal, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card is deleted.
+  - If the user clicks the 'Confirm' button on the confirmation modal, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card is deleted.
 
 ![Deleted from Goals Board](./README/tests/manual_testing/goals_board/deleted_from_goals_board.png)
 
@@ -353,136 +353,150 @@ __Goals Board__
 
 - __Tasks__
 
- - If the user clicks the 'Tasks' link on the navigation menu, the system redirects to the 'Tasks' page.
+  - If the user clicks the 'Tasks' link on the navigation menu, the system redirects to the 'Tasks' page.
 
-  <details><summary>Tasks page image</summary>
+<details><summary>Tasks page image</summary>
 
-    ![No tasks](./README/tests/manual_testing/tasks/tasks_no_tasks.png)
+  ![No tasks](./README/tests/manual_testing/tasks/tasks_no_tasks.png)
 
-  </details>
+</details>
 
- - The user can create a task by clicking the 'Add Task' button on the goal card on the 'Goals' page.
+  - The user can create a task by clicking the 'Add Task' button on the goal card on the 'Goals' page.
 
-  <details><summary>Goals page, add task image</summary>
+<details><summary>Goals page, add task image</summary>
 
-    ![Goals page, add task](./README/tests/manual_testing/tasks/add_task_goal_board.png)
+  ![Goals page, add task](./README/tests/manual_testing/tasks/add_task_goal_board.png)
 
-  </details>
+</details>
 
- - When the user clicks the 'Add Task' button, the system redirects to the 'Add Task' form.
+  - When the user clicks the 'Add Task' button, the system redirects to the 'Add Task' form.
 
-  <details><summary>'Add Task' form image</summary>
+<details><summary>'Add Task' form image</summary>
 
-    ![Add task form](./README/tests/manual_testing/tasks/add_task_form.png)
+  ![Add task form](./README/tests/manual_testing/tasks/add_task_form.png)
 
-  </details>
+</details>
 
- - If the user submits the form with empty fields, the system displays error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
+  - If the user submits the form with empty fields, the system displays error messages to indicate the errors. Specifically, an error message highlighted in red appears under each erroneous input field and above the form, just under title, to highlight the mistake.
 
-  <details><summary>'Add Task' form, empty field validation image</summary>
+<details><summary>'Add Task' form, empty field validation image</summary>
 
-    !['Add Task' form, empty field validation image](./README/tests/manual_testing/tasks/add_task_form_empty_fields.png)
+  !['Add Task' form, empty field validation image](./README/tests/manual_testing/tasks/add_task_form_empty_fields.png)
 
-  </details>
+</details>
 
- - If the user circumvent front end validation by altering it using the inspector tool and removes maximum input validation the user will be able to add unlimited amount of text.
+  - If the user circumvent front end validation by altering it using the inspector tool and removes maximum input validation the user will be able to add unlimited amount of text.
 
-  <details><summary>Maximum input validation image</summary>
+<details><summary>Maximum input validation image</summary>
 
-    !['Add Task' form, max validation image](./README/tests/manual_testing/tasks/add_task_form_max_input_validation.png)
+  !['Add Task' form, max validation image](./README/tests/manual_testing/tasks/add_task_form_max_input_validation.png)
 
-  </details>
+</details>
 
- - If the user circumvent front end validation by altering it using the inspector tool and removes minimum input validation and add less text than required.
+  - If the user circumvent front end validation by altering it using the inspector tool and removes minimum input validation and add less text than required.
 
-  <details><summary>Minimum input validation image</summary>
+<details><summary>Minimum input validation image</summary>
 
-    !['Add Task' form, min validation image](./README/tests/manual_testing/tasks/add_task_form_min_input_validation.png)
+  !['Add Task' form, min validation image](./README/tests/manual_testing/tasks/add_task_form_min_input_validation.png)
 
-  </details>
+</details>
 
- - When the user submits the correct data, they will be redirected to the Tasks page. Here, a task panel corresponding to the entered goal will be generated, displaying a task card beneath the panel.
+  - When the user submits the correct data, they will be redirected to the Tasks page. Here, a task panel corresponding to the entered goal will be generated, displaying a task card beneath the panel.
 
-  <details><summary>Created task image</summary>
+<details><summary>Created task image</summary>
 
-    ![Created task](./README/tests/manual_testing/tasks/tasks_created.png)
+  ![Created task](./README/tests/manual_testing/tasks/tasks_created.png)
 
-  </details>
+</details>
 
- - If the user clicks the 'Edit' icon on the task card, the system redirects to the 'Edit Task' page with the pre-populated form. The form has the same validation as the create task form but an additional field "complete".
+  - If the user clicks the 'Edit' icon on the task card, the system redirects to the 'Edit Task' page with the pre-populated form. The form has the same validation as the create task form but an additional field "complete".
 
-  <details><summary>Edit task image</summary>
+<details><summary>Edit task image</summary>
 
-    ![Created task](./README/tests/manual_testing/tasks/edit_task_card.png)
+  ![Created task](./README/tests/manual_testing/tasks/edit_task_card.png)
 
-  </details>
+</details>
 
- - If the user updates values in the form and submits it, the system redirects to the 'Tasks' page with the notification message just under the navigation menu and the task card is updated.
+  - If the user updates values in the form and submits it, the system redirects to the 'Tasks' page with the notification message just under the navigation menu and the task card is updated.
 
-  <details><summary>Updated task image</summary>
+<details><summary>Updated task image</summary>
 
-    ![Updated task](./README/tests/manual_testing/tasks/edit_task_updated.png)
-    ![Updated task](./README/tests/manual_testing/tasks/edited_task.png)
+  ![Updated task](./README/tests/manual_testing/tasks/edit_task_updated.png)
+  ![Updated task](./README/tests/manual_testing/tasks/edited_task.png)
 
-  </details>
+</details>
 
- - If the user clicks the 'Details' link on the task card, the system redirects to the 'Task Details' page.
+  - If the user clicks the 'Details' link on the task card, the system redirects to the 'Task Details' page.
 
-  <details><summary>Task details image</summary>
+<details><summary>Task details image</summary>
 
-    ![Task details](./README/tests/manual_testing/tasks/task_details.png)
+  ![Task details](./README/tests/manual_testing/tasks/task_details.png)
 
-  </details>
+</details>
 
- - If the user clicks the 'Complete' button on the task card or details page, the system redirects to the 'Tasks' page with the notification message just under the navigation menu and the task card is completed and changed color to green.
+  - If the user clicks the 'Complete' button on the task card or details page, the system redirects to the 'Tasks' page with the notification message just under the navigation menu and the task card is completed and changed color to green.
 
-  <details><summary>Task complete image</summary>
+<details><summary>Task complete image</summary>
 
-    ![Task complete](./README/tests/manual_testing/tasks/task_completed.png)
+  ![Task complete](./README/tests/manual_testing/tasks/task_completed.png)
 
-  </details>
+</details>
 
- - In details page the user can click the 'Uncomplete' button which redirects the user  to the 'Tasks' page with the notification message just under the navigation menu and the task card is not completed and changed color to the original one.
+  - In details page the user can click the 'Uncomplete' button which redirects the user  to the 'Tasks' page with the notification message just under the navigation menu and the task card is not completed and changed color to the original one.
 
-  <details><summary>Task uncomplete image</summary>
+<details><summary>Task uncomplete image</summary>
 
-    ![Task uncomplete](./README/tests/manual_testing/tasks/task_uncomplete.png)
-    ![Task uncompleted](./README/tests/manual_testing/tasks/task_uncompleted.png)
+  ![Task uncomplete](./README/tests/manual_testing/tasks/task_uncomplete.png)
+  ![Task uncompleted](./README/tests/manual_testing/tasks/task_uncompleted.png)
 
-  </details>
+</details>
 
- - When the user clicks on the goal tile under the task panel, it will toggle the task card container. If the cards were open, they will hide; if hidden, they will display. Additionally, the toggle icon will change to its opposite state. This functionality proves convenient for users managing numerous tasks, enabling them to focus on one goal at a time or easily locate specific tasks by closing irrelevant ones.
+  - When the user clicks on the goal tile under the task panel, it will toggle the task card container. If the cards were open, they will hide; if hidden, they will display. Additionally, the toggle icon will change to its opposite state. This functionality proves convenient for users managing numerous tasks, enabling them to focus on one goal at a time or easily locate specific tasks by closing irrelevant ones.
 
-  <details><summary>Task panel closed</summary>
+<details><summary>Task panel closed</summary>
 
-    ![Task panel closed](./README/tests/manual_testing/tasks/task_panel_closed.png)
+  ![Task panel closed](./README/tests/manual_testing/tasks/task_panel_closed.png)
 
-  </details>
+</details>
 
- - If the user clicks the 'Delete' icon on the task card, the confirmation modal will appear.
+  - If the user clicks the 'Delete' icon on the task card, the confirmation modal will appear.
 
-  <details><summary>Task delete modal image</summary>
+<details><summary>Task delete modal image</summary>
 
-    ![Delete modal](./README/tests/manual_testing/tasks/task_delete_modal.png)
+  ![Delete modal](./README/tests/manual_testing/tasks/task_delete_modal.png)
 
-  </details>
+</details>
 
- - If the user confirms the deletion, the system redirects to the 'Tasks' page with the notification message just under the navigation menu and the task card is deleted.
+  - If the user confirms the deletion, the system redirects to the 'Tasks' page with the notification message just under the navigation menu and the task card is deleted.
 
-  <details><summary>Task deleted image</summary>
+<details><summary>Task deleted image</summary>
 
-    ![Task deleted](./README/tests/manual_testing/tasks/task_deleted.png)
+  ![Task deleted](./README/tests/manual_testing/tasks/task_deleted.png)
 
-  </details>
+</details>
 
 <br>
 
+- __Calendar__
+  - If the user clicks the 'Calendar' link on the navigation menu, the system redirects to the 'Calendar' page where the user can see the calendar with the current month, year and current day higlighted.
 
-#### Calendar
+<details><summary>Calendar page no scheduled tasks image</summary>
+  
+    ![Calendar page](./README/tests/manual_testing/calendar/calendar_no_tasks.png)
 
-#### Authorization
+</details>
 
-#### Responsiveness
+  - To schedule a task the user needs to click schedule button on the task card on the 'Tasks' page or on the 'Details' page. The system will redirect to the 'Schedule Task' page.
+
+<details><summary>Schedule task form image</summary>
+  
+    ![Schedule task](./README/tests/manual_testing/calendar/schedule_task_form.png)
+
+</details>
+
+- __Authorization__
+
+- __Responsiveness__
 
 ## Bugs
 
