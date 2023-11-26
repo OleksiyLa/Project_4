@@ -213,7 +213,9 @@ In developing my Task Manager App using Django, the implementation of Agile meth
  - Kanban board: https://github.com/users/OleksiyLa/projects/2
 
 ## Features
+
 ## Future Features
+
 ## Testing
 
 ### Manual Testing
@@ -234,7 +236,7 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
 ![Login Page (Password is required)](./README/tests/manual_testing/auth/sign_in_error.png)
     
- - If the user enters the correct username and password, the system redirects to the 'Goals Board' page.
+ - If the user enters the correct username and password, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu.
 
 ![Goals Board Logged in](./README/tests/manual_testing/auth/goals_board_signed_in.png)
     
@@ -246,7 +248,7 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
 ![Sign Up Form](./README/tests/manual_testing/auth/sign_up_error.png)
 
- - Upon successful registration, the system redirects to the 'Goals Board' page.
+ - Upon successful registration, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu.
 
 ![Goals Board (signed up)](./README/tests/manual_testing/auth/goals_board_signed_up.png)
 
@@ -254,13 +256,110 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
 ![Goals Board (signed up)](./README/tests/manual_testing/auth/sign_out.png)
 
- - Upon confirmation, the system redirects to the 'Sign In' page.
+ - Upon confirmation of logout, the system redirects to the 'Sign In' page with the notification message just under the navigation menu.
 
-![Sign in page after logout](./README/tests/manual_testing/auth/sign_in_after_sign_out.pngg)
+![Sign in page after logout](./README/tests/manual_testing/auth/sign_in_after_sign_out.png)
+
+#### Goals Board
+    
+ - When the user is signed in, they get to use the Goals Board!
+
+![Goals Board](./README/tests/manual_testing/goals_board/goals_board.png)
+
+ - Let's try it out by creating a goal. Just click the 'Create Goal' button on the goal panel.
+
+![Kanban goal panel](./README/tests/manual_testing/goals_board/goals_board-panel.png)
+
+ - It'll take you to a form where you can set up a new goal.
+
+![Create goal](./README/tests/manual_testing/goals_board/create_goal_datepicker_empty.png)
+
+ - When the user clicks on the datepicker, a calendar will appear, and past dates will be disabled or unavailable for selection.
+
+![Create goal datepicker open](./README/tests/manual_testing/goals_board/create_goal_datepicker_past_dates_unavailable.png)
+
+ - When attempting to submit empty fields, error messages will appear to prompt the user to fill in the required information.
+
+![Empty fields submission create goal](./README/tests/manual_testing/goals_board/create_goal_submit_empty_fields.png)
+
+ - In the event that a user tries to circumvent front-end validation by altering it using the inspector tool and selects a past date in the datepicker, the form will reload, displaying error messages indicating the issue. Additionally, if the content in the textarea is fewer than 20 words, an error will be triggered as well.
+
+![Circumvented front-end validation for past dates and textarea create goal](./README/tests/manual_testing/goals_board/invalid_past_dates_textarea.png)
+
+ - In case a user attempts to bypass front-end validation by adding an unlimited number of words for the title or in the textarea field, error messages will be triggered to prompt adherence to the specified limitations.
+
+![Unlimited title and textarea create goal](./README/tests/manual_testing/goals_board/invalid_create_goal_more_than_required.png)
+
+ - If the user add correct data in all fields, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card in ToDo colomn.
+
+![Valid input for create goal](./README/tests/manual_testing/goals_board/valid_create_goal.png)
+![Goals Board created goal](./README/tests/manual_testing/goals_board/goal_card_created.png)
+
+ - If the user clicks the "In Progress" button on the goal card, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card in In Progress colomn.
+
+![Goal In Progress](./README/tests/manual_testing/goals_board/goal_card_in_progress.png)
+
+ - If the user clicks the "On Hold" button on the goal card, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card in On Hold colomn.
+
+![Goal On Hold](./README/tests/manual_testing/goals_board/goal_card_on_hold.png)
+    
+ - If the user clicks the "Done" button on the goal card, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card in Done colomn.
+
+![Goal Done](./README/tests/manual_testing/goals_board/goal_card_done.png)
+
+ - If the user clicks the 'Edit' icon on the goal card, the system redirects to the 'Edit Goal' page.
+
+![Edit goal](./README/tests/manual_testing/goals_board/edit_goal.png)
+
+ - Edit goal form is pre-populated with the goal data and it has the same validation as the create goal form apart from the status field. The status field is a choice field and it has the same value as the status of the goal card.
+
+![Edit goal status](./README/tests/manual_testing/goals_board/edit_goal_status.png)
+
+ - If the user circumvent front end validation by altering it using the inspector tool and modifies the value of the status field that does not exist and submits the form, the system will reload the form and display an error message indicating the issue.
+
+![Edit goal status done](./README/tests/manual_testing/goals_board/edit_goal_status_done.png)
+![Edit goal status error](./README/tests/manual_testing/goals_board/edit_goal_status_error.png)
+
+ - If the user edit the goal and add correct data in all fields, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card with updated data.
+
+![Updated goal card](./README/tests/manual_testing/goals_board/updated_goal_card.png)
+
+ - If the user clicks the Details link on the goal card, the system redirects to the 'Goal Details' page.
+
+![Goal details](./README/tests/manual_testing/goals_board/goal_details.png)
+
+ - If the user clicks the 'Edit' icon on the goal details page, the system redirects to the 'Edit Goal' page.
+
+ - If the user clicks the 'Delete' icon on the goal details page, the confirmation modal will appear.
+
+![Delete modal from details](./README/tests/manual_testing/goals_board/delete_from_details_modal.png)
+
+ - If the user clicks the 'Cancel' button on the confirmation modal, the system redirects to the 'Goal Details' page.
+ - If the user clicks the 'Confirm' button on the confirmation modal, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card is deleted.
+
+![Deleted card from details](./README/tests/manual_testing/goals_board/delete_from_details_modal.png)
+
+ - If the user clicks the 'Delete' icon on the goal card, the confirmation modal will appear.
+
+![Delete modal from Goals Board](./README/tests/manual_testing/goals_board/delete_from_goals_board_modal.png)
+
+ - If the user clicks the 'Confirm' button on the confirmation modal, the system redirects to the 'Goals Board' page with the notification message just under the navigation menu and the goal card is deleted.
+
+![Deleted from Goals Board](./README/tests/manual_testing/goals_board/deleted_from_goals_board.png)
+
+#### Tasks
+
+#### Calendar
+
+#### Authorization
+
+#### Responsiveness
 
 ## Bugs
+
 ## Deployment
- - __Deployment Steps__
+
+### Deployment Steps__
     - The Task Manager App was deployed to Heroku using the following steps:
         - Create a virtual environment and install Django.
             - python -m venv myenv
