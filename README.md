@@ -220,7 +220,7 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
 ### Manual Testing
 
-#### Authentication
+- __Authentication__
 
  - Form validation is handled by Django. The following tests were conducted to ensure the authentication process is working as intended.
 
@@ -260,7 +260,9 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
 ![Sign in page after logout](./README/tests/manual_testing/auth/sign_in_after_sign_out.png)
 
-#### Goals Board
+<br>
+
+__Goals Board__
     
  - When the user is signed in, they get to use the Goals Board!
 
@@ -347,7 +349,9 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 
 ![Deleted from Goals Board](./README/tests/manual_testing/goals_board/deleted_from_goals_board.png)
 
-#### Tasks
+<br>
+
+- __Tasks__
 
  - If the user clicks the 'Tasks' link on the navigation menu, the system redirects to the 'Tasks' page.
 
@@ -470,6 +474,8 @@ In developing my Task Manager App using Django, the implementation of Agile meth
     ![Task deleted](./README/tests/manual_testing/tasks/task_deleted.png)
 
   </details>
+
+<br>
 
 
 #### Calendar
