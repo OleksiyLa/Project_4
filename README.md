@@ -1,6 +1,7 @@
 # Planner App (Task Manager)
 The Planner App is a game-changer for anyone looking to set and achieve their goals. This web-based platform is designed to simplify the goal-setting process. It allows you to create, prioritize, and break down your goals into manageable tasks, while also providing the flexibility to schedule your activities. Plus, with in-depth goal statistics, you'll gain a clear view of your achievements and areas for improvement. Whether you're a student, professional, or goal-oriented individual, this app is your pathway to success.
 
+![Am I responsive, login](./README/web_site_images/responsive_login.png)
 ![Goals Board page](./README/web_site_images/goals_board.png)
 
 ## Planning & Development
