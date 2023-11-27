@@ -555,6 +555,36 @@ __Goals Board__
 <br>
 
 #### LightHouse Testing
+  
+    - The following LightHouse tests were conducted to ensure the application's performance, accessibility, best practices, and SEO are optimized. The tests were conducted on the deployed application. Each result is at least 90% or higher.
+
+<details><summary>Login</summary>
+
+  ![Login Ligthouse](./README/tests/lighthouse/login.png)
+
+</details>
+
+<details><summary>Goals (mobile and desktop)</summary>
+
+  ![Login Ligthouse](./README/tests/lighthouse/goals.png)
+  ![Login Ligthouse](./README/tests/lighthouse/goals_desktop.png)
+
+</details>
+
+<details><summary>Tasks (mobile and desktop)</summary>
+
+  ![Login Ligthouse](./README/tests/lighthouse/tasks.png)
+  ![Login Ligthouse](./README/tests/lighthouse/tasks_desktop.png)
+
+</details>
+
+<details><summary>Calendar (mobile and desktop)</summary>
+
+  ![Login Ligthouse](./README/tests/lighthouse/calendar.png)
+  ![Login Ligthouse](./README/tests/lighthouse/calendar_desktop.png)
+
+</details>
+
 #### Python PEP8 Validation
 #### HTML Validation
 #### CSS Validation
