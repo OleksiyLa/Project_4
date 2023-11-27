@@ -566,22 +566,22 @@ __Goals Board__
 
 <details><summary>Goals (mobile and desktop)</summary>
 
-  ![Login Ligthouse](./README/tests/lighthouse/goals.png)
-  ![Login Ligthouse](./README/tests/lighthouse/goals_desktop.png)
+  ![Goals Ligthouse mobile](./README/tests/lighthouse/goals.png)
+  ![Goals Ligthouse](./README/tests/lighthouse/goals_desktop.png)
 
 </details>
 
 <details><summary>Tasks (mobile and desktop)</summary>
 
-  ![Login Ligthouse](./README/tests/lighthouse/tasks.png)
-  ![Login Ligthouse](./README/tests/lighthouse/tasks_desktop.png)
+  ![Tasks Ligthouse mobile](./README/tests/lighthouse/tasks.png)
+  ![Tasks Ligthouse](./README/tests/lighthouse/tasks_desktop.png)
 
 </details>
 
 <details><summary>Calendar (mobile and desktop)</summary>
 
-  ![Login Ligthouse](./README/tests/lighthouse/calendar.png)
-  ![Login Ligthouse](./README/tests/lighthouse/calendar_desktop.png)
+  ![Calendar Ligthouse mobile](./README/tests/lighthouse/calendar.png)
+  ![Calendar Ligthouse](./README/tests/lighthouse/calendar_desktop.png)
 
 </details>
 
@@ -591,31 +591,48 @@ __Goals Board__
 
 <details><summary>Views validation</summary>
 
-  ![Login Ligthouse](./README/tests/pep8/views.png)
+  ![PEP8 Views](./README/tests/pep8/views.png)
 
 </details>
 
 <details><summary>Models validation</summary>
 
-  ![Login Ligthouse](./README/tests/pep8/models.png)
+  ![PEP8 Models](./README/tests/pep8/models.png)
 
 </details>
 
 <details><summary>Forms validation</summary>
 
-  ![Login Ligthouse](./README/tests/pep8/forms.png)
+  ![PEP8 Forms](./README/tests/pep8/forms.png)
 
 </details>
 
 <details><summary>Urls validation</summary>
 
-  ![Login Ligthouse](./README/tests/pep8/urls.png)
+  ![PEP8 Urls](./README/tests/pep8/urls.png)
 
 </details>
 
 #### HTML Validation
-#### CSS Validation
-#### JavaScript Validation
+#### W3C CSS Validator (Jigsaw)
+  
+  - The CSS code has been validated using the W3C CSS Validator (Jigsaw), and no errors were found.
+
+<details><summary>W3C CSS Validator (Jigsaw) results</summary>
+
+  ![W3C CSS Validation](./README/tests/css/w3c_validated.png)
+
+</details>
+
+#### JSHint JavaScript Validator
+
+  - The JavaScript file has been validated using the JSHint JavaScript Validator, and no errors were detected but there was a warning "Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (index)."
+
+<details><summary>W3C CSS Validator (Jigsaw) results</summary>
+
+  ![JSHint JavaScript Validator](./README/tests/js/)
+
+</details>
 
 ## Bugs
   - On a mobile device, accessing the burger menu from the goal panel and selecting a specific category, such as 'In Progress,' smoothly navigates the user to the corresponding column. However, an issue arises where the selected column slightly obstructs the view of the first card, impacting the user experience a bit. This issue is not present on larger screens.
