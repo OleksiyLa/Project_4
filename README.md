@@ -514,6 +514,10 @@ __Goals Board__
 
 ![Schedule task end date earlier than start date](./README/tests/manual_testing/calendar/schedule_task_end_date.png)
 
+  - In the event that a user attempts to schedule tasks beyond the range limit, set at 365 days, error messages will be prominently displayed under the title section and below the end date field, notifying the user of the limit violation.
+
+![Schedule task beyond range](./README/tests/manual_testing/calendar/schedule_above_range_limit.png)
+
   - If the user add correct data including optional end date but forgets to check at least one weekday, an error message will appear.
 
 ![Schedule task no weekdays](./README/tests/manual_testing/calendar/schedule_task_weekday.png) 
