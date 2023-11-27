@@ -498,9 +498,37 @@ __Goals Board__
 ![Cascade delete goal](./README/tests/manual_testing/calendar/deleted_goal.png)
 ![Cascade delete goal](./README/tests/manual_testing/calendar/empty_task_goal_deletion.png)
 
+<br>
+
 - __Authorization__
 
+  - To assess authorization, attempts were made to access the app's goals, tasks, calendar, and edit page without logging in. When unauthenticated, users are automatically redirected to the login page.
+
+![Unauthorized access](./README/tests/manual_testing/authorization/sign_in.png)
+
+  - Upon creating two distinct accounts, users observe that data associated with one account remains inaccessible to the other.
+
+![Unauthorized access](./README/tests/manual_testing/authorization/one_account.png)
+![Unauthorized access](./README/tests/manual_testing/authorization/another_account.png)
+
+  - Furthermore, any attempt by a user to access the edit or detail page of an account from another account results in a redirection to the 'Not Found' page.
+
+![Unauthorized access](./README/tests/manual_testing/authorization/edit_goal_one_account.png)
+![Unauthorized access](./README/tests/manual_testing/authorization/redirect_edit_of_another_account.png)
+
+  - Similarly, if a user attempts to access the edit or detail page of a goal or task that does not exist, the system redirects to the 'Not Found' page.
+
+<br>
+
 - __Data displayed correctly__
+
+
+<br>
+
+- __Responsiveness__
+
+
+<br>
 
 ## Bugs
 

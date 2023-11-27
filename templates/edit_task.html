@@ -16,10 +16,11 @@
         {% endif %}
           <img src="{% static 'svg/back_icon.svg' %}" alt="back-icon" class="control-icon">
         </a>
-        <h1 class="text-center h3 mb-0 mx-auto d-flex align-items-center">
-          <span class="mx-auto">Edit your Task for <span class="d-block">{{ goal_title }}</span></span>
-        </h1>
       </div>
+      <h1 class="text-center h3">
+        Edit your Task for
+      </h1>
+      <h2 class="text-center h3 title-wrapper">{{ goal_title }}</h2>
       {% if form.errors %}
         {% for field, errors in form.errors.items %}
           {% for error in errors %}
