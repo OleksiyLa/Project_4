@@ -563,12 +563,22 @@ __Goals Board__
 ## Bugs
   - On a mobile device, accessing the burger menu from the goal panel and selecting a specific category, such as 'In Progress,' smoothly navigates the user to the corresponding column. However, an issue arises where the selected column slightly obstructs the view of the first card, impacting the user experience a bit. This issue is not present on larger screens.
 
-![Burger menu](./README/bugs/goal_panel_nav_progress_open.jpg)
-![Burger menu](./README/bugs/goal_panel_nav_progress_closed.jpg)
+<details><summary>Goal Panel Navigation</summary>
 
-  - For enhanced user experience, displaying the complete column title would be beneficial to ensure users are aware that they've navigated to the correct column after selecting a category from the burger menu in the goal panel on a mobile device.
+  ![Goal Panel Navigation](./README/bugs/goal_panel_nav_progress_open.jpg)
+  ![Goal Panel Navigation](./README/bugs/goal_panel_nav_progress_closed.jpg)
 
-![Burger menu](./README/bugs/goal_panel_nav_progress.jpg)
+</details>
+
+  - For enhanced user experience, displaying the complete column title would be beneficial to ensure users are aware that they've navigated to the correct column after selecting a category from the Goal Panel Navigation in the goal panel on a mobile device.
+
+<details><summary>Goal Panel Navigation</summary>
+
+![Goal Panel Navigation](./README/bugs/goal_panel_nav_progress.jpg)
+
+</details>
+
+  - When a user schedules a task for a specific date, the task card is displayed in the calendar. However, if the user schedules a task for a date range, the task card is not displayed in the calendar. This issue is due to the fact that the calendar is designed to display tasks scheduled for a specific date only. To resolve this issue, the calendar would need to be redesigned to accommodate tasks scheduled for a date range.
 
 ## Deployment
   - The Task Manager App was deployed to Heroku using the following steps:
