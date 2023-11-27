@@ -523,6 +523,22 @@ __Goals Board__
 
 - __Data displayed correctly__
 
+  - When a user creates a goal, the initial values displayed on the goal card for 'Tasks' and 'Tasks to Complete' will be zero. Upon adding two tasks, these numbers will be updated accordingly on the goal card. As tasks are completed, the user will observe the count change, indicating the total tasks and those remaining to complete.
+
+![Data displayed correctly](./README/tests/manual_testing/correct_data/details.png)
+![Data displayed correctly](./README/tests/manual_testing/correct_data/tasks.png)
+![Data displayed correctly](./README/tests/manual_testing/correct_data/goal_card_two_tasks.png)
+![Data displayed correctly](./README/tests/manual_testing/correct_data/goal_details_task_completed.png)
+
+
+  - When all tasks associated with a goal are completed, the user can view specific details showcasing the number of tasks and their completion status. Additionally, the goal card and details section undergo a color change, turning green to signify successful goal achievement.
+
+![Data displayed correctly](./README/tests/manual_testing/correct_data/goal_card_all_tasks_completed.png)
+
+  - When a user schedules 40 tasks, editing one task to be in the past while marking it incomplete, and completing six others, the task card will reflect the following values: Total tasks - 40, Completed tasks - 6, and Failed tasks - 1.
+
+![Data displayed correctly](./README/tests/manual_testing/correct_data/scheduled_6_completed.png)
+![Data displayed correctly](./README/tests/manual_testing/correct_data/tasks_6_completed.png)
 
 <br>
 
