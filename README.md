@@ -553,7 +553,7 @@ __Goals Board__
 
 <br>
 
-#### LightHouse Testing
+### LightHouse Testing
   
   - The following LightHouse tests were conducted to ensure the application's performance, accessibility, best practices, and SEO are optimized. The tests were conducted on the deployed application. Each result is at least 90% or higher.
 
@@ -584,7 +584,7 @@ __Goals Board__
 
 </details>
 
-#### Python PEP8 Validation
+### Python PEP8 Validation
 
   - The Python PEP8 validation tests were performed to assess the adherence of the application's Python code to the PEP8 style guide. These tests were executed on the deployed application, and no errors were detected.
 
@@ -612,7 +612,7 @@ __Goals Board__
 
 </details>
 
-#### HTML Validation
+### HTML Validation
   
   - All HTML files have been validated using the W3C HTML Validator, with no errors or warnings found.
 
@@ -657,7 +657,7 @@ __Goals Board__
 
 </details>
 
-#### W3C CSS Validator (Jigsaw)
+### W3C CSS Validator (Jigsaw)
   
   - The CSS code has been validated using the W3C CSS Validator (Jigsaw), and no errors were found.
 
@@ -667,7 +667,7 @@ __Goals Board__
 
 </details>
 
-#### JSHint JavaScript Validator
+### JSHint JavaScript Validator
 
 The JavaScript file has been validated using the JSHint JavaScript Validator, and no errors were detected but there was a warning "Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (index)."
 
@@ -683,7 +683,7 @@ The JavaScript file has been validated using the JSHint JavaScript Validator, an
 
 <details><summary>Validation for calendar.js</summary>
 
-  ![JSHint JavaScript Validator](./README/tests/js/index.js.png.js.png)
+  ![JSHint JavaScript Validator](./README/tests/js/index.js.png)
   ![JSHint JavaScript Validator](./README/tests/js/log_bootsrap.png)
   ![JSHint JavaScript Validator](./README/tests/js/log_results.png)
 
