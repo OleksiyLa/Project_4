@@ -528,6 +528,7 @@ __Goals Board__
 ![Data displayed correctly](./README/tests/manual_testing/correct_data/details.png)
 ![Data displayed correctly](./README/tests/manual_testing/correct_data/tasks.png)
 ![Data displayed correctly](./README/tests/manual_testing/correct_data/goal_card_two_tasks.png)
+![Data displayed correctly](./README/tests/manual_testing/correct_data/tasks_one_completed.png)
 ![Data displayed correctly](./README/tests/manual_testing/correct_data/goal_details_task_completed.png)
 
 
@@ -535,7 +536,7 @@ __Goals Board__
 
 ![Data displayed correctly](./README/tests/manual_testing/correct_data/goal_card_all_tasks_completed.png)
 
-  - When a user schedules 40 tasks, editing one task to be in the past while marking it incomplete, and completing six others, the task card will reflect the following values: Total tasks - 40, Completed tasks - 6, and Failed tasks - 1.
+  - When a user schedules 40 tasks for 'Go to the gym' goal, editing one task to be in the past while marking it incomplete, and completing six others, the task card will reflect the following values: Total tasks - 40, Completed tasks - 6, and Failed tasks - 1.
 
 ![Data displayed correctly](./README/tests/manual_testing/correct_data/scheduled_6_completed.png)
 ![Data displayed correctly](./README/tests/manual_testing/correct_data/tasks_6_completed.png)
@@ -544,10 +545,30 @@ __Goals Board__
 
 - __Responsiveness__
 
+  - The burger menu for the goal panel is designed to activate when the width reaches 1199 pixels, while the navigation burger menu activates at 575 pixels. Both burger menus function as intended, displaying the necessary navigation content.
+
+![Responsiveness](./README/tests/manual_testing/rensponsiveness/goal_panel_burger.png)
+![Responsiveness](./README/tests/manual_testing/rensponsiveness/nav_burger.png)
+
+  - The navigation links within the burger menu function correctly, seamlessly directing users to the selected pages. In the goal panel, the links appropriately scroll users to the relevant goal categories.
 
 <br>
 
+#### LightHouse Testing
+#### Python PEP8 Validation
+#### HTML Validation
+#### CSS Validation
+#### JavaScript Validation
+
 ## Bugs
+  - On a mobile device, accessing the burger menu from the goal panel and selecting a specific category, such as 'In Progress,' smoothly navigates the user to the corresponding column. However, an issue arises where the selected column slightly obstructs the view of the first card, impacting the user experience a bit. This issue is not present on larger screens.
+
+![Burger menu](./README/bugs/goal_panel_nav_progress_open.jpg)
+![Burger menu](./README/bugs/goal_panel_nav_progress_closed.jpg)
+
+  - For enhanced user experience, displaying the complete column title would be beneficial to ensure users are aware that they've navigated to the correct column after selecting a category from the burger menu in the goal panel on a mobile device.
+
+![Burger menu](./README/bugs/goal_panel_nav_progress.jpg)
 
 ## Deployment
   - The Task Manager App was deployed to Heroku using the following steps:
