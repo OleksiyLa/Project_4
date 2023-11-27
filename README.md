@@ -578,8 +578,6 @@ __Goals Board__
 
 </details>
 
-  - When a user schedules a task for a specific date, the task card is displayed in the calendar. However, if the user schedules a task for a date range, the task card is not displayed in the calendar. This issue is due to the fact that the calendar is designed to display tasks scheduled for a specific date only. To resolve this issue, the calendar would need to be redesigned to accommodate tasks scheduled for a date range.
-
 ## Deployment
   - The Task Manager App was deployed to Heroku using the following steps:
     - Create a virtual environment and install Django.
