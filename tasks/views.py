@@ -434,14 +434,12 @@ def schedule_task(request, slug):
                     return render(request,
                                   'schedule.html',
                                   {'form': form,
-                                   'task': task.id,
                                    'task_title': task_title})
                 if end_date <= start_date:
                     error_message = "End date should be later than start date."
                     form.errors['end_date'] = form.error_class([error_message])
                     return render(request, 'schedule.html',
                                   {'form': form,
-                                   'task': task.id,
                                    'task_title': task_title})
                 delta = timedelta(days=1)
                 validatied_tasks = []
@@ -458,7 +456,6 @@ def schedule_task(request, slug):
                             form.add_error(None, error_message)
                             return render(request, 'schedule.html',
                                           {'form': form,
-                                           'task': task,
                                            'task_title': task_title})
                         scheduled_task = ScheduledTask(
                             task=task,
@@ -472,7 +469,6 @@ def schedule_task(request, slug):
                 if validation_failed:
                     return render(request, 'schedule.html',
                                   {'form': form,
-                                   'task': task.id,
                                    'task_title': task_title})
                 try:
                     past_deadline = 0
@@ -481,19 +477,18 @@ def schedule_task(request, slug):
                         if (task.is_date_past_goal_deadline()):
                             past_deadline += 1
                     num_of_tasks = len(validatied_tasks)
-                    err_msg_1 = f'{num_of_tasks}tasks scheduled successfully'
+                    err_msg_1 = f'{num_of_tasks} tasks scheduled successfully'
                     err_msg_2 = f'{past_deadline} of them are past the goal'
                     if past_deadline > 0:
                         messages.warning(
                             request,
                             f'{err_msg_1}, but {err_msg_2} deadline.')
                     else:
-                        messages.success(request, f'{msg}!')
+                        messages.success(request, f'{err_msg_1}!')
                 except ValidationError as e:
                     form.add_error(None, e)
                     return render(request, 'schedule.html',
                                   {'form': form,
-                                   'task': task.id,
                                    'task_title': task_title})
             else:
                 scheduled_task = ScheduledTask(
@@ -514,7 +509,6 @@ def schedule_task(request, slug):
                     form.add_error(None, error_message)
                     return render(request, 'schedule.html',
                                   {'form': form,
-                                   'task': task,
                                    'task_title': task_title})
                 try:
                     scheduled_task.save()
@@ -522,8 +516,7 @@ def schedule_task(request, slug):
                     if (scheduled_task.is_date_past_goal_deadline()):
                         messages.warning(
                             request,
-                            {msg},
-                            'but the date is past the goal deadline.')
+                            f'{msg}, but the date is past the goal deadline.')
                     else:
                         messages.success(request, f'{msg}!')
 
@@ -531,19 +524,16 @@ def schedule_task(request, slug):
                     form.add_error(None, e)
                     return render(request, 'schedule.html',
                                   {'form': form,
-                                   'task': task.id,
                                    'task_title': task_title})
             return redirect(reverse('calendar'))
         else:
             return render(request, 'schedule.html',
                           {'form': form,
-                           'task': task.id,
                            'task_title': task_title})
     else:
         form = myFormModels.AddScheduledTaskForm()
         return render(request, 'schedule.html',
                       {'form': form,
-                       'task': task.id,
                        'task_title': task_title})
 
 

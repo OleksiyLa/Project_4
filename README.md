@@ -614,6 +614,49 @@ __Goals Board__
 </details>
 
 #### HTML Validation
+  
+  - All HTML files have been validated using the W3C HTML Validator, with no errors or warnings found.
+
+<details><summary>Login, Sign Up, Logout</summary>
+
+  ![W3C HTML Validation](./README/tests/html/login.png)
+  ![W3C HTML Validation](./README/tests/html/logout.png)
+  ![W3C HTML Validation](./README/tests/html/sign_up.png)
+
+</details>
+
+<details><summary>Goals, goal detail, create goal, edit goal</summary>
+
+  ![W3C HTML Validation](./README/tests/html/goal_board.png)
+  ![W3C HTML Validation](./README/tests/html/goal_detail.png)
+  ![W3C HTML Validation](./README/tests/html/edit_goal.png)
+  ![W3C HTML Validation](./README/tests/html/create_goal.png)
+
+</details>
+
+
+<details><summary>Tasks, task details, edit task, add task</summary>
+
+  ![W3C HTML Validation](./README/tests/html/tasks.png)
+  ![W3C HTML Validation](./README/tests/html/task_detail.png)
+  ![W3C HTML Validation](./README/tests/html/edit_task.png)
+  ![W3C HTML Validation](./README/tests/html/add_task.png)
+
+</details>
+
+<details><summary>Calendar, Schedule tasks, Edit Scheduled task</summary>
+
+  ![W3C HTML Validation](./README/tests/html/calendar.png)
+  ![W3C HTML Validation](./README/tests/html/edit_scheduled_task.png)
+
+</details>
+
+<details><summary>Page Not Found</summary>
+
+  ![W3C HTML Validation](./README/tests/html/404.png)
+
+</details>
+
 #### W3C CSS Validator (Jigsaw)
   
   - The CSS code has been validated using the W3C CSS Validator (Jigsaw), and no errors were found.
