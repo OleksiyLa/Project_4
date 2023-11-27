@@ -647,6 +647,7 @@ __Goals Board__
 <details><summary>Calendar, Schedule tasks, Edit Scheduled task</summary>
 
   ![W3C HTML Validation](./README/tests/html/calendar.png)
+  ![W3C HTML Validation](./README/tests/html/schedule_form.png)
   ![W3C HTML Validation](./README/tests/html/edit_scheduled_task.png)
 
 </details>
