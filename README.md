@@ -1,5 +1,5 @@
 # Planner App (Task Manager)
-The Planner App is a game-changer for anyone looking to set and achieve their goals. This web-based platform is designed to simplify the goal-setting process. It allows you to create, prioritize, and break down your goals into manageable tasks, while also providing the flexibility to schedule your activities. Plus, with in-depth goal statistics, you'll gain a clear view of your achievements and areas for improvement. Whether you're a student, professional, or goal-oriented individual, this app is your pathway to success.
+The Planner App serves as an extensive task manager, facilitating goal setting, planning, task assignment, and calendar-based scheduling. It empowers users to set goals, strategize essential steps, allocate tasks, and effectively schedule these tasks for goal achievement. Users have the ability to track progress visually by adjusting the status of scheduled tasks, tasks, and goals, enabling a transparent overview of their journey. Additionally, a convenient Kanban board for goals, comprising sections like 'To Do,' 'In Progress,' 'On Hold,' and 'Done,' enhances organizational efficiency and progress visualization.
 
 ![Goals Board page](./README/web_site_images/goals_board.png)
 
@@ -214,6 +214,68 @@ In developing my Task Manager App using Django, the implementation of Agile meth
   - Kanban board: https://github.com/users/OleksiyLa/projects/2
 
 ## Features
+
+### Authentication
+
+  - Access to the app begins with a mandatory login or sign-up process. Upon successful authentication, users are redirected to access the app's functionalities, ensuring that only authenticated users can utilize the application.
+
+![Login](./README/features/login.png)
+
+### Goals Board
+
+  - The application experience commences at the goals page, featuring a goal panel with a prominent 'Create Goal' button on the right side. Upon clicking, this button redirects users to a form. After successful form submission, the user is redirected to the goals page where a goal card is generated within the 'ToDo' column, displaying pertinent information from the form. In cases of lengthy text descriptions, the card provides a truncated view, with full content accessible upon clicking the 'Details' link on the card.
+
+  - Clicking the 'Details' link redirects users to the goal details page, offering a comprehensive view of all goal-related data. Both the goal card and details page allow users to edit or delete the goal via respective icons. Additionally, the goal card's status can be altered by clicking appropriate buttons—'In Progress,' 'On Hold,' or 'Done'—clearly denoting the current status in the column header. Reverting the status back to 'ToDo' can be accomplished within the edit form.
+
+  - The goal card or its detailed page features an 'Add Task' button, enabling users to create tasks associated with the respective goal. Upon clicking this button, users can seamlessly create tasks directly linked to the goal, facilitating a streamlined task management process.
+
+![Goals Board](./README/features/goals_board.png)
+
+### Tasks
+
+  - After a user adds a task, a corresponding task panel is generated on the tasks page. Within this panel, positioned on the left side, lies a 'Create Task' button mirroring the functionality available on the goal panel, allowing users to create tasks associated with the goal. Directly beneath this panel is a collapsible 'Goal Title' section. When expanded, it reveals all tasks pertaining to the goal; when collapsed, it conceals the contents. This intuitive feature facilitates seamless navigation through the tasks associated with various goals.
+
+  - The panel content comprises task cards featuring essential details such as the task's creation date, title, description, and a link to access further details. Additionally, each task card includes buttons allowing users to mark the task as complete or schedule it for a specific date.
+
+  - Tasks scheduled for future dates are categorized and displayed within separate sections on the card: 'Scheduled Tasks,' 'Completed Scheduled Tasks,' 'Not Completed Scheduled Tasks,' and 'Failed Scheduled Tasks.' This classification aids users in efficiently tracking and managing scheduled tasks based on their statuses.
+
+  - Within the task card, users can access specific information about 'Scheduled Tasks,' 'Completed Scheduled Tasks,' 'Not Completed Scheduled Tasks,' and 'Failed Scheduled Tasks.' These values dynamically adjust based on associated scheduled tasks, offering users insights into the current status and distribution of tasks directly on the task card.
+
+  - Tasks can be edited or deleted by clicking on the respective icons available on the task card itself or within the details page. This convenient feature allows users to efficiently update or remove tasks as needed, either directly from the card or through the detailed task view.
+
+![Tasks](./README/features/tasks.png)
+
+### Calendar
+
+  - If a task is scheduled, it will be visible and displayed within the calendar on the calendar page. This integration ensures that scheduled tasks are effectively reflected and accessible within the calendar interface. Tasks offer scheduling options to occur on a specific date or within selected weekdays in a defined range. This feature allows users the flexibility to schedule tasks with precision on a particular date or within specific weekdays across a range.
+
+  - The calendar highlights days with scheduled tasks in red and shifts to green once all tasks for that day are completed. Users can select a specific day by clicking on it, causing the selected day to be highlighted in a yellowish shade. Adjacent to the calendar, tasks scheduled for the selected day are displayed in chronological order, offering users a clear view of the day's scheduled tasks.
+
+  - The 'Next' and 'Previous' buttons adjacent to the calendar facilitate navigation to the next or previous month, respectively. Additionally, the 'Today' button conveniently redirects users to the current day, irrespective of the displayed calendar month, providing quick access to the present date.
+
+  - Scheduled tasks can be completed, edited, or deleted. Unlike scheduling, where tasks can be allocated to future dates, scheduled tasks have the flexibility to be edited to past dates if needed. This feature allows users to adjust scheduled tasks as needed, even if the date has passed.
+
+![Calendar](./README/features/calendar.png)
+
+### Authorization
+
+  - Users are authorized to view and modify their own data within the application. Access to data is restricted for other users, ensuring that they cannot obtain or modify information belonging to other users.
+
+### Intuitive design (Good UX)
+
+  - The application's remarkable intuitiveness negates the necessity for elaborate instructions to navigate its features. Its user-friendly interface encompasses a convenient navigation menu, intuitive edit and delete icons, a user-centric Kanban board, calendar integration, and a 'Back' icon within forms. Additionally, the app employs error messages for forms, along with success or warning messages for significant actions, all harmonizing to ensure a seamless user experience.
+
+![Schedule_task_form](./README/features/schedule_task_form.png)
+
+<br>
+
+![Calendar](./README/features/calendar_ipad.png)
+
+### Responsive design
+
+  - The website is responsive and adeptly adjusts its layout across various devices. On smaller screens, a burger menu is featured for general navigation between pages. Additionally, within the goal page, another burger menu facilitates navigation between different columns, offering seamless movement from 'ToDo' to 'Done' sections. This feature ensures that users can easily navigate the goal page, even on smaller screens.
+
+![Mobile](./README/features/goals_board_mobile.jpg)
 
 ## Future Features
 
