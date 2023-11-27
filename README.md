@@ -4,45 +4,46 @@ The Planner App is a game-changer for anyone looking to set and achieve their go
 ![Goals Board page](./README/web_site_images/goals_board.png)
 
 ## Planning & Development
-- __Target audience__
-    - Students: The Planner App is ideal for students of all ages looking to manage their academic goals, such as completing assignments, preparing for exams, or achieving personal development milestones.
 
-    - Professionals: Career-focused individuals can benefit from the app by setting and tracking career-related objectives, managing projects, and enhancing their time management skills.
+### Target audience
+  - Students: The Planner App is ideal for students of all ages looking to manage their academic goals, such as completing assignments, preparing for exams, or achieving personal development milestones.
 
-    - Entrepreneurs: Entrepreneurs and small business owners can use the app to organize and prioritize their business goals, create action plans, and measure their progress toward success.
+  - Professionals: Career-focused individuals can benefit from the app by setting and tracking career-related objectives, managing projects, and enhancing their time management skills.
 
-    - Goal-Oriented Individuals: Anyone with personal aspirations, whether related to fitness, hobbies, or self-improvement, can harness the Planner App to plan, execute, and monitor their goals effectively.
+  - Entrepreneurs: Entrepreneurs and small business owners can use the app to organize and prioritize their business goals, create action plans, and measure their progress toward success.
 
-    - Time Management Enthusiasts: Those interested in improving their time management skills can use the app to schedule tasks, set deadlines, and optimize their daily routines.
+  - Goal-Oriented Individuals: Anyone with personal aspirations, whether related to fitness, hobbies, or self-improvement, can harness the Planner App to plan, execute, and monitor their goals effectively.
 
-    - Productivity Seekers: Individuals seeking to boost their productivity and accomplish more in less time can find value in the app's task management and progress tracking features.
+  - Time Management Enthusiasts: Those interested in improving their time management skills can use the app to schedule tasks, set deadlines, and optimize their daily routines.
 
-- __App Objectives__
-    - Empower Goal Achievement:
-        - Enable users to set, prioritize, and achieve their personal and professional goals effectively. Provide a platform that promotes action and progress toward meaningful objectives.
+  - Productivity Seekers: Individuals seeking to boost their productivity and accomplish more in less time can find value in the app's task management and progress tracking features.
 
-    - Enhance Time Management:
-        - Help users improve their time management skills by scheduling tasks and allocating time for goal-related activities. Foster efficient use of time to maximize productivity and goal accomplishment.
+### App Objectives
+  - Empower Goal Achievement:
+    - Enable users to set, prioritize, and achieve their personal and professional goals effectively. Provide a platform that promotes action and progress toward meaningful objectives.
 
-    - Improve Accountability:
-        - Encourage users to take ownership of their goals by breaking them down into actionable tasks and to-do lists. Facilitate tracking and monitoring of progress, creating a sense of responsibility for goal outcomes.
+  - Enhance Time Management:
+      - Help users improve their time management skills by scheduling tasks and allocating time for goal-related activities. Foster efficient use of time to maximize productivity and goal accomplishment.
 
-    - Provide Valuable Insights:
-        - Offer goal statistics and data-driven feedback to help users gain a realistic view of their achievements and areas for improvement. Enable users to make data-informed decisions about their goals and time allocation.
+  - Improve Accountability:
+    - Encourage users to take ownership of their goals by breaking them down into actionable tasks and to-do lists. Facilitate tracking and monitoring of progress, creating a sense of responsibility for goal outcomes.
 
-    - Foster Versatility:
-        - Cater to a diverse user base, including students, professionals, entrepreneurs, and goal-oriented individuals. Offer a user-friendly and intuitive web-based platform accessible from various devices.
+  - Provide Valuable Insights:
+    - Offer goal statistics and data-driven feedback to help users gain a realistic view of their achievements and areas for improvement. Enable users to make data-informed decisions about their goals and time allocation.
 
-    - Encourage Consistency:
-        - Cultivate the habit of consistent goal setting and achievement, helping users build a lifelong practice of pursuing their aspirations.
+  - Foster Versatility:
+    - Cater to a diverse user base, including students, professionals, entrepreneurs, and goal-oriented individuals. Offer a user-friendly and intuitive web-based platform accessible from various devices.
 
-    - Support Self-Improvement:
-        - Enable users to not only achieve specific goals but also enhance their personal development, productivity, and time management skills.
+  - Encourage Consistency:
+    - Cultivate the habit of consistent goal setting and achievement, helping users build a lifelong practice of pursuing their aspirations.
 
-    - Deliver Convenience:
-        - Provide a convenient and accessible tool for goal planning and tracking that fits seamlessly into users' daily routines.
+  - Support Self-Improvement:
+    - Enable users to not only achieve specific goals but also enhance their personal development, productivity, and time management skills.
 
-- __User Stories__
+  - Deliver Convenience:
+    - Provide a convenient and accessible tool for goal planning and tracking that fits seamlessly into users' daily routines.
+
+### User Stories
   - Task Management
     - As a user, I want to break down my goals into actionable tasks and create to-do lists, allowing me to plan the steps needed to achieve my goals.
   - Progress Tracking
@@ -60,56 +61,56 @@ The Planner App is a game-changer for anyone looking to set and achieve their go
   - Personal Development
     - As a user, I want the app to not only help me achieve specific goals but also support my personal development, productivity, and time management skills.
 
-- __Features to be implemented__
+### Features to be implemented
   - Goal Board: Create and prioritize your goals in one place.
   - Todo Lists: Break down your goals into actionable tasks and to-do lists.
   - Progress Tracking: Monitor your progress towards each goal.
-  - Time Management: Schedule specific activities and allocate time to achieve your goals effectively.
+  - Task Scheduling: Schedule specific activities and allocate time to achieve your goals effectively.
   - Goal Statistics: Gain insights with statistics on achieved and missed goals.
 
-- __Wireframes__
+### Wireframes
 
-  <details><summary>Authentication wireframes</summary>
+<details><summary>Authentication wireframes</summary>
 
-    ![Mobile wireframe](./README/wireframes/mobile/sign_in.png) ![Mobile wireframe](./README/wireframes/mobile/sign_up.png)
-    ![Ipad wireframe](./README/wireframes/tablet/sign_in.png) ![Ipad wireframe](./README/wireframes/tablet/sign_up.png)
-    ![Desktop wireframe](./README/wireframes/desktop/sign_in.png) ![Desktop wireframe](./README/wireframes/desktop/sign_up.png)
+  ![Mobile wireframe](./README/wireframes/mobile/sign_in.png) ![Mobile wireframe](./README/wireframes/mobile/sign_up.png)
+  ![Ipad wireframe](./README/wireframes/tablet/sign_in.png) ![Ipad wireframe](./README/wireframes/tablet/sign_up.png)
+  ![Desktop wireframe](./README/wireframes/desktop/sign_in.png) ![Desktop wireframe](./README/wireframes/desktop/sign_up.png)
 
-  </details>
+</details>
 
-  <details><summary>Goals Board wireframes</summary>
+<details><summary>Goals Board wireframes</summary>
 
-    ![Mobile wireframe](./README/wireframes/mobile/board.png)
-    ![Ipad wireframe](./README/wireframes/tablet/board.png)
-    ![Desktop wireframe](./README/wireframes/desktop/board.png)
+  ![Mobile wireframe](./README/wireframes/mobile/board.png)
+  ![Ipad wireframe](./README/wireframes/tablet/board.png)
+  ![Desktop wireframe](./README/wireframes/desktop/board.png)
 
-  </details>
+</details>
 
-  <details><summary>Tasks wireframes</summary>
+<details><summary>Tasks wireframes</summary>
 
-    ![Mobile wireframe](./README/wireframes/mobile/tasks.png)
-    ![Ipad wireframe](./README/wireframes/tablet/tasks.png)
-    ![Desktop wireframe](./README/wireframes/desktop/tasks.png)
+  ![Mobile wireframe](./README/wireframes/mobile/tasks.png)
+  ![Ipad wireframe](./README/wireframes/tablet/tasks.png)
+  ![Desktop wireframe](./README/wireframes/desktop/tasks.png)
 
-  </details>
+</details>
 
-  <details><summary>Calendar wireframes</summary>
+<details><summary>Calendar wireframes</summary>
 
-    ![Mobile wireframe](./README/wireframes/mobile/calendar.png)
-    ![Ipad wireframe](./README/wireframes/tablet/calendar.png)
-    ![Desktop wireframe](./README/wireframes/desktop/calendar.png)
+  ![Mobile wireframe](./README/wireframes/mobile/calendar.png)
+  ![Ipad wireframe](./README/wireframes/tablet/calendar.png)
+  ![Desktop wireframe](./README/wireframes/desktop/calendar.png)
 
-  </details>
+</details>
 
-  <details><summary>Account wireframes</summary>
+<details><summary>Account wireframes</summary>
 
-    ![Mobile wireframe](./README/wireframes/mobile/account.png)
-    ![Ipad wireframe](./README/wireframes/tablet/account.png)
-    ![Desktop wireframe](./README/wireframes/desktop/account.png)
+  ![Mobile wireframe](./README/wireframes/mobile/account.png)
+  ![Ipad wireframe](./README/wireframes/tablet/account.png)
+  ![Desktop wireframe](./README/wireframes/desktop/account.png)
 
-  </details>
+</details>
 
-- __Models__
+### Models
   - A PostgreSQL SQL database is utilized. Three Django database models have been established, each containing a user field serving as a foreign key connected to the default Django User model.
   - The 'Goal' and 'Task' models maintain a one-to-many relationship, with the 'Task' model possessing a 'goal' field acting as a foreign key referencing the 'Goal' table. Additionally, the 'Task' and 'Scheduled Tasks' tables exhibit a one-to-many relationship, where the 'task' field in the 'ScheduledTask' table is a foreign key associated with the 'Task' model.
   - The 'Goal' model contains the following fields:
@@ -140,7 +141,7 @@ The Planner App is a game-changer for anyone looking to set and achieve their go
 
 ![Visual depiction presenting the relational connections among database models, displaying their fields and respective data types](./README/images/task_app_model.png)
 
-- __Colors__
+### Colors
 
 The chosen color palette represents a deliberate and meticulous selection aimed at fostering an environment of simplicity and comfort for all users. Each color was thoughtfully chosen to maintain a minimalist and visually unobtrusive interface, prioritizing ease of comprehension and user focus within the application.
 
@@ -159,7 +160,7 @@ The chosen color palette represents a deliberate and meticulous selection aimed 
 ![Color Pallete](./README/images/color_pallete_1.png)
 ![Color Pallete](./README/images/color_pallete_2.png)
 
-- __Fonts__
+### Fonts
 The project's font selection comprises 'Playfair Display' and 'Roboto'. 'Playfair Display' is designated for the main headings, footer and the navigation menu to evoke a sense of seriousness and visual elegance. 'Roboto' has been incorporated specifically to enhance legibility.
 
 This choice is intended to establish a formal tone and improve readability. The deliberate juxtaposition of 'Playfair Display' and 'Roboto' serves a dual purpose: creating visual distinction and ensuring content clarity within the project's framework.
@@ -167,7 +168,7 @@ This choice is intended to establish a formal tone and improve readability. The 
   - Playfair Display
   - Roboto
 
-- __Technologies__
+### Technologies
   - Framework
     - Django
 
@@ -191,7 +192,7 @@ This choice is intended to establish a formal tone and improve readability. The 
     - Psycopg2
     - Whitenoise
 
-- __Agile Methotology__
+### Agile Methotology
 
 In developing my Task Manager App using Django, the implementation of Agile methodology was both a challenge and a guiding framework. As a solo developer navigating a new technology landscape, the Agile principles of adaptability and iterative progress became my cornerstone.
 
@@ -215,6 +216,18 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 ## Features
 
 ## Future Features
+
+  - For future enhancements, a statistics page could be incorporated to provide users with comprehensive insights into their overall progress. This feature could showcase trends, detailing achieved goals, failed goals, and other valuable metrics. By offering this data, users can gain valuable insights to enhance and improve their goal achievement.
+
+  - In order to uphold user privacy, an account deletion feature that allows users to delete their accounts along with all associated data can be added. This ensures that users have the option to securely remove their personal information from the system.
+
+  - Exploring the addition of internal logic within the project to automate behavior is recommended. For instance, upon task creation, an automatic transition of the associated goal status to 'in progress' could be initiated. Similarly, upon task completion, an automated removal of all relevant scheduled tasks from the calendar could occur. These automated functionalities aim to streamline user experience and optimize operational efficiency within the project.
+
+  - Exploring the possibility of integrating an automated system to send reminder emails specifically on scheduled task days could be considered as a potential future feature. This strategic approach aims to prompt and encourage users on specific task days, potentially aiding in the timely completion of tasks aligned with their established goals.
+
+  - To enhance user experience, the addition of a 'Forgot Password' link on the login page could be considered. This feature would allow users to reset their passwords by entering their email addresses and receiving a link to initiate the reset process.
+
+  - To maintain dashboard clarity, an archiving mechanism to remove outdated data can be implemented. Archiving outdated data will facilitate a clearer and more concise dashboard interface, ensuring that only relevant information remains visible.
 
 ## Testing
 
