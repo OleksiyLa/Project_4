@@ -632,6 +632,18 @@ __Goals Board__
 
 <br>
 
+- __404 page__
+
+  - When a user attempts to access a page that does not exist, the system redirects to the 'Not Found' page.
+
+- __Navigation__
+
+  - The navigation menu is visible on all pages, allowing users to seamlessly navigate between pages. The navigation menu is responsive, featuring a burger menu on smaller screens. The burger menu functions as intended, displaying the necessary navigation content.
+
+- __Footer__
+
+  - When a user clicks the social links in the footer, the system opens a new tab to the respective social media pages.
+
 ### LightHouse Testing
   
   - The following LightHouse tests were conducted to ensure the application's performance, accessibility, best practices, and SEO are optimized. The tests were conducted on the deployed application. Each result is at least 90% or higher.
