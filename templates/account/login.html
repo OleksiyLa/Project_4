@@ -27,13 +27,13 @@
       <form class="login my-5" method="POST" action="{% url 'account_login' %}" novalidate>
         {% csrf_token %}
         <div class="mb-3">
-            <h2 for="{{ form.login.id_for_label }}" class="form-label d-block text-center lead">
+            <h2 class="form-label d-block text-center lead">
               {{ form.login.label_tag }}
             </h2>
             {{ form.login|as_crispy_field }}
         </div>
         <div class="mb-3">
-            <h2 for="{{ form.password.id_for_label }}" class="form-label d-block text-center lead">
+            <h2 class="form-label d-block text-center lead">
               {{ form.password.label_tag }}
             </h2>
             {{ form.password|as_crispy_field }}
