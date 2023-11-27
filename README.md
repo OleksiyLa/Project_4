@@ -223,7 +223,6 @@ In developing my Task Manager App using Django, the implementation of Agile meth
 - __Authentication__
 
   - Form validation is handled by Django. The following tests were conducted to ensure the authentication process is working as intended.
-
   - When accessing the website, it automatically redirects to the login page.
     
 ![Login Page](./README/tests/manual_testing/auth/initial_sign_in.png)
@@ -446,76 +445,114 @@ __Goals Board__
   
   - If the user add correct data including optional end date and check at least one weekday, the system will redirect to the 'Calendar' page with the notification message just under the navigation menu and the tasks are scheduled within the date range and weekdays selected. If scheduled tasks are over deadline, the warning will appear to notify the user how many tasks are over deadline.
 
-![Schedule tasks](./README/tests/manual_testing/calendar/calendar_tasks_over_deadline.png)
+![Schedule tasks over deadline](./README/tests/manual_testing/calendar/calendar_tasks_over_deadline.png)
 
   - To see the scheduled task for the next month, the user needs to click the 'Next' button on the calendar. The 'Calendar' switch to the next month.
 
-![Schedule tasks](./README/tests/manual_testing/calendar/scheduled_tasks_next_month.png)
+![Schedule tasks next month](./README/tests/manual_testing/calendar/scheduled_tasks_next_month.png)
 
   - If the user will not select end date, the system will schedule the task for the exact date only.
 
-![Schedule task](./README/tests/manual_testing/calendar/schedule_task.png)
-![Schedule task](./README/tests/manual_testing/calendar/scheduled_task.png)
+![Schedule task form, no end date](./README/tests/manual_testing/calendar/schedule_task.png)
+![Schedule tas in calend](./README/tests/manual_testing/calendar/scheduled_task.png)
+
+  - If the user clicks the specific date in the caledandar, the date will be selected, higlighted and the tasks scheduled for that date will be displayed next to the calendar.
+  - If the user clicks the complete button in the calendar, the scheduled task will be marked as completed and the color of the text will change to green and delete icon will dissapear.
+
+![Selected date and completed task](./README/tests/manual_testing/calendar/completed_task.png)
+
+  - All completed scheduled tasks will be displayed in the calendar with the green color.
+
+![Completed scheduled tasks](./README/tests/manual_testing/calendar/completed_task_green.png)
+
+  - To edit scheduled task the user needs to click the 'Edit' icon on the scheduled task card. The system will redirect to the 'Edit Scheduled Task' form.
+
+![Edit scheduled task form](./README/tests/manual_testing/calendar/edit_scheduled_task.png)
+
+  - The edit scheduled task form adheres to the same validation rules as the 'Schedule Task' form, with the exception of allowing modifications to past dates. If the user adjusts the date and time in a manner resulting in task overlap with existing ones, an error message will promptly notify the user about the conflict.
+
+![Edit scheduled task form, conflicting tasks](./README/tests/manual_testing/calendar/edit_task_overlaps.png)
+![Schedule task form overlaps](./README/tests/manual_testing/calendar/schedule_tasks_ovelaps.png)
+
+  - The calendar will be visible only when the user's data is successfully fetched. In the absence of fetched data due to a network error, a loader will be displayed instead of the calendar.
+
+![Calendar data fetched](./README/tests/manual_testing/calendar/data_fetched.png)
+![Calendar data not fetched](./README/tests/manual_testing/calendar/data_not_fetched.png)
+
+  - If the user clicks the 'Delete' icon on the scheduled task card, the confirmation modal will appear. If the user clicks the 'Confirm' button on the confirmation modal, the system redirects to the 'Calendar' page with the notification message just under the navigation menu and the scheduled task is deleted.
+
+![Delete scheduled task modal](./README/tests/manual_testing/calendar/delete_scheduled_task_modal.png)
+![Delete scheduled task](./README/tests/manual_testing/calendar/deleted_scheduled_task.png)
+
+  - Multiple scheduled tasks can occur on the same day if they do not conflict with each other. These tasks will be showcased in the calendar in chronological order.
+
+![Several scheduled tasks](./README/tests/manual_testing/calendar/scheduled_tasks_in_order.png)
+
+  - Deleting the 'Go to The Gym' task will result in the deletion of all scheduled tasks associated with that specific goal. However, tasks such as 'Run' and others unrelated to the deleted goal will remain unaffected
+
+![Cascade delete task](./README/tests/manual_testing/calendar/deleted_task_removes_scheduled.png)
+![Cascade scheduled task deleted](./README/tests/manual_testing/calendar/shceduled_tasks_deleted_task_deleted.png)
+
+  - When a user deletes a goal, all associated tasks, including scheduled tasks, will be deleted as part of this action.
+
+![Cascade delete goal](./README/tests/manual_testing/calendar/deleted_goal.png)
+![Cascade delete goal](./README/tests/manual_testing/calendar/empty_task_goal_deletion.png)
 
 - __Authorization__
 
 - __Data displayed correctly__
 
-- __Responsiveness__
-
 ## Bugs
 
 ## Deployment
-
-### Deployment Steps__
-    - The Task Manager App was deployed to Heroku using the following steps:
-        - Create a virtual environment and install Django.
-            - python -m venv myenv
-            - myenv\Scripts\activate
-            - Install Django using pip install Django
-        - Create a project and app.
-            - django-admin startproject project_name
-            - cd project_name
-            - python manage.py startapp app_name
-        - Heroku setup
-            - Log in to Heroku or create an account if required.
-            - Click "Create new app".
-            - Select the relevant region.
-            - Enter a unique app name.
-            - Click "Create app".
-        - Update Django settings for Heroku.
-            - Ensure DEBUG is set to False.
-            - Update ALLOWED_HOSTS to include your Heroku app's domain.
-            - Update the DATABASES configuration to use dj_database_url for the Heroku PostgreSQL database.
-            - Add logic for Heroku-specific configurations, e.g., handling static files.
-        - Install dependencies.
-        - Prepare requirements file.
-            - Use pip3 freeze > requirements.txt to generate a requirements.txt file listing the Python dependencies for your project.
-        - Create a Procfile.
-            - Create a Procfile to declare what commands are run by your app's dynos on the Heroku platform. For example, for a Django project, it might contain: web: gunicorn your_app_name.wsgi.
-        - Push project to GitHub.
-            - Push your project to a GitHub repository.
-        - Configure environment variables.
-            - Scroll down to the "Config Vars" section.
-            Click "Reveal Config Vars".
-            Add the following environment variables:
-            DATABASE_URL: Link to your PostgreSQL database.
-            PORT: Set the value to 8000.
-            SECRET_KEY: Set the Django secret key for your application.
-        - Set buildpack.
-            - Scroll down to the buildpacks section of the settings page.
-            Click "Add buildpack".
-            Select "Python" and save changes.
-        - Deployment configuration.
-            - Navigate to the "Deploy" tab.
-            Connect your Heroku app to the GitHub repository containing your project.
-            Choose the branch to deploy.
-        - Deploy to Heroku.
-            - Trigger the deployment process in Heroku either manually or set up automatic deployments.
-            Initiate the deployment process in Heroku.
-            Monitor the build logs to ensure successful deployment
-        - Access live application.
-            - Once deployed, click "View" in Heroku to access your live application.
+  - The Task Manager App was deployed to Heroku using the following steps:
+    - Create a virtual environment and install Django.
+      - python -m venv myenv
+      - myenv\Scripts\activate
+      - Install Django using pip install Django
+    - Create a project and app.
+      - django-admin startproject project_name
+      - cd project_name
+      - python manage.py startapp app_name
+    - Heroku setup
+      - Log in to Heroku or create an account if required.
+      - Click "Create new app".
+      - Select the relevant region.
+      - Enter a unique app name.
+      - Click "Create app".
+    - Update Django settings for Heroku.
+      - Ensure DEBUG is set to False.
+      - Update ALLOWED_HOSTS to include your Heroku app's domain.
+      - Update the DATABASES configuration to use dj_database_url for the Heroku PostgreSQL database.
+      - Add logic for Heroku-specific configurations, e.g., handling static files.
+    - Install dependencies.
+    - Prepare requirements file.
+      - Use pip3 freeze > requirements.txt to generate a requirements.txt file listing the Python dependencies for your project.
+    - Create a Procfile.
+      - Create a Procfile to declare what commands are run by your app's dynos on the Heroku platform. For example, for a Django project, it might contain: web: gunicorn your_app_name.wsgi.
+    - Push project to GitHub.
+      - Push your project to a GitHub repository.
+    - Configure environment variables.
+      - Scroll down to the "Config Vars" section.
+      - Click "Reveal Config Vars".
+      - Add the following environment variables:
+      - DATABASE_URL: Link to your PostgreSQL database.
+      - PORT: Set the value to 8000.
+      - SECRET_KEY: Set the Django secret key for your application.
+    - Set buildpack.
+      - Scroll down to the buildpacks section of the settings page.
+      - Click "Add buildpack".
+      -  Select "Python" and save changes.
+    - Deployment configuration.
+      - Navigate to the "Deploy" tab.
+      -  Connect your Heroku app to the GitHub repository containing your project.
+      -  Choose the branch to deploy.
+    - Deploy to Heroku.
+      - Trigger the deployment process in Heroku either manually or set up automatic deployments.
+      -  Initiate the deployment process in Heroku.
+      -  Monitor the build logs to ensure successful deployment
+    - Access live application.
+      - Once deployed, click "View" in Heroku to access your live application.
 
 ## Credits
 
