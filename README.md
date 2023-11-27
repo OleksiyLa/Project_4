@@ -1,7 +1,6 @@
 # Planner App (Task Manager)
 The Planner App is a game-changer for anyone looking to set and achieve their goals. This web-based platform is designed to simplify the goal-setting process. It allows you to create, prioritize, and break down your goals into manageable tasks, while also providing the flexibility to schedule your activities. Plus, with in-depth goal statistics, you'll gain a clear view of your achievements and areas for improvement. Whether you're a student, professional, or goal-oriented individual, this app is your pathway to success.
 
-![Am I responsive, login](./README/web_site_images/responsive_login.png)
 ![Goals Board page](./README/web_site_images/goals_board.png)
 
 ## Planning & Development
@@ -670,11 +669,23 @@ __Goals Board__
 
 #### JSHint JavaScript Validator
 
-  - The JavaScript file has been validated using the JSHint JavaScript Validator, and no errors were detected but there was a warning "Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (index)."
+The JavaScript file has been validated using the JSHint JavaScript Validator, and no errors were detected but there was a warning "Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (index)."
 
-<details><summary>W3C CSS Validator (Jigsaw) results</summary>
+  - The calendar.js file has been validated using the JSHint JavaScript Validator, and no errors were detected."
 
-  ![JSHint JavaScript Validator](./README/tests/js/)
+<details><summary>Validation for calendar.js</summary>
+
+  ![JSHint JavaScript Validator](./README/tests/js/calendar.js.png)
+
+</details>
+
+  - The 'index.js' file underwent validation using the JSHint JavaScript Validator, resulting in no errors being detected. However, a warning regarding the 'undefined' variable 'bootstrap' was flagged, which pertains to a Bootstrap 5 variable utilized within the project's context. To verify, I logged the variable's value using the console.log function. Upon inspection in the inspector tool, it was evident that the variable holds the 'bootstrap' object.
+
+<details><summary>Validation for calendar.js</summary>
+
+  ![JSHint JavaScript Validator](./README/tests/js/index.js.png.js.png)
+  ![JSHint JavaScript Validator](./README/tests/js/log_bootsrap.png)
+  ![JSHint JavaScript Validator](./README/tests/js/log_results.png)
 
 </details>
 
