@@ -43,7 +43,7 @@
           {{ form.password2|as_crispy_field }}
         </div>
         {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
         {% endif %}
         <button class="btn btn-signup btn-success w-100" type="submit">{% trans "Sign Up" %}</button>
       </form>
