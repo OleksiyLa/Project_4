@@ -556,7 +556,7 @@ __Goals Board__
 
 #### LightHouse Testing
   
-    - The following LightHouse tests were conducted to ensure the application's performance, accessibility, best practices, and SEO are optimized. The tests were conducted on the deployed application. Each result is at least 90% or higher.
+  - The following LightHouse tests were conducted to ensure the application's performance, accessibility, best practices, and SEO are optimized. The tests were conducted on the deployed application. Each result is at least 90% or higher.
 
 <details><summary>Login</summary>
 
@@ -586,6 +586,33 @@ __Goals Board__
 </details>
 
 #### Python PEP8 Validation
+
+  - The Python PEP8 validation tests were performed to assess the adherence of the application's Python code to the PEP8 style guide. These tests were executed on the deployed application, and no errors were detected.
+
+<details><summary>Views validation</summary>
+
+  ![Login Ligthouse](./README/tests/pep8/views.png)
+
+</details>
+
+<details><summary>Models validation</summary>
+
+  ![Login Ligthouse](./README/tests/pep8/models.png)
+
+</details>
+
+<details><summary>Forms validation</summary>
+
+  ![Login Ligthouse](./README/tests/pep8/forms.png)
+
+</details>
+
+<details><summary>Urls validation</summary>
+
+  ![Login Ligthouse](./README/tests/pep8/urls.png)
+
+</details>
+
 #### HTML Validation
 #### CSS Validation
 #### JavaScript Validation
