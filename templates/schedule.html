@@ -12,11 +12,11 @@
         <a href="{% url 'tasks' %}" class="float-start mt-1">
           <img src="{% static 'svg/back_icon.svg' %}" alt="back-icon" class="control-icon">
         </a>
-        <h1 class="text-center h3">
-          Schedule Task
-        </h1>
-        <h2 class="text-center h3 title-wrapper">{{ task_title }}</h2>
       </div>
+      <h1 class="text-center h3">
+        Schedule Task
+      </h1>
+      <h2 class="text-center h3 title-wrapper">{{ task_title }}</h2>
       {% for field in form %}
         {% if field.errors %}
           {% for error in field.errors %}
