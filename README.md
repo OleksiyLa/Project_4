@@ -1,6 +1,9 @@
 # Planner App (Task Manager)
 The Planner App serves as an extensive task manager, facilitating goal setting, planning, task assignment, and calendar-based scheduling. It empowers users to set goals, strategize essential steps, allocate tasks, and effectively schedule these tasks for goal achievement. Users have the ability to track progress visually by adjusting the status of scheduled tasks, tasks, and goals, enabling a transparent overview of their journey. Additionally, a convenient Kanban board for goals, comprising sections like 'To Do,' 'In Progress,' 'On Hold,' and 'Done,' enhances organizational efficiency and progress visualization.
 
+  - GitHub Repository: https://github.com/OleksiyLa/Project_4
+  - Live Project: https://task-manager-planner-app-ca416dc67970.herokuapp.com/
+
 ![Goals Board page](./README/web_site_images/goals_board.png)
 
 ## Planning & Development
@@ -20,16 +23,13 @@ The Planner App serves as an extensive task manager, facilitating goal setting, 
 
 ### App Objectives
   - Empower Goal Achievement:
-    - Enable users to set, prioritize, and achieve their personal and professional goals effectively. Provide a platform that promotes action and progress toward meaningful objectives.
+    - Enable users to set and achieve their personal and professional goals effectively. Provide a platform that promotes action and progress toward meaningful objectives.
 
   - Enhance Time Management:
       - Help users improve their time management skills by scheduling tasks and allocating time for goal-related activities. Foster efficient use of time to maximize productivity and goal accomplishment.
 
   - Improve Accountability:
     - Encourage users to take ownership of their goals by breaking them down into actionable tasks and to-do lists. Facilitate tracking and monitoring of progress, creating a sense of responsibility for goal outcomes.
-
-  - Provide Valuable Insights:
-    - Offer goal statistics and data-driven feedback to help users gain a realistic view of their achievements and areas for improvement. Enable users to make data-informed decisions about their goals and time allocation.
 
   - Foster Versatility:
     - Cater to a diverse user base, including students, professionals, entrepreneurs, and goal-oriented individuals. Offer a user-friendly and intuitive web-based platform accessible from various devices.
@@ -43,30 +43,11 @@ The Planner App serves as an extensive task manager, facilitating goal setting, 
   - Deliver Convenience:
     - Provide a convenient and accessible tool for goal planning and tracking that fits seamlessly into users' daily routines.
 
-### User Stories
-  - Task Management
-    - As a user, I want to break down my goals into actionable tasks and create to-do lists, allowing me to plan the steps needed to achieve my goals.
-  - Progress Tracking
-    - As a user, I want to track my progress on each goal, so I can stay motivated and ensure I'm making consistent strides toward achieving my objectives.
-  - Time Management
-    - As a user, I want to be able to schedule specific activities and allocate time to work on my goals, helping me manage my time effectively.
-  - Goal Statistics
-    - As a user, I want to see statistics on goals achieved and those that were not, giving me insights into my performance and areas for improvement.
-  - Versatile User Base
-    - As a user, I want the app to cater to different types of goals, whether they are academic, career-related, personal, or hobby-related.
-  - Convenience and Accessibility
-    - As a user, I want to be able to access the app from various devices through a web-based platform, ensuring convenience and flexibility in managing my goals.
-  - Cultivating Consistency
-    - As a user, I want the app to encourage consistency in my goal-setting and achievement, helping me establish a habit of pursuing my aspirations.
-  - Personal Development
-    - As a user, I want the app to not only help me achieve specific goals but also support my personal development, productivity, and time management skills.
-
 ### Features to be implemented
-  - Goal Board: Create and prioritize your goals in one place.
-  - Todo Lists: Break down your goals into actionable tasks and to-do lists.
-  - Progress Tracking: Monitor your progress towards each goal.
+  - Goal Board: Create your goals in one place.
+  - Tasks Cards: Break down your goals into actionable tasks.
   - Task Scheduling: Schedule specific activities and allocate time to achieve your goals effectively.
-  - Goal Statistics: Gain insights with statistics on achieved and missed goals.
+  - The Calendar dashboard showcases days with scheduled tasks, visually highlighting these specific dates. Users can select a day from the calendar interface to view all tasks scheduled for that particular day, providing a detailed overview of the day's assigned tasks.
 
 ### Wireframes
 
@@ -191,6 +172,15 @@ This choice is intended to establish a formal tone and improve readability. The 
     - Gunicorn
     - Psycopg2
     - Whitenoise
+
+### User Stories
+  - User-Friendly Navigation: As a user, I expect the website to offer intuitive navigation, enabling me to move around the site effortlessly.
+  - Intuitive Interaction: As a user, I anticipate that the website will offer easy and intuitive interaction. I expect to be able to create goals and tasks, edit or delete them, and schedule tasks with ease.
+  - Goals: As a user I can easily view, create, edit, and track my personal and professional goals on a well-designed dashboard so that I can efficiently monitor my progress, stay motivated, and achieve my desired outcomes.
+  - Tasks: As a user I can be able to create tasks related to my goals, access detailed information about each task through task cards or a dedicated details page, and have the ability to delete or edit tasks as needed.
+  - Scheduled Tasks: As a user I can schedule tasks and have a visual representation of my scheduled tasks on a calendar, where these tasks are clearly highlighted. I should be able to select a specific day to view the tasks scheduled for that day, and I need the ability to delete or modify these tasks directly from the calendar.
+  - Notification of significant actions and errors: As a user I will receive clear and contextual messages, both confirming significant actions and highlighting errors, to ensure that I am aware of the system's status and any potential issues.
+  - Authorization and Authentication: As a user, I expect the capability to securely create an account, log in and out as needed, and have exclusive, secure access to view and manage my personal data within the application, without concern about unauthorized access by other users.
 
 ### Agile Methotology
 
