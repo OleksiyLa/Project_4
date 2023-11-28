@@ -816,9 +816,9 @@ The JavaScript file has been validated using the JSHint JavaScript Validator, an
 
 ## Code Refactoring Opportunities
 
-  - With regard to future enhancements, it is recommended to undertake a refactoring of the view.py file, aligning the implementation uniformly either to class-based or function-based views. This deliberate action will notably augment the overarching consistency of the codebase.
+  - When considering future improvements, it's advantageous to refactor the view.py file by standardizing the implementation, opting for either class-based or function-based views. This intentional effort will significantly enhance the overall consistency of the codebase.
 
-  - Future improvements may involve a focused review of the schedule_task view to streamline its structure. Strategies aimed at modularizing the codebase, eliminating redundancies, and enhancing code readability could yield substantial enhancements.
+  - Future improvement involves a refactor of the schedule_task view to streamline its structure. Strategies aimed at modularizing the codebase, eliminating redundancies, and enhancing code readability could yield substantial enhancements.
 
 ![Schedule_task_view](./README/images/schedule_task_view.png)
 
