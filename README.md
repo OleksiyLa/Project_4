@@ -488,9 +488,10 @@ __Goals Board__
 ![Task uncomplete](./README/tests/manual_testing/tasks/task_uncomplete.png)
 ![Task uncompleted](./README/tests/manual_testing/tasks/task_uncompleted.png)
 
-  - When the user clicks on the goal tile under the task panel, it will toggle the task card container. If the cards were open, they will hide; if hidden, they will display. Additionally, the toggle icon will change to its opposite state. This functionality proves convenient for users managing numerous tasks, enabling them to focus on one goal at a time or easily locate specific tasks by closing irrelevant ones.
+  - When the user clicks on the goal title under the task panel, it will toggle the task card container. If the cards were open, they will hide; if hidden, they will display. Additionally, the toggle icon will change to its opposite state. This functionality proves convenient for users managing numerous tasks, enabling them to focus on one goal at a time or easily locate specific tasks by closing irrelevant ones.
 
 ![Task panel closed](./README/tests/manual_testing/tasks/task_panel_closed.png)
+![Task panels closed and open](./README/tests/manual_testing/tasks/task_closed_open.png)
 
 
   - If the user clicks the 'Delete' icon on the task card, the confirmation modal will appear.
