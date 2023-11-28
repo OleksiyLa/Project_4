@@ -173,6 +173,35 @@ This choice is intended to establish a formal tone and improve readability. The 
     - Psycopg2
     - Whitenoise
 
+  - Packages:
+    - asgiref - ASGI framework specifications.
+    - Beautiful Soup 4 - A Python library for pulling data out of HTML and XML files.
+    - certifi - Certificates for Python.
+    - cffi - Foreign Function Interface for Python calling C code.
+    - charset-normalizer - Python implementation of the WHATWG Encoding standard.
+    - crispy-bootstrap5 - Integration of Django Crispy Forms with Bootstrap 5.
+    - cryptography - A package designed to expose cryptographic primitives and recipes to Python developers.
+    - defusedxml - XML bomb protection for Python stdlib modules.
+    - dj-database-url - Django database URL configuration parser.
+    - django-allauth - Integrated set of Django applications addressing authentication, registration, account management, as well as 3rd party (social) account authentication.
+    - django-bootstrap-v5 - Bootstrap 5 for Django projects.
+    - django-crispy-forms - A Django app that lets you easily build, customize, and reuse forms using Bootstrap.
+    - gunicorn - A Python WSGI HTTP server for UNIX.
+    - idna - Internationalized Domain Names in Applications (IDNA) library.
+    - oauthlib - A generic, spec-compliant, thorough implementation of the OAuth request-signing logic.
+    - packaging - Core utilities for Python packages.
+    - psycopg2 - PostgreSQL adapter for Python.
+    - pycparser - C parser in Python.
+    - PyJWT - JSON Web Token implementation in Python.
+    - python3-openid - Python OpenID library.
+    - requests - An elegant and simple HTTP library for Python.
+    - requests-oauthlib - OAuthlib authentication support for Requests.
+    - soupsieve - A CSS selector library for Python.
+    - sqlparse - A non-validating SQL parser for Python.
+    - tzdata - Timezone database and utilities.
+    - urllib3 - A powerful, user-friendly HTTP client for Python.
+    - whitenoise - Simplify serving of static files.
+
 ### User Stories
   - User-Friendly Navigation: As a user, I anticipate the app to provide intuitive navigation for effortless movement between its various pages and features.
   - Intuitive Interaction: As a user, I expect the app to provide intuitive interaction, enabling me to effortlessly create, edit, or delete goals and tasks, and seamlessly schedule tasks for efficient management.
