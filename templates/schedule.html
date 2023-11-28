@@ -12,9 +12,10 @@
         <a href="{% url 'tasks' %}" class="float-start mt-1">
           <img src="{% static 'svg/back_icon.svg' %}" alt="back-icon" class="control-icon">
         </a>
-        <h1 class="text-center h3 mb-0 mx-auto d-flex align-items-center">
-          <span class="mx-auto">Schedule Task <span class="d-block">{{ task_title }}</span></span>
+        <h1 class="text-center h3">
+          Schedule Task
         </h1>
+        <h2 class="text-center h3 title-wrapper">{{ task_title }}</h2>
       </div>
       {% for field in form %}
         {% if field.errors %}
