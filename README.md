@@ -4,7 +4,7 @@ The Planner App serves as an extensive task manager, facilitating goal setting, 
   - GitHub Repository: https://github.com/OleksiyLa/Project_4
   - Live Project: https://task-manager-planner-app-ca416dc67970.herokuapp.com/
 
-![Goals Board page](./README/web_site_images/goals_board.png)
+![Goals Board page](./README/images/goals_board.png)
 
 ## Planning & Development
 
@@ -806,13 +806,21 @@ The JavaScript file has been validated using the JSHint JavaScript Validator, an
 
   - The 'index.js' file underwent validation using the JSHint JavaScript Validator, resulting in no errors being detected. However, a warning regarding the 'undefined' variable 'bootstrap' was flagged, which pertains to a Bootstrap 5 variable utilized within the project's context. To verify, I logged the variable's value using the console.log function. Upon inspection in the inspector tool, it was evident that the variable holds the 'bootstrap' object.
 
-<details><summary>Validation for calendar.js</summary>
+<details><summary>Validation for index.js</summary>
 
   ![JSHint JavaScript Validator](./README/tests/js/index.js.png)
   ![JSHint JavaScript Validator](./README/tests/js/log_bootsrap.png)
   ![JSHint JavaScript Validator](./README/tests/js/log_results.png)
 
 </details>
+
+## Code Refactoring Opportunities
+
+  - With regard to future enhancements, it is recommended to undertake a refactoring of the view.py file, aligning the implementation uniformly either to class-based or function-based views. This deliberate action will notably augment the overarching consistency of the codebase.
+
+  - Future improvements may involve a focused review of the schedule_task view to streamline its structure. Strategies aimed at modularizing the codebase, eliminating redundancies, and enhancing code readability could yield substantial enhancements.
+
+![Schedule_task_view](./README/images/schedule_task_view.png)
 
 ## Bugs
   - On a mobile device, accessing the burger menu from the goal panel and selecting a specific category, such as 'In Progress,' smoothly navigates the user to the corresponding column. However, an issue arises where the selected column slightly obstructs the view of the first card, impacting the user experience a bit. This issue is not present on larger screens.
