@@ -189,17 +189,17 @@ In developing my Task Manager App using Django, the implementation of Agile meth
   - Agile Adaptation and Solo Development Challenges:
     - Agile methodologies, inherently designed for team collaboration, presented unique challenges in a solo development environment. Estimating tasks accurately within this framework was intricate, especially while acquainting myself with Django's complexities. The Agile structure demanded constant adaptation, a process complicated by the solitary nature of my work and the nuances of a new technology stack.
 
-  - Strategic Sprint Adjustments and Agile Principles:
-    - To align Agile principles with my solo development needs, I adopted an adaptive approach. Initially, I found myself frequently refining the structure of sprints due to the novelty of Django. However, as I progressed, the need for caution and strategic planning became apparent. While traditional Agile discourages mid-sprint changes, I maximized efforts on high-priority tasks, deviating to manage uncertainties arising from a new technology landscape.
+  - Transitioning to Sprints with Django's Novelty:
+    - Embracing Agile principles initially led me to adopt sprints, yet navigating Django's unfamiliar terrain made estimating task durations a challenge within my limited timeframe. Recognizing the uncertainty, I pivoted towards an adaptable approach. Understanding the unpredictability of future sprints, I chose to prioritize adaptability over rigid planning. This shift allowed me to focus on completing as many tasks as possible within the given time frame, mitigating the uncertainties that came with mastering a new technology like Django.
 
-  - Iterative Learning and Agile Efficiency:
-    - As my proficiency in Django improved, so did my grasp of task estimations. This iterative learning process allowed me to plan subsequent sprints with greater precision. Evolving beyond mere task completion, I ensured a more nuanced and controlled development process. Agile, as a guiding philosophy, encouraged adaptability in my approach, fostering continuous improvement and efficiency in task estimation and project planning.
+  - Embracing Iterative Learning in Agile Efficiency:
+    -As I delved deeper into Django, my proficiency in estimating tasks and user stories gradually strengthened. This ongoing learning curve notably boosted my ability to forecast and plan effectively. Transitioning away from mere task completion, I honed the skill of precise estimations, steering development toward a more refined and controlled path.
 
   - Refinement in Agile Sprint Planning:
     - Transitioning from rigid sprint structures, I embraced Agile flexibility, emphasizing task completion over predefined timeframes. This strategic shift allowed me to navigate uncertainties more effectively. Notably, in the project's final phase, my refined estimation process under the Agile umbrella ensured efficient allocation of time, culminating in the successful completion of the Task Manager App.
 
   - Future Iterations and Agile Integration:
-    - Armed with a comprehensive understanding of Django and refined Agile practices, I am poised to integrate Agile principles more seamlessly into future iterations. The adaptive journey within Agile, while initially marked by adjustments and unconventional tactics, has been instrumental in my learning trajectory. My newfound confidence in Django and a strengthened Agile foundation will undoubtedly shape more efficient and structured sprint planning processes in future iterations of the Task Manager App.
+    - Armed with a comprehensive understanding of Django and refined Agile practices, I am poised to integrate Agile principles more seamlessly into future iterations. The adaptive journey within Agile, while initially marked by adjustments and unconventional tactics, has been instrumental in my learning trajectory. My newfound confidence in Django and a strengthened Agile foundation will undoubtedly shape more efficient and structured sprint planning processes in the future.
 
   - Kanban board: https://github.com/users/OleksiyLa/projects/2
 
