@@ -174,8 +174,8 @@ This choice is intended to establish a formal tone and improve readability. The 
     - Whitenoise
 
 ### User Stories
-  - User-Friendly Navigation: As a user, I expect the website to offer intuitive navigation, enabling me to move around the site effortlessly.
-  - Intuitive Interaction: As a user, I anticipate that the website will offer easy and intuitive interaction. I expect to be able to create goals and tasks, edit or delete them, and schedule tasks with ease.
+  - User-Friendly Navigation: As a user, I anticipate the app to provide intuitive navigation for effortless movement between its various pages and features.
+  - Intuitive Interaction: As a user, I expect the app to provide intuitive interaction, enabling me to effortlessly create, edit, or delete goals and tasks, and seamlessly schedule tasks for efficient management.
   - Goals: As a user I can easily view, create, edit, and track my personal and professional goals on a well-designed dashboard so that I can efficiently monitor my progress, stay motivated, and achieve my desired outcomes.
   - Tasks: As a user I can be able to create tasks related to my goals, access detailed information about each task through task cards or a dedicated details page, and have the ability to delete or edit tasks as needed.
   - Scheduled Tasks: As a user I can schedule tasks and have a visual representation of my scheduled tasks on a calendar, where these tasks are clearly highlighted. I should be able to select a specific day to view the tasks scheduled for that day, and I need the ability to delete or modify these tasks directly from the calendar.
