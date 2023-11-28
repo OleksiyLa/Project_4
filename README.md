@@ -164,14 +164,6 @@ This choice is intended to establish a formal tone and improve readability. The 
   
   - Libraries:
     - Bootstrap 5
-    - Font Awesome
-    - Google Fonts
-    - Django Crispy Forms
-    - Django Allauth
-    - Django Extensions
-    - Gunicorn
-    - Psycopg2
-    - Whitenoise
 
   - Packages:
     - asgiref - ASGI framework specifications.
